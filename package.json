@@ -1,12 +1,14 @@
 {
   "name": "web-toolbox",
   "version": "4.0.0",
-  "author": {
-    "name": "André Masson",
-    "email": "amwebexpert@gmail.com",
-    "url": "https://www.linkedin.com/in/amwebexpert/"
-  },
+  "author": "amwebexpert@gmail.com",
+  "repository": "https://github.com/amwebexpert/etoolbox",
   "contributors": [
+    {
+      "name": "André Masson",
+      "email": "amwebexpert@gmail.com",
+      "url": "https://www.linkedin.com/in/amwebexpert/"
+    },
     {
       "name": "Anthony Buchholz",
       "email": "anthony.buchholz@gmail.com",
@@ -33,16 +35,31 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "@tanstack/react-query": "^5.90.16",
+    "@uidotdev/usehooks": "^2.4.1",
+    "antd": "^6.1.3",
+    "axios": "^1.13.2",
+    "date-fns": "^4.1.0",
+    "immer": "^11.1.3",
+    "markdown-it": "^14.1.0",
+    "react": "^19.2.3",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.69.0",
+    "react-markdown": "^10.1.0",
+    "sonner": "^2.0.7",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.10.1",
-    "@types/react": "^19.2.5",
+    "@types/react": "^19.2.7",
+    "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
+    "@vitejs/plugin-react": "^5.1.2",
     "commitlint": "^20.2.0",
+    "cpx": "^1.5.0",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
@@ -53,7 +70,8 @@
     "rimraf": "^6.1.2",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
-    "vite": "npm:rolldown-vite@7.2.5"
+    "vite": "npm:rolldown-vite@7.2.5",
+    "vite-tsconfig-paths": "^6.0.3"
   },
   "overrides": {
     "vite": "npm:rolldown-vite@7.2.5"
