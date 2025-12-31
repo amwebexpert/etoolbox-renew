@@ -1,4 +1,7 @@
-const fs = require('fs');
+import fs from 'fs';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 const packageMetadata = require('../package.json');
 
 const constantsFilename = './src/app-version-constants.ts';
@@ -19,21 +22,13 @@ export const LONG_VERSION_DATE = '${version} (${date})';
 
 `;
 
-const generateMarkdownConst = () => {
-  const markdownContent = fs.readFileSync('CHANGELOG.md', { encoding: 'utf8' });
-  const backTick = '`';
-  return `export const CHANGELOG_MD: string = ${backTick}${markdownContent}${backTick};\n`;
-};
-
 const main = () => {
   console.info('\t[Version generator script]');
 
   try {
     console.info(`\t- writing file "${constantsFilename}"...`, packageMetadata.version);
 
-    const changeLogConst = generateMarkdownConst();
-    const dataWithMarkdown = `${data}${changeLogConst}`;
-    fs.writeFileSync(constantsFilename, dataWithMarkdown, { encoding: 'utf8' });
+    fs.writeFileSync(constantsFilename, data, { encoding: 'utf8' });
 
     console.info(`\t- file "${constantsFilename}" written successfully.`);
   } catch (err) {
