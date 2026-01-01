@@ -2,10 +2,10 @@ import { createRootRoute, createRoute, createRouter, Navigate } from "@tanstack/
 import { RootLayout } from "~/routes/root-layout";
 import { About } from "~/screens/about/about";
 import { Home } from "~/screens/home/home";
+import { UrlCurl } from "~/screens/url-parse-encode/curl/url-curl";
 import { UrlEncoder } from "~/screens/url-parse-encode/encoder/url-encoder";
 import { UrlParser } from "~/screens/url-parse-encode/parser/url-parser";
 import { Url } from "~/screens/url-parse-encode/url";
-import { UrlCurl } from "~/screens/url-parse-encode/url-curl";
 
 // Root route
 const rootRoute = createRootRoute({

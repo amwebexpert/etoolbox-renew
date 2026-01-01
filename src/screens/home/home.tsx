@@ -1,7 +1,9 @@
+import { ScreenContainer } from "~/components/ui/screen-container";
+
 export const Home = () => {
   return (
-    <div>
+    <ScreenContainer>
       <p>Page: Home</p>
-    </div>
+    </ScreenContainer>
   );
 };

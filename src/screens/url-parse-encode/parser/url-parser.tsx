@@ -2,6 +2,7 @@ import { LinkOutlined } from "@ant-design/icons";
 import { Card, Input, Space, Table, Typography } from "antd";
 import { createStyles } from "antd-style";
 
+import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
 import { useResponsive } from "~/hooks/use-responsive";
 import { useUrlParserStore } from "./url-parser.store";
@@ -32,7 +33,7 @@ export const UrlParser = () => {
   }));
 
   return (
-    <div className={styles.container}>
+    <ScreenContainer>
       <Space orientation="vertical" size="middle" className={styles.fullWidth}>
         <ScreenHeader
           icon={<LinkOutlined />}
@@ -80,16 +81,11 @@ export const UrlParser = () => {
           </Card>
         )}
       </Space>
-    </div>
+    </ScreenContainer>
   );
 };
 
 const useStyles = createStyles(() => ({
-  container: {
-    padding: 16,
-    maxWidth: 1200,
-    margin: "0 auto",
-  },
   fullWidth: {
     width: "100%",
   },

@@ -3,6 +3,7 @@ import { getErrorMessage } from "@lichens-innovation/ts-common";
 import { Button, Input, message, Space, Tooltip, Typography } from "antd";
 import { createStyles } from "antd-style";
 
+import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
 import { useResponsive } from "~/hooks/use-responsive";
 import { useUrlEncoderStore } from "./url-encoder.store";
@@ -47,7 +48,7 @@ export const UrlEncoder = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <ScreenContainer>
       {contextHolder}
 
       <Space orientation="vertical" size="middle" className={styles.fullWidth}>
@@ -104,16 +105,11 @@ export const UrlEncoder = () => {
           </div>
         )}
       </Space>
-    </div>
+    </ScreenContainer>
   );
 };
 
 const useStyles = createStyles(({ token }) => ({
-  container: {
-    padding: 16,
-    maxWidth: 1200,
-    margin: "0 auto",
-  },
   fullWidth: {
     width: "100%",
   },

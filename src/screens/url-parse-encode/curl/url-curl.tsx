@@ -1,21 +1,14 @@
 import { Typography } from "antd";
-import { createStyles } from "antd-style";
+
+import { ScreenContainer } from "~/components/ui/screen-container";
 
 const { Title, Paragraph } = Typography;
 
 export const UrlCurl = () => {
-  const { styles } = useStyles();
-
   return (
-    <div className={styles.container}>
+    <ScreenContainer>
       <Title level={4}>cURL Builder</Title>
       <Paragraph type="secondary">Construisez et analysez des commandes cURL</Paragraph>
-    </div>
+    </ScreenContainer>
   );
 };
-
-const useStyles = createStyles(() => ({
-  container: {
-    padding: 16,
-  },
-}));

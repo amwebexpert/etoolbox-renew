@@ -97,8 +97,7 @@ const useStyles = createStyles(({ token }) => ({
     gap: 8,
   },
   content: {
-    margin: 16,
-    padding: 24,
+    padding: 12,
     background: token.colorBgContainer,
     borderRadius: token.borderRadiusLG,
     minHeight: "calc(100vh - 64px - 32px)",
