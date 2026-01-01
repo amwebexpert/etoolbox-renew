@@ -8,11 +8,11 @@ import { getErrorMessage } from "@lichens-innovation/ts-common";
 import { Button, Input, message, Space, Tooltip, Typography } from "antd";
 import { createStyles } from "antd-style";
 
+import { ScreenHeader } from "~/components/ui/screen-header";
 import { useResponsive } from "~/hooks/use-responsive";
 import { useUrlEncoderStore } from "./url-encoder.store";
 import { transformUrl } from "./url-encoder.utils";
 
-const { Title, Paragraph } = Typography;
 const { TextArea } = Input;
 
 export const UrlEncoder = () => {
@@ -57,17 +57,11 @@ export const UrlEncoder = () => {
       {contextHolder}
 
       <Space orientation="vertical" size="middle" className={styles.fullWidth}>
-        <div className={styles.header}>
-          <CodeOutlined className={styles.icon} />
-          <Title level={4} className={styles.title}>
-            URL Encoder / Decoder
-          </Title>
-        </div>
-
-        <Paragraph type="secondary">
-          Encode and decode URL strings using encodeURIComponent /
-          decodeURIComponent
-        </Paragraph>
+        <ScreenHeader
+          icon={<CodeOutlined />}
+          title="URL Encoder / Decoder"
+          description="Encode and decode URL strings using encodeURIComponent / decodeURIComponent"
+        />
 
         <TextArea
           placeholder="Paste or type the content to encode/decode here"
@@ -149,18 +143,6 @@ const useStyles = createStyles(({ token }) => ({
   },
   fullWidth: {
     width: "100%",
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    gap: 12,
-  },
-  icon: {
-    fontSize: 24,
-    color: token.colorPrimary,
-  },
-  title: {
-    margin: 0,
   },
   textArea: {
     fontFamily: "monospace",

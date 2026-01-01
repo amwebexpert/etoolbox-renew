@@ -2,6 +2,7 @@ import { LinkOutlined } from "@ant-design/icons";
 import { Card, Input, Space, Table, Typography } from "antd";
 import { createStyles } from "antd-style";
 
+import { ScreenHeader } from "~/components/ui/screen-header";
 import { useResponsive } from "../../hooks/use-responsive";
 import { useUrlParserStore } from "./url-parser.store";
 import {
@@ -11,7 +12,7 @@ import {
   parseUrlParams,
 } from "./url-parser.utils";
 
-const { Title, Paragraph, Link } = Typography;
+const { Link } = Typography;
 const { TextArea } = Input;
 
 export const UrlParser = () => {
@@ -38,16 +39,11 @@ export const UrlParser = () => {
   return (
     <div className={styles.container}>
       <Space orientation="vertical" size="middle" className={styles.fullWidth}>
-        <div className={styles.header}>
-          <LinkOutlined className={styles.icon} />
-          <Title level={4} className={styles.title}>
-            URL Parser
-          </Title>
-        </div>
-
-        <Paragraph type="secondary">
-          Parse and decompose URLs into their components
-        </Paragraph>
+        <ScreenHeader
+          icon={<LinkOutlined />}
+          title="URL Parser"
+          description="Parse and decompose URLs into their components"
+        />
 
         <TextArea
           placeholder="Paste or type the URL here"
@@ -101,7 +97,7 @@ export const UrlParser = () => {
   );
 };
 
-const useStyles = createStyles(({ token }) => ({
+const useStyles = createStyles(() => ({
   container: {
     padding: 16,
     maxWidth: 1200,
@@ -109,18 +105,6 @@ const useStyles = createStyles(({ token }) => ({
   },
   fullWidth: {
     width: "100%",
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    gap: 12,
-  },
-  icon: {
-    fontSize: 24,
-    color: token.colorPrimary,
-  },
-  title: {
-    margin: 0,
   },
   textArea: {
     fontFamily: "monospace",
