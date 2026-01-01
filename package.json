@@ -15,7 +15,7 @@
       "url": "https://yodigi7.github.io/"
     }
   ],
-  "description": "Collection of web developer utilities like a Swiss knife for web developers!",
+  "description": "Collection of web development utilities. Like a Swiss knife for web developers.",
   "homepage": ".",
   "type": "module",
   "scripts": {
