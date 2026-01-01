@@ -29,8 +29,8 @@ export const SettingsDialog = ({ open, onClose }: SettingsDialogProps) => {
     >
       <Divider className={styles.divider} />
 
-      <Space direction="horizontal" className={styles.row}>
-        <Space direction="horizontal" align="center">
+      <Space orientation="horizontal" className={styles.row}>
+        <Space orientation="horizontal" align="center">
           {isDarkMode ? <MoonOutlined className={styles.icon} /> : <SunOutlined className={styles.icon} />}
           <Text strong>Dark Mode</Text>
         </Space>
