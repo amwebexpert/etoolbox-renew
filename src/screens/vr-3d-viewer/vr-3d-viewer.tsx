@@ -1,9 +1,9 @@
 import { ScreenContainer } from "~/components/ui/screen-container";
 
-export const Home = () => {
+export const Vr3dViewer = () => {
   return (
     <ScreenContainer>
-      <p>🚧 Page: Home</p>
+      <p>🚧 Page: 3D Viewer</p>
     </ScreenContainer>
   );
 };

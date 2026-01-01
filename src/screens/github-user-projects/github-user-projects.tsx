@@ -1,9 +1,9 @@
 import { ScreenContainer } from "~/components/ui/screen-container";
 
-export const Home = () => {
+export const GithubUserProjects = () => {
   return (
     <ScreenContainer>
-      <p>🚧 Page: Home</p>
+      <p>🚧 Page: Github Search</p>
     </ScreenContainer>
   );
 };

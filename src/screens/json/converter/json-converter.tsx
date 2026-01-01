@@ -1,9 +1,9 @@
 import { ScreenContainer } from "~/components/ui/screen-container";
 
-export const Home = () => {
+export const JsonConverter = () => {
   return (
     <ScreenContainer>
-      <p>🚧 Page: Home</p>
+      <p>🚧 Page: JSON Converter</p>
     </ScreenContainer>
   );
 };

@@ -1,11 +1,32 @@
 import { createRootRoute, createRoute, createRouter, Navigate } from "@tanstack/react-router";
 import { RootLayout } from "~/routes/root-layout";
 import { About } from "~/screens/about/about";
+import { Base64 } from "~/screens/base64/base64";
+import { Colors } from "~/screens/colors/colors";
+import { NamedColors } from "~/screens/colors/named/named-colors";
+import { ColorPicker } from "~/screens/colors/picker/color-picker";
+import { CommonLists } from "~/screens/common-lists/common-lists";
+import { HtmlEntities } from "~/screens/common-lists/html-entities/html-entities";
+import { MimeTypes } from "~/screens/common-lists/mime-types/mime-types";
+import { CsvParser } from "~/screens/csv-parser/csv-parser";
+import { DateConverter } from "~/screens/date-converter/date-converter";
+import { GithubUserProjects } from "~/screens/github-user-projects/github-user-projects";
 import { Home } from "~/screens/home/home";
+import { ImageOcr } from "~/screens/image-ocr/image-ocr";
+import { JsonConverter } from "~/screens/json/converter/json-converter";
+import { JsonFormatter } from "~/screens/json/formatter/json-formatter";
+import { Json } from "~/screens/json/json";
+import { JsonRepair } from "~/screens/json/repair/json-repair";
+import { JwtDecoder } from "~/screens/jwt-decoder/jwt-decoder";
+import { PokerPlanning } from "~/screens/poker-planning/poker-planning";
+import { QrcodeGenerator } from "~/screens/qrcode-generator/qrcode-generator";
+import { RegexTester } from "~/screens/regex-tester/regex-tester";
 import { UrlCurl } from "~/screens/url-parse-encode/curl/url-curl";
 import { UrlEncoder } from "~/screens/url-parse-encode/encoder/url-encoder";
 import { UrlParser } from "~/screens/url-parse-encode/parser/url-parser";
 import { Url } from "~/screens/url-parse-encode/url";
+import { UuidGenerator } from "~/screens/uuid-generator/uuid-generator";
+import { Vr3dViewer } from "~/screens/vr-3d-viewer/vr-3d-viewer";
 
 // Root route
 const rootRoute = createRootRoute({
@@ -25,6 +46,12 @@ const aboutRoute = createRoute({
   component: About,
 });
 
+const base64Route = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/base64",
+  component: Base64,
+});
+
 // URL parent route with layout
 const urlRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -32,14 +59,12 @@ const urlRoute = createRoute({
   component: Url,
 });
 
-// URL index route - redirects to /url/curl
 const urlIndexRoute = createRoute({
   getParentRoute: () => urlRoute,
   path: "/",
   component: () => <Navigate to="/url/encoder" replace />,
 });
 
-// URL child routes
 const urlCurlRoute = createRoute({
   getParentRoute: () => urlRoute,
   path: "/curl",
@@ -58,11 +83,167 @@ const urlEncoderRoute = createRoute({
   component: UrlEncoder,
 });
 
+// JSON parent route with layout
+const jsonRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/json",
+  component: Json,
+});
+
+const jsonIndexRoute = createRoute({
+  getParentRoute: () => jsonRoute,
+  path: "/",
+  component: () => <Navigate to="/json/formatter" replace />,
+});
+
+const jsonFormatterRoute = createRoute({
+  getParentRoute: () => jsonRoute,
+  path: "/formatter",
+  component: JsonFormatter,
+});
+
+const jsonConverterRoute = createRoute({
+  getParentRoute: () => jsonRoute,
+  path: "/converter",
+  component: JsonConverter,
+});
+
+const jsonRepairRoute = createRoute({
+  getParentRoute: () => jsonRoute,
+  path: "/repair",
+  component: JsonRepair,
+});
+
+// Colors parent route with layout
+const colorsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/colors",
+  component: Colors,
+});
+
+const colorsIndexRoute = createRoute({
+  getParentRoute: () => colorsRoute,
+  path: "/",
+  component: () => <Navigate to="/colors/picker" replace />,
+});
+
+const colorPickerRoute = createRoute({
+  getParentRoute: () => colorsRoute,
+  path: "/picker",
+  component: ColorPicker,
+});
+
+const namedColorsRoute = createRoute({
+  getParentRoute: () => colorsRoute,
+  path: "/named",
+  component: NamedColors,
+});
+
+// Simple routes
+const regexTesterRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/regex-tester",
+  component: RegexTester,
+});
+
+const uuidGeneratorRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/uuid-generator",
+  component: UuidGenerator,
+});
+
+const jwtDecoderRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/jwt-decoder",
+  component: JwtDecoder,
+});
+
+const qrcodeGeneratorRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/qrcode-generator",
+  component: QrcodeGenerator,
+});
+
+const imageOcrRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/image-ocr",
+  component: ImageOcr,
+});
+
+// Common Lists parent route with layout
+const commonListsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/common-lists",
+  component: CommonLists,
+});
+
+const commonListsIndexRoute = createRoute({
+  getParentRoute: () => commonListsRoute,
+  path: "/",
+  component: () => <Navigate to="/common-lists/mime-types" replace />,
+});
+
+const mimeTypesRoute = createRoute({
+  getParentRoute: () => commonListsRoute,
+  path: "/mime-types",
+  component: MimeTypes,
+});
+
+const htmlEntitiesRoute = createRoute({
+  getParentRoute: () => commonListsRoute,
+  path: "/html-entities",
+  component: HtmlEntities,
+});
+
+const githubUserProjectsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/github-user-projects",
+  component: GithubUserProjects,
+});
+
+const dateConverterRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/date-converter",
+  component: DateConverter,
+});
+
+const csvParserRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/csv-parser",
+  component: CsvParser,
+});
+
+const pokerPlanningRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/poker-planning",
+  component: PokerPlanning,
+});
+
+const vr3dViewerRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/vr-3d-viewer",
+  component: Vr3dViewer,
+});
+
 // Route tree
 const routeTree = rootRoute.addChildren([
   homeRoute,
   aboutRoute,
+  base64Route,
   urlRoute.addChildren([urlIndexRoute, urlCurlRoute, urlParserRoute, urlEncoderRoute]),
+  jsonRoute.addChildren([jsonIndexRoute, jsonFormatterRoute, jsonConverterRoute, jsonRepairRoute]),
+  colorsRoute.addChildren([colorsIndexRoute, colorPickerRoute, namedColorsRoute]),
+  regexTesterRoute,
+  uuidGeneratorRoute,
+  jwtDecoderRoute,
+  qrcodeGeneratorRoute,
+  imageOcrRoute,
+  commonListsRoute.addChildren([commonListsIndexRoute, mimeTypesRoute, htmlEntitiesRoute]),
+  githubUserProjectsRoute,
+  dateConverterRoute,
+  csvParserRoute,
+  pokerPlanningRoute,
+  vr3dViewerRoute,
 ]);
 
 // Router instance
