@@ -5,4 +5,3 @@ export const Home = () => {
     </div>
   );
 };
-

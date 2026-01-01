@@ -9,9 +9,7 @@ export const UrlCurl = () => {
   return (
     <div className={styles.container}>
       <Title level={4}>cURL Builder</Title>
-      <Paragraph type="secondary">
-        Construisez et analysez des commandes cURL
-      </Paragraph>
+      <Paragraph type="secondary">Construisez et analysez des commandes cURL</Paragraph>
     </div>
   );
 };
@@ -21,4 +19,3 @@ const useStyles = createStyles(() => ({
     padding: 16,
   },
 }));
-

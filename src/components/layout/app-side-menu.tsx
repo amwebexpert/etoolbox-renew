@@ -1,8 +1,4 @@
-import {
-  HomeOutlined,
-  InfoCircleOutlined,
-  LinkOutlined,
-} from "@ant-design/icons";
+import { HomeOutlined, InfoCircleOutlined, LinkOutlined } from "@ant-design/icons";
 import { Link } from "@tanstack/react-router";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
@@ -36,15 +32,7 @@ interface AppSideMenuProps {
 export const AppSideMenu = ({ selectedKeys, onClick }: AppSideMenuProps) => {
   const { styles } = useStyles();
 
-  return (
-    <Menu
-      mode="inline"
-      selectedKeys={selectedKeys}
-      items={menuItems}
-      onClick={onClick}
-      className={styles.menu}
-    />
-  );
+  return <Menu mode="inline" selectedKeys={selectedKeys} items={menuItems} onClick={onClick} className={styles.menu} />;
 };
 
 const useStyles = createStyles(() => ({

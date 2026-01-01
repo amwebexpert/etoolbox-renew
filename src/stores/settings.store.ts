@@ -21,7 +21,6 @@ export const useSettingsStore = create<SettingsState>()(
     }),
     {
       name: "etoolbox-settings",
-    }
-  )
+    },
+  ),
 );
-

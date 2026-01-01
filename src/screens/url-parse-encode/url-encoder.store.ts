@@ -23,7 +23,6 @@ export const useUrlEncoderStore = create<UrlEncoderState>()(
     }),
     {
       name: "etoolbox-url-encoder",
-    }
-  )
+    },
+  ),
 );
-

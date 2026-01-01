@@ -6,8 +6,7 @@ interface UrlParserState {
   setInputUrl: (url: string) => void;
 }
 
-const DEFAULT_URL =
-  "https://codesandbox.io/dashboard/home?lastProject=WowWWW&name=Smith";
+const DEFAULT_URL = "https://codesandbox.io/dashboard/home?lastProject=WowWWW&name=Smith";
 
 export const useUrlParserStore = create<UrlParserState>()(
   persist(
@@ -17,7 +16,6 @@ export const useUrlParserStore = create<UrlParserState>()(
     }),
     {
       name: "etoolbox-url-parser",
-    }
-  )
+    },
+  ),
 );
-

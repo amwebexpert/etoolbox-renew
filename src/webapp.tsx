@@ -16,11 +16,9 @@ export const Webapp = () => {
       colorPrimary: PRIMARY_COLOR,
       colorLink: SECONDARY_COLOR,
       borderRadius: 8,
-      fontFamily:
-        "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
     },
-    algorithm:
-      themeMode === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm,
+    algorithm: themeMode === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm,
   };
 
   return (

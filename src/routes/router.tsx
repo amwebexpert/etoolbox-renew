@@ -1,9 +1,4 @@
-import {
-  createRootRoute,
-  createRoute,
-  createRouter,
-  Navigate,
-} from "@tanstack/react-router";
+import { createRootRoute, createRoute, createRouter, Navigate } from "@tanstack/react-router";
 import { About } from "~/screens/about/about";
 import { Home } from "~/screens/home/home";
 import { Url } from "~/screens/url-parse-encode/url";

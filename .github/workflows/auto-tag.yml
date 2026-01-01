@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'package.json'
+      - "package.json"
 
 jobs:
   create-tag:
@@ -23,13 +23,13 @@ jobs:
         id: get_version
         run: |
           VERSION=$(node -p "require('./package.json').version")
-          
+
           # Validate semver format
           if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?(\+[a-zA-Z0-9.]+)?$ ]]; then
             echo "❌ Invalid version format: $VERSION"
             exit 1
           fi
-          
+
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=v$VERSION" >> $GITHUB_OUTPUT
           echo "📦 Version from package.json: $VERSION"

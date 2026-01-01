@@ -44,15 +44,9 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
 
   return (
     <Layout className={styles.root}>
-      <AppHeader
-        onMenuClick={handleMenuToggle}
-        onSettingsClick={() => setSettingsOpen(true)}
-      />
+      <AppHeader onMenuClick={handleMenuToggle} onSettingsClick={() => setSettingsOpen(true)} />
 
-      <SettingsDialog
-        open={settingsOpen}
-        onClose={() => setSettingsOpen(false)}
-      />
+      <SettingsDialog open={settingsOpen} onClose={() => setSettingsOpen(false)} />
 
       <Layout>
         {!isMobile && (

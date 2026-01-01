@@ -46,4 +46,3 @@ const useStyles = createStyles(({ token }) => ({
     lineHeight: "1.2 !important",
   },
 }));
-
