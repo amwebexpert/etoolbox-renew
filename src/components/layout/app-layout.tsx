@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useResponsive } from "~/hooks/use-responsive";
 import { SettingsDialog } from "~/components/settings/settings-dialog";
 import { AppHeader } from "./app-header";
+import { getBasePathForMenu } from "../../routes/router.utils";
 import { AppSideMenu } from "./app-side-menu";
 
 const { Sider, Content } = Layout;
@@ -26,7 +27,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
   const [userCollapsed, setUserCollapsed] = useState<boolean | null>(null);
   const collapsed = userCollapsed ?? !isDesktop;
 
-  const selectedKeys = [location.pathname];
+  const selectedKeys = [getBasePathForMenu(location.pathname)];
 
   const handleMenuClick = () => {
     if (isMobile) {

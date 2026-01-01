@@ -225,6 +225,8 @@ const vr3dViewerRoute = createRoute({
   component: Vr3dViewer,
 });
 
+export const ROUTES_WITH_CHILDREN = ["/url", "/json", "/colors", "/common-lists"];
+
 // Route tree
 const routeTree = rootRoute.addChildren([
   homeRoute,
