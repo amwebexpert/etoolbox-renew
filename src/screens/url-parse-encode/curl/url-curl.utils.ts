@@ -1,3 +1,4 @@
+import { getErrorMessage } from "@lichens-innovation/ts-common";
 import * as cURLConverter from "curlconverter";
 
 type CurlConverterFnc = (data: string) => string;
@@ -43,18 +44,15 @@ export const transformCurl = (value?: string, targetLanguage = "Javascript"): st
   try {
     const curlCommand = value.replaceAll(/(\r\n|\n|\r)/gm, " ");
     const converter = CONVERTERS.get(targetLanguage);
-    return converter ? converter.transform(curlCommand) : `Warning: no converter found matching "${targetLanguage}"`;
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    return `Error converting cURL command: ${message}`;
+    const result = converter
+      ? converter.transform(curlCommand)
+      : `Warning: no converter found matching "${targetLanguage}"`;
+    return result;
+  } catch (e: unknown) {
+    return `Error converting cURL command: ${getErrorMessage(e)}`;
   }
 };
 
 export const getSyntaxLanguage = (targetLanguage: string): string => {
   return CONVERTERS.get(targetLanguage)?.syntaxLanguage ?? "text";
 };
-
-export const isBlank = (value?: string): boolean => {
-  return !value || value.trim().length === 0;
-};
-

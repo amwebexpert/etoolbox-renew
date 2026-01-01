@@ -1,13 +1,15 @@
 import { CodeOutlined, CopyOutlined, SwapOutlined } from "@ant-design/icons";
-import { getErrorMessage } from "@lichens-innovation/ts-common";
-import { Button, Input, message, Select, Space, Tooltip, Typography } from "antd";
+import { getErrorMessage, isBlank } from "@lichens-innovation/ts-common";
+import { Button, Input, message, Select, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
+import SyntaxHighlighter from "react-syntax-highlighter";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
 import { useResponsive } from "~/hooks/use-responsive";
+import { useSyntaxHighlightTheme } from "~/hooks/use-syntax-highlight-theme";
 import { useUrlCurlStore } from "./url-curl.store";
-import { CONVERTERS_LIST, getSyntaxLanguage, isBlank, transformCurl } from "./url-curl.utils";
+import { CONVERTERS_LIST, getSyntaxLanguage, transformCurl } from "./url-curl.utils";
 
 const { TextArea } = Input;
 
@@ -15,6 +17,7 @@ export const UrlCurl = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
   const [messageApi, contextHolder] = message.useMessage();
+  const syntaxTheme = useSyntaxHighlightTheme();
 
   const { inputCurl, targetLanguage, transformedResult, setInputCurl, setTargetLanguage, setTransformedResult } =
     useUrlCurlStore();
@@ -116,16 +119,12 @@ export const UrlCurl = () => {
         </div>
 
         {transformedResult && (
-          <div className={styles.resultSection}>
-            <Typography.Text type="secondary" className={styles.resultLabel}>
-              Result ({syntaxLanguage})
-            </Typography.Text>
-            <div className={styles.resultBox}>
-              <pre className={styles.resultPre}>
-                <code className={styles.resultCode}>{transformedResult}</code>
-              </pre>
-            </div>
-          </div>
+          <SyntaxHighlighter
+            language={syntaxLanguage}
+            style={syntaxTheme}
+            className={styles.syntaxHighlighter}
+            wrapLongLines={true}
+          >{`\n${transformedResult}`}</SyntaxHighlighter>
         )}
       </Space>
     </ScreenContainer>
@@ -154,32 +153,13 @@ const useStyles = createStyles(({ token }) => ({
       minWidth: 120,
     },
   },
-  resultSection: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 8,
-  },
-  resultLabel: {
-    fontWeight: 500,
-  },
-  resultBox: {
-    padding: 16,
-    backgroundColor: token.colorBgContainer,
-    border: `1px solid ${token.colorBorder}`,
+  syntaxHighlighter: {
+    padding: "16px !important",
     borderRadius: token.borderRadius,
-    overflowX: "auto",
+    border: `1px solid ${token.colorBorder}`,
     maxHeight: 500,
-    overflowY: "auto",
-  },
-  resultPre: {
-    margin: 0,
-    whiteSpace: "pre-wrap",
-    wordBreak: "break-word",
-  },
-  resultCode: {
-    fontFamily: "monospace",
+    overflow: "auto !important",
     fontSize: 13,
-    lineHeight: 1.5,
-    color: token.colorText,
+    lineHeight: "1.5 !important",
   },
 }));
