@@ -3,7 +3,7 @@ import { Card, Input, Space, Table, Typography } from "antd";
 import { createStyles } from "antd-style";
 
 import { ScreenHeader } from "~/components/ui/screen-header";
-import { useResponsive } from "../../hooks/use-responsive";
+import { useResponsive } from "~/hooks/use-responsive";
 import { useUrlParserStore } from "./url-parser.store";
 import { FRAGMENT_COLUMNS, PARAM_COLUMNS, parseUrl, parseUrlParams } from "./url-parser.utils";
 
