@@ -36,7 +36,7 @@ const urlRoute = createRoute({
 const urlIndexRoute = createRoute({
   getParentRoute: () => urlRoute,
   path: "/",
-  component: () => <Navigate to="/url/curl" replace />,
+  component: () => <Navigate to="/url/encoder" replace />,
 });
 
 // URL child routes

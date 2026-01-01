@@ -3,9 +3,9 @@ import { Tabs } from "antd";
 import { createStyles } from "antd-style";
 
 const TAB_ITEMS = [
+  { key: "/url/encoder", label: "Encoder" },
   { key: "/url/curl", label: "cURL" },
   { key: "/url/parser", label: "Parser" },
-  { key: "/url/encoder", label: "Encoder" },
 ];
 
 export const Url = () => {
@@ -13,13 +13,10 @@ export const Url = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isDefaultRoute = location.pathname === "/url";
-  const activeKey = isDefaultRoute ? "/url/curl" : location.pathname;
-
   return (
     <div className={styles.container}>
       <Tabs
-        activeKey={activeKey}
+        activeKey={location.pathname}
         items={TAB_ITEMS}
         onChange={(to: string) => navigate({ to })}
         className={styles.tabs}
