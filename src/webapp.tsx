@@ -1,7 +1,7 @@
 import { RouterProvider } from "@tanstack/react-router";
 import { ConfigProvider, theme } from "antd";
-import { router } from "./routes/router";
-import { useSettingsStore } from "./stores/settings.store";
+import { router } from "~/routes/router";
+import { useSettingsStore } from "~/stores/settings.store";
 
 // Theme colors inspired by etoolbox
 const PRIMARY_COLOR = "#bf3a2b";

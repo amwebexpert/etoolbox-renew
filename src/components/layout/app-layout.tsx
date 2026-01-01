@@ -2,8 +2,8 @@ import { useLocation } from "@tanstack/react-router";
 import { Drawer, Layout } from "antd";
 import { createStyles } from "antd-style";
 import { useState } from "react";
-import { useResponsive } from "../../hooks/use-responsive";
-import { SettingsDialog } from "../settings/settings-dialog";
+import { useResponsive } from "~/hooks/use-responsive";
+import { SettingsDialog } from "~/components/settings/settings-dialog";
 import { AppHeader } from "./app-header";
 import { AppSideMenu } from "./app-side-menu";
 

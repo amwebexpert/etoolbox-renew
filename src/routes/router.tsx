@@ -2,11 +2,15 @@ import {
   createRootRoute,
   createRoute,
   createRouter,
+  Navigate,
 } from "@tanstack/react-router";
-import { About } from "../screens/about/about";
-import { Home } from "../screens/home/home";
-import { Url } from "../screens/url-parse-encode/url";
-import { RootLayout } from "./root-layout";
+import { About } from "~/screens/about/about";
+import { Home } from "~/screens/home/home";
+import { Url } from "~/screens/url-parse-encode/url";
+import { UrlCurl } from "~/screens/url-parse-encode/url-curl";
+import { UrlEncoder } from "~/screens/url-parse-encode/url-encoder";
+import { UrlParser } from "~/screens/url-parse-encode/url-parser";
+import { RootLayout } from "~/routes/root-layout";
 
 // Root route
 const rootRoute = createRootRoute({
@@ -26,14 +30,45 @@ const aboutRoute = createRoute({
   component: About,
 });
 
+// URL parent route with layout
 const urlRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/url",
   component: Url,
 });
 
+// URL index route - redirects to /url/curl
+const urlIndexRoute = createRoute({
+  getParentRoute: () => urlRoute,
+  path: "/",
+  component: () => <Navigate to="/url/curl" replace />,
+});
+
+// URL child routes
+const urlCurlRoute = createRoute({
+  getParentRoute: () => urlRoute,
+  path: "/curl",
+  component: UrlCurl,
+});
+
+const urlParserRoute = createRoute({
+  getParentRoute: () => urlRoute,
+  path: "/parser",
+  component: UrlParser,
+});
+
+const urlEncoderRoute = createRoute({
+  getParentRoute: () => urlRoute,
+  path: "/encoder",
+  component: UrlEncoder,
+});
+
 // Route tree
-const routeTree = rootRoute.addChildren([homeRoute, aboutRoute, urlRoute]);
+const routeTree = rootRoute.addChildren([
+  homeRoute,
+  aboutRoute,
+  urlRoute.addChildren([urlIndexRoute, urlCurlRoute, urlParserRoute, urlEncoderRoute]),
+]);
 
 // Router instance
 export const router = createRouter({ routeTree });

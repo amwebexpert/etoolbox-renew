@@ -1,7 +1,7 @@
 import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 import { Divider, Modal, Space, Switch, Typography } from "antd";
 import { createStyles } from "antd-style";
-import { useSettingsStore } from "../../stores/settings.store";
+import { useSettingsStore } from "~/stores/settings.store";
 
 const { Text, Title } = Typography;
 
