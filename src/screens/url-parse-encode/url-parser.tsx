@@ -1,24 +1,134 @@
-import { Typography } from "antd";
+import { LinkOutlined } from "@ant-design/icons";
+import { Card, Input, Space, Table, Typography } from "antd";
 import { createStyles } from "antd-style";
 
-const { Title, Paragraph } = Typography;
+import { useResponsive } from "../../hooks/use-responsive";
+import { useUrlParserStore } from "./url-parser.store";
+import {
+  FRAGMENT_COLUMNS,
+  PARAM_COLUMNS,
+  parseUrl,
+  parseUrlParams,
+} from "./url-parser.utils";
+
+const { Title, Paragraph, Link } = Typography;
+const { TextArea } = Input;
 
 export const UrlParser = () => {
   const { styles } = useStyles();
+  const { isDesktop, isMobile } = useResponsive();
+
+  const { inputUrl, setInputUrl } = useUrlParserStore();
+
+  const urlFragments = parseUrl(inputUrl);
+  const urlParams = parseUrlParams(inputUrl);
+
+  const fragmentsData = [...urlFragments.keys()].sort().map((key) => ({
+    key,
+    fragment: key,
+    value: urlFragments.get(key) ?? "",
+  }));
+
+  const paramsData = [...urlParams.keys()].sort().map((key) => ({
+    key,
+    parameter: key,
+    value: urlParams.get(key) ?? "",
+  }));
 
   return (
     <div className={styles.container}>
-      <Title level={4}>URL Parser</Title>
-      <Paragraph type="secondary">
-        Analysez et décomposez les URLs en leurs composants
-      </Paragraph>
+      <Space orientation="vertical" size="middle" className={styles.fullWidth}>
+        <div className={styles.header}>
+          <LinkOutlined className={styles.icon} />
+          <Title level={4} className={styles.title}>
+            URL Parser
+          </Title>
+        </div>
+
+        <Paragraph type="secondary">
+          Parse and decompose URLs into their components
+        </Paragraph>
+
+        <TextArea
+          placeholder="Paste or type the URL here"
+          autoFocus={isDesktop}
+          rows={isMobile ? 4 : 6}
+          autoSize={{ minRows: 4, maxRows: isDesktop ? 20 : 6 }}
+          value={inputUrl}
+          onChange={(e) => setInputUrl(e.target.value)}
+          className={styles.textArea}
+        />
+
+        {inputUrl && (
+          <Link href={inputUrl} target="_blank" rel="noreferrer">
+            Click the link to open the URL in a new tab
+          </Link>
+        )}
+
+        <Card
+          title="URL Fragments"
+          size={isMobile ? "small" : "default"}
+          className={styles.tableCard}
+        >
+          <Table
+            columns={FRAGMENT_COLUMNS}
+            dataSource={fragmentsData}
+            pagination={false}
+            size={isMobile ? "small" : "middle"}
+            scroll={{ x: true }}
+            locale={{ emptyText: "Enter a valid URL to see fragments" }}
+          />
+        </Card>
+
+        {paramsData.length > 0 && (
+          <Card
+            title="Query Parameters"
+            size={isMobile ? "small" : "default"}
+            className={styles.tableCard}
+          >
+            <Table
+              columns={PARAM_COLUMNS}
+              dataSource={paramsData}
+              pagination={false}
+              size={isMobile ? "small" : "middle"}
+              scroll={{ x: true }}
+              locale={{ emptyText: "No query parameters found" }}
+            />
+          </Card>
+        )}
+      </Space>
     </div>
   );
 };
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles(({ token }) => ({
   container: {
     padding: 16,
+    maxWidth: 1200,
+    margin: "0 auto",
+  },
+  fullWidth: {
+    width: "100%",
+  },
+  header: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+  },
+  icon: {
+    fontSize: 24,
+    color: token.colorPrimary,
+  },
+  title: {
+    margin: 0,
+  },
+  textArea: {
+    fontFamily: "monospace",
+  },
+  tableCard: {
+    ".ant-card-body": {
+      padding: 0,
+      overflow: "hidden",
+    },
   },
 }));
-
