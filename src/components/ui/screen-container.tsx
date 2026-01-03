@@ -14,7 +14,7 @@ export const ScreenContainer = ({ children, className }: ScreenContainerProps) =
 
 const useStyles = createStyles(() => ({
   container: {
-    paddingTop: 16,
+    padding: "16px 16px 48px",
     maxWidth: 1200,
     margin: "0 auto",
   },
