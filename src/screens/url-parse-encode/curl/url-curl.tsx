@@ -1,4 +1,4 @@
-import { CodeOutlined, CopyOutlined, SwapOutlined } from "@ant-design/icons";
+import { CodeOutlined, CopyOutlined } from "@ant-design/icons";
 import { getErrorMessage, isBlank } from "@lichens-innovation/ts-common";
 import { Button, Input, message, Select, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
@@ -54,11 +54,6 @@ export const UrlCurl = () => {
     }
   };
 
-  const handleSwap = () => {
-    setInputCurl(transformedResult);
-    setTransformedResult("");
-  };
-
   const syntaxLanguage = getSyntaxLanguage(targetLanguage);
 
   const languageOptions = CONVERTERS_LIST.map((lang) => ({
@@ -102,10 +97,6 @@ export const UrlCurl = () => {
           <div className={styles.spacer} />
 
           <Space size="small" wrap>
-            <Tooltip title="Swap: put result into input">
-              <Button icon={<SwapOutlined />} disabled={!transformedResult} onClick={handleSwap} />
-            </Tooltip>
-
             <Tooltip title="Copy result to clipboard">
               <Button icon={<CopyOutlined />} disabled={!transformedResult} onClick={handleCopy}>
                 {!isMobile && "Copy"}
