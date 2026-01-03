@@ -1,0 +1,34 @@
+import {
+  BgColorsOutlined,
+  CalendarOutlined,
+  CodeOutlined,
+  FileTextOutlined,
+  GithubOutlined,
+  LinkOutlined,
+  LockOutlined,
+  NumberOutlined,
+  PictureOutlined,
+  QrcodeOutlined,
+  TableOutlined,
+  TeamOutlined,
+  ThunderboltOutlined,
+  UnorderedListOutlined,
+} from "@ant-design/icons";
+
+export const FEATURES = [
+  { icon: <LinkOutlined />, name: "URL Tools", description: "Parse, encode & cURL converter", color: "#1890ff", path: "/url" },
+  { icon: <CodeOutlined />, name: "JSON Suite", description: "Format, convert & repair JSON", color: "#52c41a", path: "/json" },
+  { icon: <FileTextOutlined />, name: "Base64", description: "Encode & decode text/images", color: "#722ed1", path: "/base64" },
+  { icon: <BgColorsOutlined />, name: "Colors", description: "Picker & named color explorer", color: "#eb2f96", path: "/colors" },
+  { icon: <ThunderboltOutlined />, name: "RegEx Tester", description: "Test patterns in real-time", color: "#fa8c16", path: "/regex-tester" },
+  { icon: <NumberOutlined />, name: "UUID Generator", description: "Generate unique identifiers", color: "#13c2c2", path: "/uuid-generator" },
+  { icon: <LockOutlined />, name: "JWT Decoder", description: "Decode & inspect tokens", color: "#f5222d", path: "/jwt-decoder" },
+  { icon: <QrcodeOutlined />, name: "QR Code", description: "Generate QR codes instantly", color: "#2f54eb", path: "/qrcode-generator" },
+  { icon: <PictureOutlined />, name: "Image OCR", description: "Extract text from images", color: "#a0d911", path: "/image-ocr" },
+  { icon: <CalendarOutlined />, name: "Date Converter", description: "Epoch & date formats", color: "#faad14", path: "/date-converter" },
+  { icon: <TableOutlined />, name: "CSV Parser", description: "Parse & visualize CSV data", color: "#1890ff", path: "/csv-parser" },
+  { icon: <TeamOutlined />, name: "Poker Planning", description: "Agile estimation tool", color: "#eb2f96", path: "/poker-planning" },
+  { icon: <UnorderedListOutlined />, name: "References", description: "MIME types & HTML entities", color: "#52c41a", path: "/common-lists" },
+  { icon: <GithubOutlined />, name: "GitHub Search", description: "Explore user repositories", color: "#722ed1", path: "/github-user-projects" },
+];
+
