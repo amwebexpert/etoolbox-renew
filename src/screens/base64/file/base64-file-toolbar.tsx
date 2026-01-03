@@ -2,8 +2,9 @@ import { CopyOutlined, DownloadOutlined } from "@ant-design/icons";
 import { Button, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
 
+import { useResponsive } from "~/hooks/use-responsive";
+
 interface Base64FileToolbarProps {
-  isMobile: boolean;
   hasContent: boolean;
   onClear: () => void;
   onCopy: () => void;
@@ -12,13 +13,13 @@ interface Base64FileToolbarProps {
 }
 
 export const Base64FileToolbar = ({
-  isMobile,
   hasContent,
   onClear,
   onCopy,
   onCopyDataUri,
   onDownload,
 }: Base64FileToolbarProps) => {
+  const { isMobile } = useResponsive();
   const { styles } = useStyles();
 
   return (

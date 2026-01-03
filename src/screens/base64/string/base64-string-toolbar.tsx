@@ -2,8 +2,9 @@ import { CodeOutlined, CopyOutlined, SwapOutlined, UnlockOutlined } from "@ant-d
 import { Button, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
 
+import { useResponsive } from "~/hooks/use-responsive";
+
 interface Base64StringToolbarProps {
-  isMobile: boolean;
   hasInput: boolean;
   hasOutput: boolean;
   onSwap: () => void;
@@ -13,7 +14,6 @@ interface Base64StringToolbarProps {
 }
 
 export const Base64StringToolbar = ({
-  isMobile,
   hasInput,
   hasOutput,
   onSwap,
@@ -21,6 +21,7 @@ export const Base64StringToolbar = ({
   onEncode,
   onDecode,
 }: Base64StringToolbarProps) => {
+  const { isMobile } = useResponsive();
   const { styles } = useStyles();
 
   return (

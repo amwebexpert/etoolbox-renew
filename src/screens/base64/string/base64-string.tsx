@@ -72,7 +72,6 @@ export const Base64String = () => {
         />
 
         <Base64StringToolbar
-          isMobile={!!isMobile}
           hasInput={!!inputText}
           hasOutput={!!outputText}
           onSwap={swapContent}

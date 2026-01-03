@@ -2,8 +2,9 @@ import { CompressOutlined, CopyOutlined, DownloadOutlined, FormatPainterOutlined
 import { Button, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
 
+import { useResponsive } from "~/hooks/use-responsive";
+
 interface JsonFormatterToolbarProps {
-  isMobile: boolean;
   isMinified: boolean;
   hasContent: boolean;
   onToggleFormat: () => void;
@@ -12,13 +13,13 @@ interface JsonFormatterToolbarProps {
 }
 
 export const JsonFormatterToolbar = ({
-  isMobile,
   isMinified,
   hasContent,
   onToggleFormat,
   onCopy,
   onSaveAs,
 }: JsonFormatterToolbarProps) => {
+  const { isMobile } = useResponsive();
   const { styles } = useStyles();
 
   return (

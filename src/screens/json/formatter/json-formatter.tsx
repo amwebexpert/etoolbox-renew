@@ -90,7 +90,6 @@ export const JsonFormatter = () => {
         />
 
         <JsonFormatterToolbar
-          isMobile={!!isMobile}
           isMinified={isMinifiedMode}
           hasContent={!!formattedJson}
           onToggleFormat={handleToggleFormat}

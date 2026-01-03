@@ -118,7 +118,6 @@ export const Base64File = () => {
         <Base64FileInfo fileName={fileName} mimeType={mimeType} base64Output={base64Output} />
 
         <Base64FileToolbar
-          isMobile={!!isMobile}
           hasContent={!!base64Output || !!fileName}
           onClear={handleClear}
           onCopy={handleCopy}
