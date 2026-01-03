@@ -2,6 +2,8 @@ import { createRootRoute, createRoute, createRouter, Navigate } from "@tanstack/
 import { RootLayout } from "~/routes/root-layout";
 import { About } from "~/screens/about/about";
 import { Base64 } from "~/screens/base64/base64";
+import { Base64File } from "~/screens/base64/file/base64-file";
+import { Base64String } from "~/screens/base64/string/base64-string";
 import { Colors } from "~/screens/colors/colors";
 import { NamedColors } from "~/screens/colors/named/named-colors";
 import { ColorPicker } from "~/screens/colors/picker/color-picker";
@@ -46,10 +48,29 @@ const aboutRoute = createRoute({
   component: About,
 });
 
+// Base64 parent route with layout
 const base64Route = createRoute({
   getParentRoute: () => rootRoute,
   path: "/base64",
   component: Base64,
+});
+
+const base64IndexRoute = createRoute({
+  getParentRoute: () => base64Route,
+  path: "/",
+  component: () => <Navigate to="/base64/string" replace />,
+});
+
+const base64StringRoute = createRoute({
+  getParentRoute: () => base64Route,
+  path: "/string",
+  component: Base64String,
+});
+
+const base64FileRoute = createRoute({
+  getParentRoute: () => base64Route,
+  path: "/file",
+  component: Base64File,
 });
 
 // URL parent route with layout
@@ -225,13 +246,13 @@ const vr3dViewerRoute = createRoute({
   component: Vr3dViewer,
 });
 
-export const ROUTES_WITH_CHILDREN = ["/url", "/json", "/colors", "/common-lists"];
+export const ROUTES_WITH_CHILDREN = ["/url", "/base64", "/json", "/colors", "/common-lists"];
 
 // Route tree
 const routeTree = rootRoute.addChildren([
   homeRoute,
   aboutRoute,
-  base64Route,
+  base64Route.addChildren([base64IndexRoute, base64StringRoute, base64FileRoute]),
   urlRoute.addChildren([urlIndexRoute, urlCurlRoute, urlParserRoute, urlEncoderRoute]),
   jsonRoute.addChildren([jsonIndexRoute, jsonFormatterRoute, jsonConverterRoute, jsonRepairRoute]),
   colorsRoute.addChildren([colorsIndexRoute, colorPickerRoute, namedColorsRoute]),
