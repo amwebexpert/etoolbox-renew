@@ -28,7 +28,7 @@ export const Base64FileInfo = ({ fileName, mimeType, base64Output }: Base64FileI
       )}
       {base64Output && (
         <Typography.Text>
-          <strong>Size:</strong> {formatBase64Size(base64Output)} (approx)
+          <strong>Size: ≈</strong> {formatBase64Size(base64Output)}
         </Typography.Text>
       )}
     </div>
