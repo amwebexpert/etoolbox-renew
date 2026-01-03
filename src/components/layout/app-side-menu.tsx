@@ -5,7 +5,6 @@ import {
   FileTextOutlined,
   GithubOutlined,
   HomeOutlined,
-  InfoCircleOutlined,
   LinkOutlined,
   LockOutlined,
   NumberOutlined,
@@ -103,11 +102,6 @@ const menuItems: MenuItem[] = [
     key: "/vr-3d-viewer",
     icon: <ThunderboltOutlined />,
     label: <Link to="/vr-3d-viewer">3D Viewer</Link>,
-  },
-  {
-    key: "/about",
-    icon: <InfoCircleOutlined />,
-    label: <Link to="/about">About</Link>,
   },
 ];
 

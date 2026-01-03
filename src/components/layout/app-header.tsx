@@ -1,6 +1,7 @@
 import { MenuOutlined } from "@ant-design/icons";
 import { Button, Layout } from "antd";
 import { createStyles } from "antd-style";
+import { AppHeaderActionAbout } from "./app-header-action-about";
 import { AppHeaderActionSettings } from "./app-header-action-settings";
 
 const { Header } = Layout;
@@ -29,6 +30,7 @@ export const AppHeader = ({ onMenuClick }: AppHeaderProps) => {
 
       <div className={styles.spacer} />
 
+      <AppHeaderActionAbout />
       <AppHeaderActionSettings />
     </Header>
   );
