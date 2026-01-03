@@ -1,3 +1,27 @@
+<!--
+  ⚠️ WORK IN PROGRESS ⚠️
+  
+  This repository is a complete redesign/rewrite of the original etoolbox application
+  using Ant Design (AntD) as the main UI component library.
+  
+  Original project: https://github.com/amwebexpert/etoolbox
+  
+  Build Status:
+  - TypeScript: 5.9
+  - React: 19.x
+  - Ant Design: 5.x
+  - Vite: 6.x
+  
+  WARNING: This is an active development branch. Features may be incomplete,
+  unstable, or subject to significant changes. Do not use in production.
+-->
+
+> [!WARNING]
+> 🚧 **Work In Progress** 🚧
+> 
+> This is a complete re-write of the [original etoolbox](https://github.com/amwebexpert/etoolbox) application using **Ant Design**.
+> Features may be incomplete or unstable. Not ready for production use.
+
 # Web Toolbox
 
 Open source collection of web developer utilities.
