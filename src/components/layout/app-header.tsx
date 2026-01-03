@@ -1,15 +1,15 @@
-import { MenuOutlined, SettingOutlined } from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
 import { Button, Layout } from "antd";
 import { createStyles } from "antd-style";
+import { AppHeaderActionSettings } from "./app-header-action-settings";
 
 const { Header } = Layout;
 
 interface AppHeaderProps {
   onMenuClick: () => void;
-  onSettingsClick: () => void;
 }
 
-export const AppHeader = ({ onMenuClick, onSettingsClick }: AppHeaderProps) => {
+export const AppHeader = ({ onMenuClick }: AppHeaderProps) => {
   const { styles } = useStyles();
 
   return (
@@ -29,13 +29,7 @@ export const AppHeader = ({ onMenuClick, onSettingsClick }: AppHeaderProps) => {
 
       <div className={styles.spacer} />
 
-      <Button
-        type="text"
-        icon={<SettingOutlined className={styles.icon} />}
-        onClick={onSettingsClick}
-        className={styles.settingsButton}
-        aria-label="Settings"
-      />
+      <AppHeaderActionSettings />
     </Header>
   );
 };
@@ -54,10 +48,6 @@ const useStyles = createStyles(({ token }) => ({
   },
   button: {
     marginRight: 16,
-    width: 48,
-    height: 48,
-  },
-  settingsButton: {
     width: 48,
     height: 48,
   },

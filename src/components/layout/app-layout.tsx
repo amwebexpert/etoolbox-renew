@@ -3,7 +3,6 @@ import { Drawer, Layout } from "antd";
 import { createStyles } from "antd-style";
 import { useState } from "react";
 import { useResponsive } from "~/hooks/use-responsive";
-import { SettingsDialog } from "~/components/settings/settings-dialog";
 import { AppHeader } from "./app-header";
 import { getBasePathForMenu } from "../../routes/router.utils";
 import { AppSideMenu } from "./app-side-menu";
@@ -23,7 +22,6 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
   const location = useLocation();
 
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const [settingsOpen, setSettingsOpen] = useState(false);
   const [userCollapsed, setUserCollapsed] = useState<boolean | null>(null);
   const collapsed = userCollapsed ?? !isDesktop;
 
@@ -45,9 +43,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
 
   return (
     <Layout className={styles.root}>
-      <AppHeader onMenuClick={handleMenuToggle} onSettingsClick={() => setSettingsOpen(true)} />
-
-      <SettingsDialog open={settingsOpen} onClose={() => setSettingsOpen(false)} />
+      <AppHeader onMenuClick={handleMenuToggle} />
 
       <Layout>
         {!isMobile && (
