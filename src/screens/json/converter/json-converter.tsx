@@ -1,11 +1,12 @@
 import { SwapOutlined } from "@ant-design/icons";
 import { getErrorMessage, isBlank } from "@lichens-innovation/ts-common";
-import { Col, Flex, Form, Input, message, Row, Select } from "antd";
+import { Col, Flex, Form, Input, Row, Select } from "antd";
 import { createStyles } from "antd-style";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
 import { useResponsive } from "~/hooks/use-responsive";
+import { useToastMessage } from "~/providers/toast-message-provider";
 
 import { JsonConverterResult } from "./json-converter-result";
 import { JsonConverterToolbar } from "./json-converter-toolbar";
@@ -28,7 +29,7 @@ const TARGET_LANGUAGE_OPTIONS = TARGET_LANGUAGES.map(([key, value]) => ({
 export const JsonConverter = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
-  const [messageApi, messageContextHolder] = message.useMessage();
+  const messageApi = useToastMessage();
 
   const {
     sourceText,
@@ -42,7 +43,7 @@ export const JsonConverter = () => {
     clearAll,
   } = useJsonConverterStore();
 
-  const { result, convert, isConverting, resetConvert, contextHolder: convertContextHolder } = useJsonConvert();
+  const { result, convert, isConverting, resetConvert } = useJsonConvert();
 
   const handleSourceTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setSourceText(e.target.value ?? "");
@@ -87,9 +88,6 @@ export const JsonConverter = () => {
 
   return (
     <ScreenContainer>
-      {messageContextHolder}
-      {convertContextHolder}
-
       <Flex vertical gap="middle" className={styles.fullWidth}>
         <ScreenHeader
           icon={<SwapOutlined />}

@@ -1,12 +1,13 @@
 import { FormatPainterOutlined } from "@ant-design/icons";
 import { getErrorMessage } from "@lichens-innovation/ts-common";
-import { Flex, Input, message } from "antd";
+import { Flex, Input } from "antd";
 import { createStyles } from "antd-style";
 import { useMemo, useState } from "react";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
 import { useResponsive } from "~/hooks/use-responsive";
+import { useToastMessage } from "~/providers/toast-message-provider";
 
 import { JsonFormatterResult } from "./json-formatter-result";
 import { JsonFormatterToolbar } from "./json-formatter-toolbar";
@@ -23,7 +24,7 @@ const { TextArea } = Input;
 export const JsonFormatter = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
-  const [messageApi, contextHolder] = message.useMessage();
+  const messageApi = useToastMessage();
 
   const { inputText, setInputText } = useJsonFormatterStore();
   const [isMinifiedMode, setIsMinifiedMode] = useState<boolean>(false);
@@ -69,8 +70,6 @@ export const JsonFormatter = () => {
 
   return (
     <ScreenContainer>
-      {contextHolder}
-
       <Flex vertical gap="middle" className={styles.fullWidth}>
         <ScreenHeader
           icon={<FormatPainterOutlined />}

@@ -2,6 +2,7 @@ import { RouterProvider } from "@tanstack/react-router";
 import { ConfigProvider, theme } from "antd";
 
 import { TanstackQueryProvider } from "~/providers/react-query-provider";
+import { ToastMessageProvider } from "~/providers/toast-message-provider";
 import { router } from "~/routes/router";
 import { useIsDarkMode } from "~/stores/settings.store";
 
@@ -24,9 +25,11 @@ export const Webapp = () => {
 
   return (
     <ConfigProvider theme={customTheme}>
-      <TanstackQueryProvider>
-        <RouterProvider router={router} />
-      </TanstackQueryProvider>
+      <ToastMessageProvider>
+        <TanstackQueryProvider>
+          <RouterProvider router={router} />
+        </TanstackQueryProvider>
+      </ToastMessageProvider>
     </ConfigProvider>
   );
 };

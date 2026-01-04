@@ -1,6 +1,6 @@
 import { FileOutlined } from "@ant-design/icons";
 import { getErrorMessage } from "@lichens-innovation/ts-common";
-import { Input, message, Space, Typography } from "antd";
+import { Input, Space, Typography } from "antd";
 import type { UploadFile } from "antd";
 import { createStyles } from "antd-style";
 import { useState } from "react";
@@ -8,6 +8,7 @@ import { useState } from "react";
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
 import { useResponsive } from "~/hooks/use-responsive";
+import { useToastMessage } from "~/providers/toast-message-provider";
 
 import { Base64FileDropzone } from "./base64-file-dropzone";
 import { Base64FileInfo } from "./base64-file-info";
@@ -19,7 +20,7 @@ const { TextArea } = Input;
 export const Base64File = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
-  const [messageApi, contextHolder] = message.useMessage();
+  const messageApi = useToastMessage();
 
   const [base64Output, setBase64Output] = useState<string>("");
   const [fileName, setFileName] = useState<string>("");
@@ -91,8 +92,6 @@ export const Base64File = () => {
 
   return (
     <ScreenContainer>
-      {contextHolder}
-
       <Space orientation="vertical" size="middle" className={styles.fullWidth}>
         <ScreenHeader
           icon={<FileOutlined />}

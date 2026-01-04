@@ -1,11 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
-import { message } from "antd";
 import { useEffect } from "react";
+
+import { useToastMessage } from "~/providers/toast-message-provider";
 
 import { transform } from "./json-converter.utils";
 
 export const useJsonConvert = () => {
-  const [messageApi, contextHolder] = message.useMessage();
+  const messageApi = useToastMessage();
 
   const { data, mutate, isPending, isError, error, isSuccess, reset } = useMutation({
     mutationFn: transform,
@@ -28,6 +29,5 @@ export const useJsonConvert = () => {
     isConvertSuccess: isSuccess,
     convertError: error,
     resetConvert: reset,
-    contextHolder,
   };
 };

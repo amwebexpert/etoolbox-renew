@@ -1,11 +1,12 @@
 import { CodeOutlined, CopyOutlined, SwapOutlined, UnlockOutlined } from "@ant-design/icons";
 import { getErrorMessage } from "@lichens-innovation/ts-common";
-import { Button, Input, message, Space, Tooltip, Typography } from "antd";
+import { Button, Input, Space, Tooltip, Typography } from "antd";
 import { createStyles } from "antd-style";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
 import { useResponsive } from "~/hooks/use-responsive";
+import { useToastMessage } from "~/providers/toast-message-provider";
 import { useUrlEncoderStore } from "./url-encoder.store";
 import { transformUrl } from "./url-encoder.utils";
 
@@ -14,7 +15,7 @@ const { TextArea } = Input;
 export const UrlEncoder = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
-  const [messageApi, contextHolder] = message.useMessage();
+  const messageApi = useToastMessage();
 
   const { inputText, outputText, setInputText, setOutputText, swapContent } = useUrlEncoderStore();
 
@@ -49,8 +50,6 @@ export const UrlEncoder = () => {
 
   return (
     <ScreenContainer>
-      {contextHolder}
-
       <Space orientation="vertical" size="middle" className={styles.fullWidth}>
         <ScreenHeader
           icon={<CodeOutlined />}

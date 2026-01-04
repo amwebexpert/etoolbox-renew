@@ -1,11 +1,12 @@
 import { CodeOutlined } from "@ant-design/icons";
 import { getErrorMessage } from "@lichens-innovation/ts-common";
-import { Input, message, Space } from "antd";
+import { Input, Space } from "antd";
 import { createStyles } from "antd-style";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
 import { useResponsive } from "~/hooks/use-responsive";
+import { useToastMessage } from "~/providers/toast-message-provider";
 
 import { Base64StringResult } from "./base64-string-result";
 import { Base64StringToolbar } from "./base64-string-toolbar";
@@ -17,7 +18,7 @@ const { TextArea } = Input;
 export const Base64String = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
-  const [messageApi, contextHolder] = message.useMessage();
+  const messageApi = useToastMessage();
 
   const { inputText, outputText, setInputText, setOutputText, swapContent } = useBase64StringStore();
 
@@ -52,8 +53,6 @@ export const Base64String = () => {
 
   return (
     <ScreenContainer>
-      {contextHolder}
-
       <Space orientation="vertical" size="middle" className={styles.fullWidth}>
         <ScreenHeader
           icon={<CodeOutlined />}
