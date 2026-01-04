@@ -1,5 +1,7 @@
 import { RouterProvider } from "@tanstack/react-router";
 import { ConfigProvider, theme } from "antd";
+
+import { TanstackQueryProvider } from "~/providers/react-query-provider";
 import { router } from "~/routes/router";
 import { useSettingsStore } from "~/stores/settings.store";
 
@@ -23,7 +25,9 @@ export const Webapp = () => {
 
   return (
     <ConfigProvider theme={customTheme}>
-      <RouterProvider router={router} />
+      <TanstackQueryProvider>
+        <RouterProvider router={router} />
+      </TanstackQueryProvider>
     </ConfigProvider>
   );
 };
