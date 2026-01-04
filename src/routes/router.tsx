@@ -22,7 +22,9 @@ import { JsonRepair } from "~/screens/json/repair/json-repair";
 import { JwtDecoder } from "~/screens/jwt-decoder/jwt-decoder";
 import { PokerPlanning } from "~/screens/poker-planning/poker-planning";
 import { RegexTester } from "~/screens/regex-tester/regex-tester";
-import { QrcodeGenerator } from "~/screens/qrcode/qrcode";
+import { Qrcode } from "~/screens/qrcode/qrcode";
+import { QrcodeDecoder } from "~/screens/qrcode/decoder/qrcode-decoder";
+import { QrcodeGenerator } from "~/screens/qrcode/generator/qrcode-generator";
 import { UrlCurl } from "~/screens/url-parse-encode/curl/url-curl";
 import { UrlEncoder } from "~/screens/url-parse-encode/encoder/url-encoder";
 import { UrlParser } from "~/screens/url-parse-encode/parser/url-parser";
@@ -172,10 +174,28 @@ const jwtDecoderRoute = createRoute({
   component: JwtDecoder,
 });
 
-const qrcodeGeneratorRoute = createRoute({
+const qrcodeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/qrcode",
+  component: Qrcode,
+});
+
+const qrcodeIndexRoute = createRoute({
+  getParentRoute: () => qrcodeRoute,
+  path: "/",
+  component: () => <Navigate to="/qrcode/generator" replace />,
+});
+
+const qrcodeGeneratorRoute = createRoute({
+  getParentRoute: () => qrcodeRoute,
+  path: "/generator",
   component: QrcodeGenerator,
+});
+
+const qrcodeDecoderRoute = createRoute({
+  getParentRoute: () => qrcodeRoute,
+  path: "/decoder",
+  component: QrcodeDecoder,
 });
 
 const imageOcrRoute = createRoute({
@@ -238,7 +258,7 @@ const vr3dViewerRoute = createRoute({
   component: Vr3dViewer,
 });
 
-export const ROUTES_WITH_CHILDREN = ["/url", "/base64", "/json", "/colors", "/common-lists"];
+export const ROUTES_WITH_CHILDREN = ["/url", "/base64", "/json", "/colors", "/common-lists", "/qrcode"];
 
 const routeTree = rootRoute.addChildren([
   homeRoute,
@@ -250,7 +270,7 @@ const routeTree = rootRoute.addChildren([
   regexTesterRoute,
   uuidGeneratorRoute,
   jwtDecoderRoute,
-  qrcodeGeneratorRoute,
+  qrcodeRoute.addChildren([qrcodeIndexRoute, qrcodeGeneratorRoute, qrcodeDecoderRoute]),
   imageOcrRoute,
   commonListsRoute.addChildren([commonListsIndexRoute, mimeTypesRoute, htmlEntitiesRoute]),
   githubUserProjectsRoute,

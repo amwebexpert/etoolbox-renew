@@ -1,10 +1,10 @@
-import { ScreenContainer } from "~/components/ui/screen-container";
+import { AppLayoutTabs } from "~/components/layout/app-layout-tabs";
 
-export const QrcodeGenerator = () => {
-  return (
-    <ScreenContainer>
-      <p>🚧 Page: QR Code Generator</p>
-    </ScreenContainer>
-  );
+const TAB_ITEMS = [
+  { key: "/qrcode/generator", label: "Generator" },
+  { key: "/qrcode/decoder", label: "Decoder" },
+];
+
+export const Qrcode = () => {
+  return <AppLayoutTabs items={TAB_ITEMS} />;
 };
-
