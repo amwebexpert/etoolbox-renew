@@ -25,7 +25,6 @@ export const useSettingsStore = create<SettingsState>()(
   ),
 );
 
-// selectors
 export const useIsDarkMode = (): boolean => {
   const themeMode = useSettingsStore((state) => state.themeMode);
   return themeMode === "dark";

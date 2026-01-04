@@ -43,7 +43,6 @@ const isValid = (data: ConversionContext): boolean => {
   return true;
 };
 
-// Convert object to JS source string
 const objToSource = (o: unknown): string => {
   if (isNullish(o)) {
     return "null";
@@ -132,7 +131,6 @@ export const getLanguageDisplayName = (key: string): string => {
   return LANGUAGES.get(key) ?? key;
 };
 
-// Get syntax highlighter language from target language
 export const getSyntaxHighlighterLanguage = (targetLanguage: string): string => {
   return SYNTAX_HIGHLIGHTER_LANGUAGE_MAP[targetLanguage] ?? "plaintext";
 };

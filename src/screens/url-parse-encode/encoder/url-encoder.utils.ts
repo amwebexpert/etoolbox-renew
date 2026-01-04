@@ -1,6 +1,3 @@
-/**
- * Encode a string using encodeURIComponent
- */
 export const encodeUrl = (value?: string): string => {
   if (!value) {
     return "";
@@ -8,9 +5,6 @@ export const encodeUrl = (value?: string): string => {
   return encodeURIComponent(value);
 };
 
-/**
- * Decode a string using decodeURIComponent
- */
 export const decodeUrl = (value?: string): string => {
   if (!value) {
     return "";

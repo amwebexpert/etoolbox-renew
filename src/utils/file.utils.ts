@@ -3,9 +3,6 @@ interface SaveJsonAsArgs {
   fileName?: string;
 }
 
-/**
- * Downloads JSON content as a file
- */
 export const saveJsonAs = ({ content, fileName = "data.json" }: SaveJsonAsArgs): void => {
   const blob = new Blob([content], { type: "application/json" });
   const url = URL.createObjectURL(blob);

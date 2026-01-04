@@ -30,12 +30,10 @@ import { Url } from "~/screens/url-parse-encode/url";
 import { UuidGenerator } from "~/screens/uuid-generator/uuid-generator";
 import { Vr3dViewer } from "~/screens/vr-3d-viewer/vr-3d-viewer";
 
-// Root route
 const rootRoute = createRootRoute({
   component: RootLayout,
 });
 
-// Child routes
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
@@ -48,7 +46,6 @@ const aboutRoute = createRoute({
   component: About,
 });
 
-// Base64 parent route with layout
 const base64Route = createRoute({
   getParentRoute: () => rootRoute,
   path: "/base64",
@@ -73,7 +70,6 @@ const base64FileRoute = createRoute({
   component: Base64File,
 });
 
-// URL parent route with layout
 const urlRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/url",
@@ -104,7 +100,6 @@ const urlEncoderRoute = createRoute({
   component: UrlEncoder,
 });
 
-// JSON parent route with layout
 const jsonRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/json",
@@ -135,7 +130,6 @@ const jsonRepairRoute = createRoute({
   component: JsonRepair,
 });
 
-// Colors parent route with layout
 const colorsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/colors",
@@ -160,7 +154,6 @@ const namedColorsRoute = createRoute({
   component: NamedColors,
 });
 
-// Simple routes
 const regexTesterRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/regex-tester",
@@ -191,7 +184,6 @@ const imageOcrRoute = createRoute({
   component: ImageOcr,
 });
 
-// Common Lists parent route with layout
 const commonListsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/common-lists",
@@ -248,7 +240,6 @@ const vr3dViewerRoute = createRoute({
 
 export const ROUTES_WITH_CHILDREN = ["/url", "/base64", "/json", "/colors", "/common-lists"];
 
-// Route tree
 const routeTree = rootRoute.addChildren([
   homeRoute,
   aboutRoute,
@@ -269,10 +260,8 @@ const routeTree = rootRoute.addChildren([
   vr3dViewerRoute,
 ]);
 
-// Router instance
 export const router = createRouter({ routeTree });
 
-// Type declaration for router
 declare module "@tanstack/react-router" {
   interface Register {
     router: typeof router;

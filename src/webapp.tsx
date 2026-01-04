@@ -12,7 +12,6 @@ const SECONDARY_COLOR = "#e84b3c";
 export const Webapp = () => {
   const isDarkMode = useIsDarkMode();
 
-  // Custom theme configuration
   const customTheme = {
     token: {
       colorPrimary: PRIMARY_COLOR,

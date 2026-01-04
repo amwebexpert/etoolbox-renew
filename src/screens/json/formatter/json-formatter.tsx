@@ -27,7 +27,6 @@ export const JsonFormatter = () => {
   const { inputText, setInputText } = useJsonFormatterStore();
   const [isMinifiedMode, setIsMinifiedMode] = useState<boolean>(false);
 
-  // Derive formatted JSON from input - recomputed when inputText or mode changes
   const formattedJson = useMemo(() => {
     if (!inputText) return "";
     return isMinifiedMode
