@@ -55,3 +55,14 @@ export const isMinified = ({ value }: IsMinifiedArgs): boolean => {
   const minified = minifyJson({ value });
   return value === minified;
 };
+
+interface GetFormattedJsonArgs {
+  inputText?: string;
+  isMinifiedMode: boolean;
+}
+
+export const getFormattedJson = ({ inputText, isMinifiedMode }: GetFormattedJsonArgs): string => {
+  if (!inputText) return "";
+  if (isMinifiedMode) return minifyJson({ value: inputText });
+  return prettifyJson({ value: inputText });
+};

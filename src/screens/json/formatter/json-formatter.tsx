@@ -2,7 +2,7 @@ import { FormatPainterOutlined } from "@ant-design/icons";
 import { getErrorMessage } from "@lichens-innovation/ts-common";
 import { Flex, Input } from "antd";
 import { createStyles } from "antd-style";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
@@ -14,7 +14,7 @@ import { saveJsonAs } from "~/utils/file.utils";
 import { JsonFormatterResult } from "./json-formatter-result";
 import { JsonFormatterToolbar } from "./json-formatter-toolbar";
 import { useJsonFormatterStore } from "./json-formatter.store";
-import { minifyJson, prettifyJson } from "./json-formatter.utils";
+import { getFormattedJson } from "./json-formatter.utils";
 
 const { TextArea } = Input;
 
@@ -27,12 +27,7 @@ export const JsonFormatter = () => {
   const { inputText, setInputText } = useJsonFormatterStore();
   const [isMinifiedMode, setIsMinifiedMode] = useState<boolean>(false);
 
-  const formattedJson = useMemo(() => {
-    if (!inputText) return "";
-    return isMinifiedMode
-      ? minifyJson({ value: inputText })
-      : prettifyJson({ value: inputText });
-  }, [inputText, isMinifiedMode]);
+  const formattedJson = getFormattedJson({ inputText, isMinifiedMode });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value ?? "";
