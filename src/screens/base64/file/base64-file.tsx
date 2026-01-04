@@ -7,13 +7,14 @@ import { useState } from "react";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
+import { useClipboardCopy } from "~/hooks/use-clipboard-copy";
 import { useResponsive } from "~/hooks/use-responsive";
 import { useToastMessage } from "~/providers/toast-message-provider";
 
 import { Base64FileDropzone } from "./base64-file-dropzone";
 import { Base64FileInfo } from "./base64-file-info";
 import { Base64FileToolbar } from "./base64-file-toolbar";
-import { copyToClipboard, downloadBase64AsFile, formatDataUri, readFileAsBase64 } from "./base64-file.utils";
+import { downloadBase64AsFile, formatDataUri, readFileAsBase64 } from "./base64-file.utils";
 
 const { TextArea } = Input;
 
@@ -21,6 +22,7 @@ export const Base64File = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
   const messageApi = useToastMessage();
+  const copyToClipboard = useClipboardCopy();
 
   const [base64Output, setBase64Output] = useState<string>("");
   const [fileName, setFileName] = useState<string>("");
@@ -40,27 +42,13 @@ export const Base64File = () => {
     return false; // Prevent upload
   };
 
-  const handleCopy = async () => {
-    if (!base64Output) return;
-
-    try {
-      await copyToClipboard(base64Output);
-      messageApi.success("Base64 copied to clipboard!");
-    } catch (e: unknown) {
-      messageApi.error("Failed to copy to clipboard: " + getErrorMessage(e));
-    }
+  const handleCopy = () => {
+    copyToClipboard({ text: base64Output, successMessage: "Base64 copied to clipboard!" });
   };
 
-  const handleCopyDataUri = async () => {
-    if (!base64Output) return;
-
-    try {
-      const dataUri = formatDataUri({ mimeType, base64: base64Output });
-      await copyToClipboard(dataUri);
-      messageApi.success("Data URI copied to clipboard!");
-    } catch (e: unknown) {
-      messageApi.error("Failed to copy to clipboard: " + getErrorMessage(e));
-    }
+  const handleCopyDataUri = () => {
+    const dataUri = base64Output ? formatDataUri({ mimeType, base64: base64Output }) : "";
+    copyToClipboard({ text: dataUri, successMessage: "Data URI copied to clipboard!" });
   };
 
   const handleDownload = () => {

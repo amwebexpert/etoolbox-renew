@@ -1,17 +1,18 @@
 import { SwapOutlined } from "@ant-design/icons";
-import { getErrorMessage, isBlank } from "@lichens-innovation/ts-common";
+import { isBlank } from "@lichens-innovation/ts-common";
 import { Col, Flex, Form, Input, Row, Select } from "antd";
 import { createStyles } from "antd-style";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
+import { useClipboardCopy } from "~/hooks/use-clipboard-copy";
 import { useResponsive } from "~/hooks/use-responsive";
 import { useToastMessage } from "~/providers/toast-message-provider";
 
 import { JsonConverterResult } from "./json-converter-result";
 import { JsonConverterToolbar } from "./json-converter-toolbar";
 import { useJsonConverterStore } from "./json-converter.store";
-import { copyToClipboard, TARGET_LANGUAGES } from "./json-converter.utils";
+import { TARGET_LANGUAGES } from "./json-converter.utils";
 import { useJsonConvert } from "./use-json-convert";
 
 const { TextArea } = Input;
@@ -30,6 +31,7 @@ export const JsonConverter = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
   const messageApi = useToastMessage();
+  const copyToClipboard = useClipboardCopy();
 
   const {
     sourceText,
@@ -67,15 +69,8 @@ export const JsonConverter = () => {
     });
   };
 
-  const handleCopy = async () => {
-    if (!result) return;
-
-    try {
-      await copyToClipboard(result);
-      messageApi.success("Result copied to clipboard!");
-    } catch (e: unknown) {
-      messageApi.error("Failed to copy: " + getErrorMessage(e));
-    }
+  const handleCopy = () => {
+    copyToClipboard({ text: result, successMessage: "Result copied to clipboard!" });
   };
 
   const handleClear = () => {

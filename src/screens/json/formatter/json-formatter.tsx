@@ -6,18 +6,15 @@ import { useMemo, useState } from "react";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
+import { useClipboardCopy } from "~/hooks/use-clipboard-copy";
 import { useResponsive } from "~/hooks/use-responsive";
 import { useToastMessage } from "~/providers/toast-message-provider";
+import { saveJsonAs } from "~/utils/file.utils";
 
 import { JsonFormatterResult } from "./json-formatter-result";
 import { JsonFormatterToolbar } from "./json-formatter-toolbar";
 import { useJsonFormatterStore } from "./json-formatter.store";
-import {
-  copyToClipboard,
-  minifyJson,
-  prettifyJson,
-  saveJsonAs,
-} from "./json-formatter.utils";
+import { minifyJson, prettifyJson } from "./json-formatter.utils";
 
 const { TextArea } = Input;
 
@@ -25,6 +22,7 @@ export const JsonFormatter = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
   const messageApi = useToastMessage();
+  const copyToClipboard = useClipboardCopy();
 
   const { inputText, setInputText } = useJsonFormatterStore();
   const [isMinifiedMode, setIsMinifiedMode] = useState<boolean>(false);
@@ -46,15 +44,8 @@ export const JsonFormatter = () => {
     setIsMinifiedMode((current) => !current);
   };
 
-  const handleCopy = async () => {
-    if (!formattedJson) return;
-
-    try {
-      await copyToClipboard(formattedJson);
-      messageApi.success("JSON copied to clipboard!");
-    } catch (e: unknown) {
-      messageApi.error("Failed to copy to clipboard: " + getErrorMessage(e));
-    }
+  const handleCopy = () => {
+    copyToClipboard({ text: formattedJson, successMessage: "JSON copied to clipboard!" });
   };
 
   const handleSaveAs = () => {

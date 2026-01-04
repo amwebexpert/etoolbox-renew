@@ -81,6 +81,3 @@ export const readFileAsBase64 = (file: File): Promise<Base64FileResult> => {
   });
 };
 
-export const copyToClipboard = async (text: string): Promise<void> => {
-  await navigator.clipboard.writeText(text);
-};

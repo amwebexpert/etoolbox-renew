@@ -128,10 +128,6 @@ export const transform = async (data: ConversionContext): Promise<string> => {
   }
 };
 
-export const copyToClipboard = async (text: string): Promise<void> => {
-  await navigator.clipboard.writeText(text);
-};
-
 export const getLanguageDisplayName = (key: string): string => {
   return LANGUAGES.get(key) ?? key;
 };

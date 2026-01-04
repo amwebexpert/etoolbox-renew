@@ -1,12 +1,11 @@
 import { CodeOutlined } from "@ant-design/icons";
-import { getErrorMessage } from "@lichens-innovation/ts-common";
 import { Input, Space } from "antd";
 import { createStyles } from "antd-style";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
+import { useClipboardCopy } from "~/hooks/use-clipboard-copy";
 import { useResponsive } from "~/hooks/use-responsive";
-import { useToastMessage } from "~/providers/toast-message-provider";
 
 import { Base64StringResult } from "./base64-string-result";
 import { Base64StringToolbar } from "./base64-string-toolbar";
@@ -18,7 +17,7 @@ const { TextArea } = Input;
 export const Base64String = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
-  const messageApi = useToastMessage();
+  const copyToClipboard = useClipboardCopy();
 
   const { inputText, outputText, setInputText, setOutputText, swapContent } = useBase64StringStore();
 
@@ -32,15 +31,8 @@ export const Base64String = () => {
     setOutputText(result);
   };
 
-  const handleCopy = async () => {
-    if (!outputText) return;
-
-    try {
-      await navigator.clipboard.writeText(outputText);
-      messageApi.success("Copied to clipboard!");
-    } catch (e: unknown) {
-      messageApi.error("Failed to copy to clipboard: " + getErrorMessage(e));
-    }
+  const handleCopy = () => {
+    copyToClipboard({ text: outputText });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

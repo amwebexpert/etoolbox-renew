@@ -1,14 +1,15 @@
 import { CodeOutlined, CopyOutlined } from "@ant-design/icons";
-import { getErrorMessage, isBlank } from "@lichens-innovation/ts-common";
+import { isBlank } from "@lichens-innovation/ts-common";
 import { Button, Input, Select, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
 import SyntaxHighlighter from "react-syntax-highlighter";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
+import { useClipboardCopy } from "~/hooks/use-clipboard-copy";
 import { useResponsive } from "~/hooks/use-responsive";
 import { useSyntaxHighlightTheme } from "~/hooks/use-syntax-highlight-theme";
-import { useToastMessage } from "~/providers/toast-message-provider";
+
 import { useUrlCurlStore } from "./url-curl.store";
 import { CONVERTERS_LIST, getSyntaxLanguage, transformCurl } from "./url-curl.utils";
 
@@ -17,7 +18,7 @@ const { TextArea } = Input;
 export const UrlCurl = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
-  const messageApi = useToastMessage();
+  const copyToClipboard = useClipboardCopy();
   const syntaxTheme = useSyntaxHighlightTheme();
 
   const { inputCurl, targetLanguage, transformedResult, setInputCurl, setTargetLanguage, setTransformedResult } =
@@ -36,15 +37,8 @@ export const UrlCurl = () => {
     }
   };
 
-  const handleCopy = async () => {
-    if (!transformedResult) return;
-
-    try {
-      await navigator.clipboard.writeText(transformedResult);
-      messageApi.success("Copied to clipboard!");
-    } catch (e: unknown) {
-      messageApi.error("Failed to copy to clipboard: " + getErrorMessage(e));
-    }
+  const handleCopy = () => {
+    copyToClipboard({ text: transformedResult });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
