@@ -133,7 +133,7 @@ export const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Tag color="cyan" style={{ cursor: "pointer", fontSize: 14, padding: "4px 12px" }}>
+                <Tag color="cyan" style={{ cursor: "pointer", fontSize: 14, paddingBlock: 4, paddingInline: 12 }}>
                   Learn more about contributing →
                 </Tag>
               </a>
@@ -147,7 +147,8 @@ export const About = () => {
 
 const useStyles = createStyles(({ token }) => ({
   hero: {
-    padding: "24px 0",
+    paddingBlock: 24,
+    paddingInline: 0,
     textAlign: "center",
   },
   heroTitle: {
