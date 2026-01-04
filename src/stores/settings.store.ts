@@ -24,3 +24,13 @@ export const useSettingsStore = create<SettingsState>()(
     },
   ),
 );
+
+// selectors
+export const useIsDarkMode = (): boolean => {
+  const themeMode = useSettingsStore((state) => state.themeMode);
+  return themeMode === "dark";
+};
+
+export const useThemeToggler = (): VoidFunction => {
+  return useSettingsStore((state) => state.toggleThemeMode);
+};

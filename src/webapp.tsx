@@ -3,14 +3,13 @@ import { ConfigProvider, theme } from "antd";
 
 import { TanstackQueryProvider } from "~/providers/react-query-provider";
 import { router } from "~/routes/router";
-import { useSettingsStore } from "~/stores/settings.store";
+import { useIsDarkMode } from "~/stores/settings.store";
 
-// Theme colors inspired by etoolbox
 const PRIMARY_COLOR = "#bf3a2b";
 const SECONDARY_COLOR = "#e84b3c";
 
 export const Webapp = () => {
-  const themeMode = useSettingsStore((state) => state.themeMode);
+  const isDarkMode = useIsDarkMode();
 
   // Custom theme configuration
   const customTheme = {
@@ -20,7 +19,7 @@ export const Webapp = () => {
       borderRadius: 8,
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
     },
-    algorithm: themeMode === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm,
+    algorithm: isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
   };
 
   return (

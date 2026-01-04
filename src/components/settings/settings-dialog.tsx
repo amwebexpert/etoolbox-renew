@@ -1,7 +1,7 @@
 import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 import { Divider, Modal, Space, Switch, Typography } from "antd";
 import { createStyles } from "antd-style";
-import { useSettingsStore } from "~/stores/settings.store";
+import { useIsDarkMode, useThemeToggler } from "~/stores/settings.store";
 
 const { Text, Title } = Typography;
 
@@ -12,8 +12,8 @@ interface SettingsDialogProps {
 
 export const SettingsDialog = ({ open, onClose }: SettingsDialogProps) => {
   const { styles } = useStyles();
-  const { themeMode, toggleThemeMode } = useSettingsStore();
-  const isDarkMode = themeMode === "dark";
+  const isDarkMode = useIsDarkMode();
+  const toggleThemeMode = useThemeToggler();
 
   return (
     <Modal
