@@ -64,9 +64,9 @@ const menuItems: MenuItem[] = [
     label: <Link to="/jwt-decoder">JWT Decoder</Link>,
   },
   {
-    key: "/qrcode-generator",
+    key: "/qrcode",
     icon: <QrcodeOutlined />,
-    label: <Link to="/qrcode-generator">QR Code</Link>,
+    label: <Link to="/qrcode">QR Code</Link>,
   },
   {
     key: "/image-ocr",

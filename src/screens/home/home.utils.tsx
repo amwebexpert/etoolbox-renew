@@ -23,7 +23,7 @@ export const FEATURES = [
   { icon: <ThunderboltOutlined />, name: "RegEx Tester", description: "Test patterns in real-time", color: "#fa8c16", path: "/regex-tester" },
   { icon: <NumberOutlined />, name: "UUID Generator", description: "Generate unique identifiers", color: "#13c2c2", path: "/uuid-generator" },
   { icon: <LockOutlined />, name: "JWT Decoder", description: "Decode & inspect tokens", color: "#f5222d", path: "/jwt-decoder" },
-  { icon: <QrcodeOutlined />, name: "QR Code", description: "Generate QR codes instantly", color: "#2f54eb", path: "/qrcode-generator" },
+  { icon: <QrcodeOutlined />, name: "QR Code", description: "Generate QR codes instantly", color: "#2f54eb", path: "/qrcode" },
   { icon: <PictureOutlined />, name: "Image OCR", description: "Extract text from images", color: "#a0d911", path: "/image-ocr" },
   { icon: <CalendarOutlined />, name: "Date Converter", description: "Epoch & date formats", color: "#faad14", path: "/date-converter" },
   { icon: <TableOutlined />, name: "CSV Parser", description: "Parse & visualize CSV data", color: "#1890ff", path: "/csv-parser" },

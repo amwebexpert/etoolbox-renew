@@ -21,8 +21,8 @@ import { Json } from "~/screens/json/json";
 import { JsonRepair } from "~/screens/json/repair/json-repair";
 import { JwtDecoder } from "~/screens/jwt-decoder/jwt-decoder";
 import { PokerPlanning } from "~/screens/poker-planning/poker-planning";
-import { QrcodeGenerator } from "~/screens/qrcode-generator/qrcode-generator";
 import { RegexTester } from "~/screens/regex-tester/regex-tester";
+import { QrcodeGenerator } from "~/screens/qrcode/qrcode";
 import { UrlCurl } from "~/screens/url-parse-encode/curl/url-curl";
 import { UrlEncoder } from "~/screens/url-parse-encode/encoder/url-encoder";
 import { UrlParser } from "~/screens/url-parse-encode/parser/url-parser";
@@ -174,7 +174,7 @@ const jwtDecoderRoute = createRoute({
 
 const qrcodeGeneratorRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/qrcode-generator",
+  path: "/qrcode",
   component: QrcodeGenerator,
 });
 
