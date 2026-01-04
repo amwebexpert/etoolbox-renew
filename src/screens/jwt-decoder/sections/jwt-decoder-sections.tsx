@@ -1,14 +1,14 @@
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import { Collapse, Tag, Typography } from "antd";
 import type { CollapseProps } from "antd";
+import { Collapse, Tag, Typography } from "antd";
 import { createStyles } from "antd-style";
 
 import { useResponsive } from "~/hooks/use-responsive";
 
+import { getResultMaxHeight, type ExtendedJwtPayload, type JwtHeader } from "../jwt-decoder.utils";
 import { JwtDecoderSectionHeaderContent } from "./jwt-decoder-section-header-content";
 import { JwtDecoderSectionPayloadContent } from "./jwt-decoder-section-payload-content";
 import { JwtDecoderSectionSignatureContent } from "./jwt-decoder-section-signature-content";
-import { getResultMaxHeight, type ExtendedJwtPayload, type JwtHeader } from "./jwt-decoder.utils";
 
 interface JwtDecoderSectionsProps {
   header: JwtHeader | null;

@@ -4,7 +4,7 @@ import { JwtDecoderAlgorithmCard } from "./jwt-decoder-algorithm-card";
 import { JwtDecoderClaimsCard } from "./jwt-decoder-claims-card";
 import { JwtDecoderError } from "./jwt-decoder-error";
 import { JwtDecoderPlaceholder } from "./jwt-decoder-placeholder";
-import { JwtDecoderSections } from "./jwt-decoder-sections";
+import { JwtDecoderSections } from "./sections/jwt-decoder-sections";
 import { getClaimsInfo, isTokenExpired, type DecodedJwt } from "./jwt-decoder.utils";
 
 interface JwtDecoderResultProps {
