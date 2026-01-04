@@ -1,0 +1,37 @@
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+
+export interface RgbaColor {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+}
+
+interface ColorPickerState {
+  imageDataUrl: string;
+  color: RgbaColor;
+  setImageDataUrl: (url: string) => void;
+  setColor: (color: RgbaColor) => void;
+  clearImage: () => void;
+  clearAll: () => void;
+}
+
+const DEFAULT_COLOR: RgbaColor = { r: 59, g: 130, b: 246, a: 1 };
+
+export const useColorPickerStore = create<ColorPickerState>()(
+  persist(
+    (set) => ({
+      imageDataUrl: "",
+      color: DEFAULT_COLOR,
+      setImageDataUrl: (url) => set({ imageDataUrl: url }),
+      setColor: (color) => set({ color }),
+      clearImage: () => set({ imageDataUrl: "" }),
+      clearAll: () => set({ imageDataUrl: "", color: DEFAULT_COLOR }),
+    }),
+    {
+      name: "etoolbox-color-picker",
+    },
+  ),
+);
+

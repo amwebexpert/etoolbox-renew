@@ -55,6 +55,7 @@
     "process": "^0.11.10",
     "querystring-es3": "^0.2.1",
     "quicktype-core": "^23.2.6",
+    "re-resizable": "^6.11.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.69.0",
