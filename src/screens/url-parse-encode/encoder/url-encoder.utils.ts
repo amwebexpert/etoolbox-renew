@@ -1,21 +1,6 @@
-export const encodeUrl = (value?: string): string => {
-  if (!value) {
-    return "";
-  }
-  return encodeURIComponent(value);
-};
+import { encodeUrl, decodeUrl } from "~/utils/encoding.utils";
 
-export const decodeUrl = (value?: string): string => {
-  if (!value) {
-    return "";
-  }
-  try {
-    return decodeURIComponent(value);
-  } catch {
-    // If decoding fails, return the original value
-    return value;
-  }
-};
+export { encodeUrl, decodeUrl };
 
 interface TransformUrlArgs {
   value?: string;

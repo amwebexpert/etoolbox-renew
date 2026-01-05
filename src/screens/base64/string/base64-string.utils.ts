@@ -1,21 +1,19 @@
+import { encodeBase64 as encode, decodeBase64 as decode } from "~/utils/encoding.utils";
+
 export const encodeBase64 = (text: string): string => {
-  try {
-    // Handle unicode characters properly
-    const bytes = new TextEncoder().encode(text);
-    const binString = Array.from(bytes, (byte) => String.fromCodePoint(byte)).join("");
-    return btoa(binString);
-  } catch {
+  const result = encode(text);
+  // Empty string is a valid result when encoding empty input
+  if (result === "" && text !== "") {
     return "Error: Unable to encode";
   }
+  return result;
 };
 
 export const decodeBase64 = (base64: string): string => {
-  try {
-    const binString = atob(base64);
-    const bytes = Uint8Array.from(binString, (char) => char.codePointAt(0) ?? 0);
-    return new TextDecoder().decode(bytes);
-  } catch {
+  const result = decode(base64);
+  // Empty string is a valid result when decoding empty input
+  if (result === "" && base64 !== "") {
     return "Error: Invalid Base64 string";
   }
+  return result;
 };
-

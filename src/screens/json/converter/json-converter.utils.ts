@@ -2,6 +2,8 @@ import { getErrorMessage, isBlank, isNullish } from "@lichens-innovation/ts-comm
 import beautify from "js-beautify";
 import { InputData, jsonInputForTargetLanguage, quicktype } from "quicktype-core";
 
+import { getResultMaxHeightPx, type ResponsiveContext } from "~/utils/responsive.utils";
+
 import type { ConversionContext } from "./json-converter.types";
 import { LANGUAGES, SYNTAX_HIGHLIGHTER_LANGUAGE_MAP } from "./json-converter.types";
 
@@ -135,19 +137,6 @@ export const getSyntaxHighlighterLanguage = (targetLanguage: string): string => 
   return SYNTAX_HIGHLIGHTER_LANGUAGE_MAP[targetLanguage] ?? "plaintext";
 };
 
-interface GetResultMaxHeightArgs {
-  isMobile: boolean;
-  isTablet: boolean;
-}
-
-export const getResultMaxHeight = ({ isMobile, isTablet }: GetResultMaxHeightArgs): string => {
-  if (isMobile) {
-    return "300px";
-  }
-
-  if (isTablet) {
-    return "400px";
-  }
-
-  return "500px";
+export const getResultMaxHeight = (ctx: ResponsiveContext): string => {
+  return getResultMaxHeightPx(ctx);
 };

@@ -1,16 +1,9 @@
-// Spec http://www.ecma-international.org/ecma-262/6.0/#sec-json.stringify
-const sortObjectKeys = (_key: string, value: unknown): unknown =>
-  value instanceof Object && !(value instanceof Array)
-    ? Object.keys(value as Record<string, unknown>)
-        .sort()
-        .reduce(
-          (sorted, key) => {
-            sorted[key] = (value as Record<string, unknown>)[key];
-            return sorted;
-          },
-          {} as Record<string, unknown>,
-        )
-    : value;
+import {
+  formatJson as formatJsonUtil,
+  prettifyJson as prettifyJsonUtil,
+  minifyJson as minifyJsonUtil,
+  isMinifiedJson,
+} from "~/utils/json.utils";
 
 interface FormatJsonArgs {
   value?: string;
@@ -18,17 +11,7 @@ interface FormatJsonArgs {
 }
 
 export const formatJson = ({ value, space }: FormatJsonArgs): string => {
-  if (!value) {
-    return "";
-  }
-
-  try {
-    const obj: unknown = JSON.parse(value);
-    return JSON.stringify(obj, sortObjectKeys, space);
-  } catch {
-    // Do nothing, user may still be typing...
-    return value;
-  }
+  return formatJsonUtil({ value, space, sortKeys: true });
 };
 
 interface PrettifyJsonArgs {
@@ -36,7 +19,7 @@ interface PrettifyJsonArgs {
 }
 
 export const prettifyJson = ({ value }: PrettifyJsonArgs): string => {
-  return formatJson({ value, space: 4 });
+  return prettifyJsonUtil(value);
 };
 
 interface MinifyJsonArgs {
@@ -44,7 +27,7 @@ interface MinifyJsonArgs {
 }
 
 export const minifyJson = ({ value }: MinifyJsonArgs): string => {
-  return formatJson({ value, space: 0 });
+  return minifyJsonUtil(value);
 };
 
 interface IsMinifiedArgs {
@@ -52,8 +35,7 @@ interface IsMinifiedArgs {
 }
 
 export const isMinified = ({ value }: IsMinifiedArgs): boolean => {
-  const minified = minifyJson({ value });
-  return value === minified;
+  return isMinifiedJson(value);
 };
 
 interface GetFormattedJsonArgs {

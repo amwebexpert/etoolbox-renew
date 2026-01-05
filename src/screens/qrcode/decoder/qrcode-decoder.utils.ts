@@ -1,36 +1,9 @@
 import { getErrorMessage } from "@lichens-innovation/ts-common";
 import jsQR from "jsqr";
 
+import { fileToImageData, isValidImageFile as isValidImage } from "~/utils/image.utils";
+
 import type { DecodeFromFileContext, QRCodeDecodeResult } from "./qrcode-decoder.types";
-
-const fileToImageData = (file: File): Promise<ImageData> => {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-
-    if (!ctx) {
-      reject(new Error("Failed to get canvas context"));
-      return;
-    }
-
-    img.onload = () => {
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img, 0, 0);
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      URL.revokeObjectURL(img.src);
-      resolve(imageData);
-    };
-
-    img.onerror = () => {
-      URL.revokeObjectURL(img.src);
-      reject(new Error("Failed to load image"));
-    };
-
-    img.src = URL.createObjectURL(file);
-  });
-};
 
 const decodeFromImageData = (imageData: ImageData): QRCodeDecodeResult => {
   const { data, width, height } = imageData;
@@ -61,8 +34,4 @@ export const formatDecodeResult = (result: QRCodeDecodeResult): string => {
   return JSON.stringify({ text, format, timestamp: timestamp.toISOString() }, null, 2);
 };
 
-const VALID_TYPES = ["image/png", "image/jpeg", "image/jpg", "image/gif", "image/webp", "image/bmp"];
-
-export const isValidImageFile = (file: File): boolean => {
-  return VALID_TYPES.includes(file.type);
-};
+export const isValidImageFile = isValidImage;

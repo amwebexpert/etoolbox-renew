@@ -1,11 +1,11 @@
-import { getErrorMessage, isBlank } from "@lichens-innovation/ts-common";
+import { getErrorMessage, isBlank, isNullish } from "@lichens-innovation/ts-common";
 import QRCode from "qrcode";
+
+import { downloadDataUrl, getExtensionFromDataUrl } from "~/utils/download.utils";
+import { safeJsonParse, safeJsonStringify } from "~/utils/json.utils";
 
 import type { GenerateQRCodeContext, QRCodeOptions } from "./qrcode-generator.types";
 
-/**
- * Generates a QR code as a data URL
- */
 export const generateQRCode = async ({ text, options }: GenerateQRCodeContext): Promise<string> => {
   if (isBlank(text)) {
     throw new Error("Text content is required to generate a QR code");
@@ -19,53 +19,32 @@ export const generateQRCode = async ({ text, options }: GenerateQRCodeContext): 
   }
 };
 
-/**
- * Generates the HTML img tag for the QR code
- */
 export const generateImgTag = (dataUrl: string): string => {
   return `<img alt="QR Code" src="${dataUrl}"/>`;
 };
 
-/**
- * Downloads the QR code image
- */
 interface DownloadQRCodeArgs {
   dataUrl: string;
   filename?: string;
 }
 
 export const downloadQRCode = ({ dataUrl, filename = "qrcode" }: DownloadQRCodeArgs): void => {
-  const extension = dataUrl.includes("image/png") ? "png" : dataUrl.includes("image/jpeg") ? "jpg" : "webp";
-
-  const link = document.createElement("a");
-  link.href = dataUrl;
-  link.download = `${filename}.${extension}`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  const extension = getExtensionFromDataUrl(dataUrl);
+  downloadDataUrl({ dataUrl, fileName: `${filename}.${extension}` });
 };
 
-/**
- * Formats options as pretty JSON for display
- */
 export const formatOptionsAsJson = (options: QRCodeOptions): string => {
-  return JSON.stringify(options, null, 2);
+  return safeJsonStringify(options);
 };
 
-/**
- * Parses JSON string to QRCodeOptions
- */
 export const parseOptionsFromJson = (json: string): QRCodeOptions => {
-  try {
-    return JSON.parse(json) as QRCodeOptions;
-  } catch {
+  const result = safeJsonParse<QRCodeOptions>(json);
+  if (isNullish(result)) {
     throw new Error("Invalid JSON format for QR code options");
   }
+  return result;
 };
 
-/**
- * Validates QR code options
- */
 export const validateOptions = (options: QRCodeOptions): string[] => {
   const errors: string[] = [];
 
@@ -84,9 +63,6 @@ export const validateOptions = (options: QRCodeOptions): string[] => {
   return errors;
 };
 
-/**
- * Estimates the QR code capacity based on error correction level
- */
 interface GetCapacityInfoArgs {
   errorCorrectionLevel: QRCodeOptions["errorCorrectionLevel"];
 }
@@ -98,7 +74,6 @@ interface CapacityInfo {
 }
 
 export const getCapacityInfo = ({ errorCorrectionLevel }: GetCapacityInfoArgs): CapacityInfo => {
-  // Version 40 (highest) capacity by error correction level
   const capacities: Record<QRCodeOptions["errorCorrectionLevel"], CapacityInfo> = {
     L: { numeric: 7089, alphanumeric: 4296, bytes: 2953 },
     M: { numeric: 5596, alphanumeric: 3391, bytes: 2331 },
@@ -108,4 +83,3 @@ export const getCapacityInfo = ({ errorCorrectionLevel }: GetCapacityInfoArgs): 
 
   return capacities[errorCorrectionLevel];
 };
-

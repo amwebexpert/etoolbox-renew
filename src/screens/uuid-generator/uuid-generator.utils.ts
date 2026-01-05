@@ -1,5 +1,7 @@
 import { v1, v4, v6, v7 } from "uuid";
 
+import { getResultRows, type ResponsiveContext } from "~/utils/responsive.utils";
+
 export type UuidVersion = 1 | 4 | 6 | 7;
 
 export const DEFAULT_VERSION: UuidVersion = 4;
@@ -62,14 +64,6 @@ export const getQuantityValidationMessage = (value: number): string | null => {
   return null;
 };
 
-interface GetRowsArgs {
-  isMobile: boolean;
-  isTablet: boolean;
-}
-
-export const getRows = ({ isMobile, isTablet }: GetRowsArgs): number => {
-  if (isMobile) return 8;
-  if (isTablet) return 10;
-  return 12;
+export const getRows = (ctx: ResponsiveContext): number => {
+  return getResultRows(ctx);
 };
-

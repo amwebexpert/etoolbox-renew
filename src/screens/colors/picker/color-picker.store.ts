@@ -1,12 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
-export interface RgbaColor {
-  r: number;
-  g: number;
-  b: number;
-  a: number;
-}
+import type { RgbaColor } from "~/utils/color.utils";
 
 interface ColorPickerState {
   imageDataUrl: string;

@@ -1,6 +1,8 @@
 import { isBlank } from "@lichens-innovation/ts-common";
 import { jsonrepair } from "jsonrepair";
 
+import { getResultMaxHeightPx, type ResponsiveContext } from "~/utils/responsive.utils";
+
 export const repairJson = (input: string): string => {
   if (isBlank(input)) {
     return "";
@@ -9,19 +11,6 @@ export const repairJson = (input: string): string => {
   return jsonrepair(input);
 };
 
-interface GetResultMaxHeightArgs {
-  isMobile: boolean;
-  isTablet: boolean;
-}
-
-export const getResultMaxHeight = ({ isMobile, isTablet }: GetResultMaxHeightArgs): string => {
-  if (isMobile) {
-    return "300px";
-  }
-
-  if (isTablet) {
-    return "400px";
-  }
-
-  return "500px";
+export const getResultMaxHeight = (ctx: ResponsiveContext): string => {
+  return getResultMaxHeightPx(ctx);
 };

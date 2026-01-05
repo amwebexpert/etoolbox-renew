@@ -6,7 +6,7 @@ import { Resizable } from "re-resizable";
 
 import { useResponsive } from "~/hooks/use-responsive";
 
-import type { RgbaColor } from "./color-picker.store";
+import type { RgbaColor } from "~/utils/color.utils";
 import { retrieveClickedColor } from "./color-picker.utils";
 
 const { Text } = Typography;

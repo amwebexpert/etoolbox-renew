@@ -1,8 +1,10 @@
 import { jwtDecode, type JwtPayload } from "jwt-decode";
 import { getErrorMessage, isBlank, isNotBlank } from "@lichens-innovation/ts-common";
-import { format } from "date-fns";
 
-// Extended JWT payload with common claims
+import { formatUnixTimestamp, getCurrentUnixTimestamp, isExpiredTimestamp, isActiveTimestamp } from "~/utils/date.utils";
+import { safeJsonStringify } from "~/utils/json.utils";
+import { getResultMaxHeight as getResponsiveMaxHeight, type ResponsiveContext } from "~/utils/responsive.utils";
+
 export interface ExtendedJwtPayload extends JwtPayload {
   [key: string]: unknown;
 }
@@ -27,8 +29,6 @@ export interface JwtClaimInfo {
   value: string;
   type: "date" | "text" | "expired" | "valid";
 }
-
-const DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 export const decodeJwt = (token: string): DecodedJwt => {
   if (isBlank(token)) {
@@ -65,13 +65,7 @@ export const decodeJwt = (token: string): DecodedJwt => {
 };
 
 export const formatJson = (obj: unknown): string => {
-  if (!obj) return "";
-
-  try {
-    return JSON.stringify(obj, null, 2);
-  } catch {
-    return "";
-  }
+  return safeJsonStringify(obj);
 };
 
 export const getTokenParts = (token: string): string[] => {
@@ -81,27 +75,19 @@ export const getTokenParts = (token: string): string[] => {
 
 export const isTokenExpired = (payload: ExtendedJwtPayload | null): boolean => {
   if (!payload?.exp) return false;
-  const now = Math.floor(Date.now() / 1000);
-  return payload.exp < now;
+  return isExpiredTimestamp(payload.exp);
 };
 
 export const formatTimestamp = (timestamp: number | undefined): string => {
   if (!timestamp) return "N/A";
-
-  try {
-    return format(new Date(timestamp * 1000), DATE_FORMAT);
-  } catch {
-    return "Invalid date";
-  }
+  return formatUnixTimestamp(timestamp);
 };
 
 export const getClaimsInfo = (payload: ExtendedJwtPayload | null): JwtClaimInfo[] => {
   if (!payload) return [];
 
   const claims: JwtClaimInfo[] = [];
-  const now = Math.floor(Date.now() / 1000);
 
-  // Issued at
   if (payload.iat) {
     claims.push({
       label: "Issued At (iat)",
@@ -110,27 +96,22 @@ export const getClaimsInfo = (payload: ExtendedJwtPayload | null): JwtClaimInfo[
     });
   }
 
-  // Expiration
   if (payload.exp) {
-    const isExpired = payload.exp < now;
     claims.push({
       label: "Expires (exp)",
       value: formatTimestamp(payload.exp),
-      type: isExpired ? "expired" : "valid",
+      type: isExpiredTimestamp(payload.exp) ? "expired" : "valid",
     });
   }
 
-  // Not before
   if (payload.nbf) {
-    const isActive = payload.nbf <= now;
     claims.push({
       label: "Not Before (nbf)",
       value: formatTimestamp(payload.nbf),
-      type: isActive ? "valid" : "expired",
+      type: isActiveTimestamp(payload.nbf) ? "valid" : "expired",
     });
   }
 
-  // Subject
   if (isNotBlank(payload.sub)) {
     claims.push({
       label: "Subject (sub)",
@@ -139,7 +120,6 @@ export const getClaimsInfo = (payload: ExtendedJwtPayload | null): JwtClaimInfo[
     });
   }
 
-  // Issuer
   if (isNotBlank(payload.iss)) {
     claims.push({
       label: "Issuer (iss)",
@@ -148,7 +128,6 @@ export const getClaimsInfo = (payload: ExtendedJwtPayload | null): JwtClaimInfo[
     });
   }
 
-  // Audience
   if (payload.aud) {
     const audience = Array.isArray(payload.aud) ? payload.aud.join(", ") : String(payload.aud);
     claims.push({
@@ -180,22 +159,13 @@ export const getAlgorithmDescription = (alg: string | undefined): string => {
   return alg ? (algorithms[alg] ?? "Unknown algorithm") : "Unknown algorithm";
 };
 
-interface GetResultMaxHeightArgs {
-  isMobile: boolean;
-  isTablet: boolean;
-}
-
-export const getResultMaxHeight = ({ isMobile, isTablet }: GetResultMaxHeightArgs): number => {
-  if (isMobile) return 300;
-  if (isTablet) return 400;
-  return 500;
+export const getResultMaxHeight = (ctx: ResponsiveContext): number => {
+  return getResponsiveMaxHeight(ctx);
 };
 
 export const getSampleJwt = (): string => {
-  // This is a sample JWT for demonstration purposes only
-  // It contains a valid structure but is not cryptographically valid
   const header = btoa(JSON.stringify({ alg: "HS256", typ: "JWT" }));
-  const now = Math.floor(Date.now() / 1000);
+  const now = getCurrentUnixTimestamp();
   const payload = btoa(
     JSON.stringify({
       sub: "1234567890",
@@ -215,13 +185,13 @@ export const SAMPLE_JWT_TOKENS = {
   basic: getSampleJwt(),
   expired: (() => {
     const header = btoa(JSON.stringify({ alg: "RS256", typ: "JWT" }));
-    const now = Math.floor(Date.now() / 1000);
+    const now = getCurrentUnixTimestamp();
     const payload = btoa(
       JSON.stringify({
         sub: "user-expired",
         name: "Expired User",
         iat: now - 7200,
-        exp: now - 3600, // expired 1 hour ago
+        exp: now - 3600,
         iss: "https://auth.example.com",
       }),
     );

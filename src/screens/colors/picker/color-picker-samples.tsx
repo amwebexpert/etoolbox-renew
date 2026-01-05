@@ -1,7 +1,7 @@
 import { Col, Row, Typography } from "antd";
 import { createStyles } from "antd-style";
 
-import type { RgbaColor } from "./color-picker.store";
+import type { RgbaColor } from "~/utils/color.utils";
 import { ColorPickerSample } from "./color-picker-sample";
 import { getColorFormats } from "./color-picker.utils";
 

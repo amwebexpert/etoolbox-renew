@@ -1,4 +1,21 @@
-import type { RgbaColor } from "./color-picker.store";
+import {
+  rgbToHex,
+  rgbaToHex,
+  rgbaToHexWithAlpha,
+  rgbToString,
+  rgbaToString,
+  getOpacityHexValue,
+  type RgbaColor,
+} from "~/utils/color.utils";
+import { readFileAsDataUrl, clipboardImageToDataUrl } from "~/utils/file-reader.utils";
+
+export { rgbToHex, getOpacityHexValue };
+export type { RgbaColor };
+
+export const rgbaColorToHex = rgbaToHex;
+export const rgbaColorToHexWithAlpha = rgbaToHexWithAlpha;
+export const rgbaColorToRgbString = rgbToString;
+export const rgbaColorToRgbaString = rgbaToString;
 
 interface ClickCoordinates {
   px: number;
@@ -6,40 +23,6 @@ interface ClickCoordinates {
   width: number;
   height: number;
 }
-
-export const getOpacityHexValue = (opacity: number): string => {
-  if (opacity < 0 || opacity > 1) {
-    throw new Error("Invalid opacity value");
-  }
-
-  return Math.round(opacity * 255)
-    .toString(16)
-    .padStart(2, "0");
-};
-
-export const rgbToHex = (r: number, g: number, b: number): string => {
-  if (r > 255 || g > 255 || b > 255) {
-    throw new Error("Invalid color component");
-  }
-
-  return ((r << 16) | (g << 8) | b).toString(16).padStart(6, "0");
-};
-
-export const rgbaColorToHex = (color: RgbaColor): string => {
-  return "#" + rgbToHex(color.r, color.g, color.b);
-};
-
-export const rgbaColorToHexWithAlpha = (color: RgbaColor): string => {
-  return rgbaColorToHex(color) + getOpacityHexValue(color.a);
-};
-
-export const rgbaColorToRgbString = (color: RgbaColor): string => {
-  return `rgb(${color.r}, ${color.g}, ${color.b})`;
-};
-
-export const rgbaColorToRgbaString = (color: RgbaColor): string => {
-  return `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`;
-};
 
 interface ComputeImageClickCoordinatesArgs {
   event: MouseEvent;
@@ -61,12 +44,7 @@ export const computeImageClickCoordinates = ({ event, image }: ComputeImageClick
   const px = Math.round((x / cw) * iw);
   const py = Math.round((y / ch) * ih);
 
-  return {
-    px,
-    py,
-    width: iw,
-    height: ih,
-  };
+  return { px, py, width: iw, height: ih };
 };
 
 interface RetrieveClickedColorArgs {
@@ -103,44 +81,10 @@ interface ClipboardToDataURLArgs {
 }
 
 export const clipboardToDataURL = ({ items, onLoad }: ClipboardToDataURLArgs): void => {
-  if (!items) {
-    return;
-  }
-
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
-    if (!item.type.startsWith("image")) continue;
-
-    const file = item.getAsFile();
-    if (!file) continue;
-
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      const result = ev.target?.result;
-      if (typeof result === "string") {
-        onLoad(result);
-      }
-    };
-    reader.readAsDataURL(file);
-    break;
-  }
+  clipboardImageToDataUrl({ items, onLoad });
 };
 
-export const fileToDataURL = (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      const result = ev.target?.result;
-      if (typeof result === "string") {
-        resolve(result);
-      } else {
-        reject(new Error("Failed to read file"));
-      }
-    };
-    reader.onerror = () => reject(new Error("Failed to read file"));
-    reader.readAsDataURL(file);
-  });
-};
+export const fileToDataURL = readFileAsDataUrl;
 
 export interface ColorFormat {
   label: string;
