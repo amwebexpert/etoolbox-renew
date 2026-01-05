@@ -1,5 +1,5 @@
 import { jwtDecode, type JwtPayload } from "jwt-decode";
-import { isBlank, isNotBlank } from "@lichens-innovation/ts-common";
+import { getErrorMessage, isBlank, isNotBlank } from "@lichens-innovation/ts-common";
 import { format } from "date-fns";
 
 // Extended JWT payload with common claims
@@ -53,13 +53,13 @@ export const decodeJwt = (token: string): DecodedJwt => {
       signature,
       isValid: true,
     };
-  } catch (e) {
+  } catch (e: unknown) {
     return {
       header: null,
       payload: null,
       signature: "",
       isValid: false,
-      error: e instanceof Error ? e.message : "Invalid JWT token",
+      error: getErrorMessage(e),
     };
   }
 };

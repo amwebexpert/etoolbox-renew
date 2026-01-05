@@ -1,4 +1,4 @@
-import { isBlank, isNullish } from "@lichens-innovation/ts-common";
+import { getErrorMessage, isBlank, isNullish } from "@lichens-innovation/ts-common";
 
 // Types
 export interface RegexTestResult {
@@ -164,13 +164,12 @@ export const testRegex = ({ pattern, inputText, flags }: TestRegexArgs): RegexTe
       error: null,
     };
   } catch (e: unknown) {
-    const errorMessage = e instanceof Error ? e.message : "Unknown error occurred";
     return {
       highlightedHtml: escapeHtml(inputText ?? "").replace(/\n/g, "<br />"),
       extractedValues: "",
       matchCount: 0,
       uniqueCount: 0,
-      error: errorMessage,
+      error: getErrorMessage(e),
     };
   }
 };

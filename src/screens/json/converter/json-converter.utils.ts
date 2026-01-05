@@ -90,7 +90,7 @@ const transformJSON = async (data: ConversionContext): Promise<string> => {
 
     return lines.join("\n");
   } catch (e: unknown) {
-    throw new Error(`Conversion failed: ${e instanceof Error ? e.message : String(e)}`);
+    throw new Error(`Conversion failed: ${getErrorMessage(e)}`);
   }
 };
 
