@@ -1,4 +1,4 @@
-import { getContrastTextColor } from "~/utils/color.utils";
+import { getContrastTextColor } from "@lichens-innovation/ts-common";
 
 export { getContrastTextColor };
 

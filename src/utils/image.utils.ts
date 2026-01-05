@@ -1,4 +1,4 @@
-import { type RgbaColor } from "~/utils/color.utils";
+import type { RgbaColor } from "@lichens-innovation/ts-common";
 
 export const VALID_IMAGE_TYPES = ["image/png", "image/jpeg", "image/jpg", "image/gif", "image/webp", "image/bmp"];
 

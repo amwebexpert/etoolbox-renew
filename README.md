@@ -52,7 +52,23 @@ The web application has been deployed and you can use it [JUST HERE!](https://am
 
 ## Development commands
 
-See all the [Development commands and scripts](./docs/sections/commands.md)
+| Script                     | Description                                                                             |
+|----------------------------|-----------------------------------------------------------------------------------------|
+| `yarn start`               | Alias for `yarn dev` - starts the development server                                    |
+| `yarn dev`                 | Starts Vite development server with hot reload                                          |
+| `yarn build`               | Builds the production application (cleans dist, generates version, compiles TypeScript) |
+| `yarn preview`             | Previews the production build locally                                                   |
+| `yarn test`                | Runs tests with Vitest                                                                  |
+| `yarn lint`                | Runs ESLint on the codebase                                                             |
+| `yarn typecheck`           | Runs TypeScript type checking without emitting files                                    |
+| `yarn format`              | Formats code with Prettier                                                              |
+| `yarn format:check`        | Checks code formatting without making changes                                           |
+| `yarn clean:node`          | Removes `node_modules` and `yarn.lock` for a fresh install                              |
+| `yarn deploy`              | Deploys the application using the deploy script                                         |
+| `yarn generate:version`    | Generates version information file                                                      |
+| `yarn generate:api:client` | Generates API client from OpenAPI specification                                         |
+| `yarn copy:wasm`           | Copies WASM files (tree-sitter) to public folder                                        |
+| `yarn postinstall`         | Runs after install: applies patches and copies WASM files                               |
 
 ## Roadmap (of next features)
 

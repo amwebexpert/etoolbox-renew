@@ -1,12 +1,12 @@
 import { Typography } from "antd";
 import { createStyles } from "antd-style";
+import { Resizable } from "re-resizable";
 import type { MouseEvent } from "react";
 import { useRef } from "react";
-import { Resizable } from "re-resizable";
 
 import { useResponsive } from "~/hooks/use-responsive";
 
-import type { RgbaColor } from "~/utils/color.utils";
+import type { RgbaColor } from "@lichens-innovation/ts-common";
 import { retrieveClickedColor } from "./color-picker.utils";
 
 const { Text } = Typography;

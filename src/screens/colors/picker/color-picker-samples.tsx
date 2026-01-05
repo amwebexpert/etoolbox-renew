@@ -1,7 +1,7 @@
 import { Col, Row, Typography } from "antd";
 import { createStyles } from "antd-style";
 
-import type { RgbaColor } from "~/utils/color.utils";
+import type { RgbaColor } from "@lichens-innovation/ts-common";
 import { ColorPickerSample } from "./color-picker-sample";
 import { getColorFormats } from "./color-picker.utils";
 
