@@ -109,10 +109,7 @@ export const JsonConverter = () => {
                   value={targetLanguage}
                   onChange={setTargetLanguage}
                   options={TARGET_LANGUAGE_OPTIONS}
-                  showSearch
-                  filterOption={(input, option) =>
-                    (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-                  }
+                  showSearch={{ optionFilterProp: "label" }}
                   className={styles.select}
                 />
               </Form.Item>
