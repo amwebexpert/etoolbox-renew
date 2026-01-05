@@ -1,5 +1,5 @@
 import { CodeOutlined, CopyOutlined } from "@ant-design/icons";
-import { isBlank } from "@lichens-innovation/ts-common";
+import { isBlank, isNotBlank } from "@lichens-innovation/ts-common";
 import { Button, Input, Select, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -31,7 +31,7 @@ export const UrlCurl = () => {
 
   const handleLanguageChange = (value: string) => {
     setTargetLanguage(value);
-    if (!isBlank(inputCurl)) {
+    if (isNotBlank(inputCurl)) {
       const result = transformCurl(inputCurl, value);
       setTransformedResult(result);
     }

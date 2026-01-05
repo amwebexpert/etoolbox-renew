@@ -1,5 +1,5 @@
 import { SwapOutlined } from "@ant-design/icons";
-import { isBlank } from "@lichens-innovation/ts-common";
+import { isBlank, isNotBlank } from "@lichens-innovation/ts-common";
 import { Col, Flex, Form, Input, Row, Select } from "antd";
 import { createStyles } from "antd-style";
 
@@ -78,7 +78,7 @@ export const JsonConverter = () => {
     resetConvert();
   };
 
-  const hasContent = !isBlank(sourceText) && !isBlank(rootClassName);
+  const hasContent = isNotBlank(sourceText) && isNotBlank(rootClassName);
   const hasResult = !!result;
 
   return (

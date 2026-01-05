@@ -1,5 +1,5 @@
 import { QrcodeOutlined } from "@ant-design/icons";
-import { isBlank } from "@lichens-innovation/ts-common";
+import { isBlank, isNotBlank } from "@lichens-innovation/ts-common";
 import { Flex, Form, Input } from "antd";
 import { createStyles } from "antd-style";
 
@@ -60,7 +60,7 @@ export const QrcodeGenerator = () => {
     resetGenerate();
   };
 
-  const hasContent = !isBlank(inputText);
+  const hasContent = isNotBlank(inputText);
   const hasResult = !!qrCodeDataUrl;
 
   return (

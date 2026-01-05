@@ -1,5 +1,5 @@
 import { ClearOutlined, CopyOutlined } from "@ant-design/icons";
-import { isBlank } from "@lichens-innovation/ts-common";
+import { isNotBlank } from "@lichens-innovation/ts-common";
 import { Button, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
 import { useDeferredValue } from "react";
@@ -27,7 +27,7 @@ export const RegexTesterToolbar = () => {
     flags: deferredFlags,
   });
 
-  const hasPattern = !isBlank(pattern);
+  const hasPattern = isNotBlank(pattern);
   const hasExtracted = matches.length > 0;
 
   const handleCopyPattern = () => {
