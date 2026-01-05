@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 interface JwtDecoderState {
   token: string;
@@ -7,16 +7,21 @@ interface JwtDecoderState {
   clearToken: () => void;
 }
 
-export const useJwtDecoderStore = create<JwtDecoderState>()(
-  persist(
-    (set) => ({
-      token: "",
-      setToken: (token) => set({ token }),
-      clearToken: () => set({ token: "" }),
-    }),
-    {
-      name: "etoolbox-jwt-decoder",
-    },
-  ),
-);
+const stateCreator = (
+  set: (partial: Partial<JwtDecoderState>) => void
+): JwtDecoderState => ({
+  token: "",
+  setToken: (token) => set({ token }),
+  clearToken: () => set({ token: "" }),
+});
 
+const PERSISTED_STORE_NAME = "etoolbox-jwt-decoder";
+
+const persistedStateCreator = persist<JwtDecoderState>(stateCreator, {
+  name: PERSISTED_STORE_NAME,
+  storage: createJSONStorage(() => localStorage),
+});
+
+export const useJwtDecoderStore = create<JwtDecoderState>()(
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+);

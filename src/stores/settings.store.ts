@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 export type ThemeMode = "light" | "dark";
 
@@ -9,20 +9,26 @@ interface SettingsState {
   toggleThemeMode: () => void;
 }
 
+const stateCreator = (
+  set: (partial: Partial<SettingsState> | ((state: SettingsState) => Partial<SettingsState>)) => void
+): SettingsState => ({
+  themeMode: "light",
+  setThemeMode: (mode) => set({ themeMode: mode }),
+  toggleThemeMode: () =>
+    set((state) => ({
+      themeMode: state.themeMode === "light" ? "dark" : "light",
+    })),
+});
+
+const PERSISTED_STORE_NAME = "etoolbox-settings";
+
+const persistedStateCreator = persist<SettingsState>(stateCreator, {
+  name: PERSISTED_STORE_NAME,
+  storage: createJSONStorage(() => localStorage),
+});
+
 export const useSettingsStore = create<SettingsState>()(
-  persist(
-    (set) => ({
-      themeMode: "light",
-      setThemeMode: (mode) => set({ themeMode: mode }),
-      toggleThemeMode: () =>
-        set((state) => ({
-          themeMode: state.themeMode === "light" ? "dark" : "light",
-        })),
-    }),
-    {
-      name: "etoolbox-settings",
-    },
-  ),
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
 );
 
 export const useIsDarkMode = (): boolean => {

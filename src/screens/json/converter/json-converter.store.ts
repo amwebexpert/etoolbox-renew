@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 import {
   DEFAULT_ROOT_CLASS_NAME,
@@ -21,28 +21,33 @@ interface JsonConverterState {
   clearAll: () => void;
 }
 
-export const useJsonConverterStore = create<JsonConverterState>()(
-  persist(
-    (set) => ({
-      sourceText: DEFAULT_SOURCE_TEXT,
+const stateCreator = (
+  set: (partial: Partial<JsonConverterState>) => void
+): JsonConverterState => ({
+  sourceText: DEFAULT_SOURCE_TEXT,
+  sourceType: DEFAULT_SOURCE_TYPE,
+  targetLanguage: DEFAULT_TARGET_LANGUAGE,
+  rootClassName: DEFAULT_ROOT_CLASS_NAME,
+  setSourceText: (text) => set({ sourceText: text }),
+  setSourceType: (type) => set({ sourceType: type }),
+  setTargetLanguage: (language) => set({ targetLanguage: language }),
+  setRootClassName: (name) => set({ rootClassName: name }),
+  clearAll: () =>
+    set({
+      sourceText: "",
       sourceType: DEFAULT_SOURCE_TYPE,
       targetLanguage: DEFAULT_TARGET_LANGUAGE,
       rootClassName: DEFAULT_ROOT_CLASS_NAME,
-      setSourceText: (text) => set({ sourceText: text }),
-      setSourceType: (type) => set({ sourceType: type }),
-      setTargetLanguage: (language) => set({ targetLanguage: language }),
-      setRootClassName: (name) => set({ rootClassName: name }),
-      clearAll: () =>
-        set({
-          sourceText: "",
-          sourceType: DEFAULT_SOURCE_TYPE,
-          targetLanguage: DEFAULT_TARGET_LANGUAGE,
-          rootClassName: DEFAULT_ROOT_CLASS_NAME,
-        }),
     }),
-    {
-      name: "etoolbox-json-converter",
-    },
-  ),
-);
+});
 
+const PERSISTED_STORE_NAME = "etoolbox-json-converter";
+
+const persistedStateCreator = persist<JsonConverterState>(stateCreator, {
+  name: PERSISTED_STORE_NAME,
+  storage: createJSONStorage(() => localStorage),
+});
+
+export const useJsonConverterStore = create<JsonConverterState>()(
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+);

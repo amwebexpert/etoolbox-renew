@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 interface UrlEncoderState {
   inputText: string;
@@ -9,20 +9,27 @@ interface UrlEncoderState {
   swapContent: () => void;
 }
 
+const stateCreator = (
+  set: (partial: Partial<UrlEncoderState>) => void,
+  get: () => UrlEncoderState
+): UrlEncoderState => ({
+  inputText: "Chuck Norris can chuck more wood than a woodchuck could.",
+  outputText: "",
+  setInputText: (text) => set({ inputText: text }),
+  setOutputText: (text) => set({ outputText: text }),
+  swapContent: () => {
+    const { outputText } = get();
+    set({ inputText: outputText, outputText: "" });
+  },
+});
+
+const PERSISTED_STORE_NAME = "etoolbox-url-encoder";
+
+const persistedStateCreator = persist<UrlEncoderState>(stateCreator, {
+  name: PERSISTED_STORE_NAME,
+  storage: createJSONStorage(() => localStorage),
+});
+
 export const useUrlEncoderStore = create<UrlEncoderState>()(
-  persist(
-    (set, get) => ({
-      inputText: "Chuck Norris can chuck more wood than a woodchuck could.",
-      outputText: "",
-      setInputText: (text) => set({ inputText: text }),
-      setOutputText: (text) => set({ outputText: text }),
-      swapContent: () => {
-        const { outputText } = get();
-        set({ inputText: outputText, outputText: "" });
-      },
-    }),
-    {
-      name: "etoolbox-url-encoder",
-    },
-  ),
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
 );

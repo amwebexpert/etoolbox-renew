@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 interface JsonFormatterState {
   inputText: string;
@@ -8,15 +8,20 @@ interface JsonFormatterState {
 
 const DEFAULT_INPUT_TEXT = '{ "firstName": "Chuck", "lastName": "Norris" }';
 
-export const useJsonFormatterStore = create<JsonFormatterState>()(
-  persist(
-    (set) => ({
-      inputText: DEFAULT_INPUT_TEXT,
-      setInputText: (text) => set({ inputText: text }),
-    }),
-    {
-      name: "etoolbox-json-formatter",
-    },
-  ),
-);
+const stateCreator = (
+  set: (partial: Partial<JsonFormatterState>) => void
+): JsonFormatterState => ({
+  inputText: DEFAULT_INPUT_TEXT,
+  setInputText: (text) => set({ inputText: text }),
+});
 
+const PERSISTED_STORE_NAME = "etoolbox-json-formatter";
+
+const persistedStateCreator = persist<JsonFormatterState>(stateCreator, {
+  name: PERSISTED_STORE_NAME,
+  storage: createJSONStorage(() => localStorage),
+});
+
+export const useJsonFormatterStore = create<JsonFormatterState>()(
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+);

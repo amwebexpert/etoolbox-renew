@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 import {
   DEFAULT_FAMILY,
@@ -20,27 +20,32 @@ interface NamedColorsState {
   resetFilters: () => void;
 }
 
-export const useNamedColorsStore = create<NamedColorsState>()(
-  persist(
-    (set) => ({
+const stateCreator = (
+  set: (partial: Partial<NamedColorsState>) => void
+): NamedColorsState => ({
+  family: DEFAULT_FAMILY,
+  filter: DEFAULT_FILTER,
+  page: DEFAULT_PAGE,
+  pageSize: DEFAULT_PAGE_SIZE,
+  setFamily: (family) => set({ family, page: DEFAULT_PAGE }),
+  setFilter: (filter) => set({ filter, page: DEFAULT_PAGE }),
+  setPage: (page) => set({ page }),
+  setPageSize: (pageSize) => set({ pageSize, page: DEFAULT_PAGE }),
+  resetFilters: () =>
+    set({
       family: DEFAULT_FAMILY,
       filter: DEFAULT_FILTER,
       page: DEFAULT_PAGE,
-      pageSize: DEFAULT_PAGE_SIZE,
-      setFamily: (family) => set({ family, page: DEFAULT_PAGE }),
-      setFilter: (filter) => set({ filter, page: DEFAULT_PAGE }),
-      setPage: (page) => set({ page }),
-      setPageSize: (pageSize) => set({ pageSize, page: DEFAULT_PAGE }),
-      resetFilters: () =>
-        set({
-          family: DEFAULT_FAMILY,
-          filter: DEFAULT_FILTER,
-          page: DEFAULT_PAGE,
-        }),
     }),
-    {
-      name: "etoolbox-named-colors",
-    },
-  ),
-);
+});
 
+const PERSISTED_STORE_NAME = "etoolbox-named-colors";
+
+const persistedStateCreator = persist<NamedColorsState>(stateCreator, {
+  name: PERSISTED_STORE_NAME,
+  storage: createJSONStorage(() => localStorage),
+});
+
+export const useNamedColorsStore = create<NamedColorsState>()(
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+);
