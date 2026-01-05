@@ -9,7 +9,7 @@ import { ScreenHeader } from "~/components/ui/screen-header";
 import { useClipboardCopy } from "~/hooks/use-clipboard-copy";
 import { useResponsive } from "~/hooks/use-responsive";
 import { useToastMessage } from "~/providers/toast-message-provider";
-import { saveJsonAs } from "~/utils/file.utils";
+import { downloadJson } from "~/utils/download.utils";
 
 import { JsonFormatterResult } from "./json-formatter-result";
 import { JsonFormatterToolbar } from "./json-formatter-toolbar";
@@ -46,7 +46,7 @@ export const JsonFormatter = () => {
     if (!formattedJson) return;
 
     try {
-      saveJsonAs({ content: formattedJson });
+      downloadJson({ content: formattedJson });
       messageApi.success("JSON file saved!");
     } catch (e: unknown) {
       messageApi.error("Failed to save file: " + getErrorMessage(e));

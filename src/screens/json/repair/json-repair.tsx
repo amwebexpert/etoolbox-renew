@@ -8,7 +8,7 @@ import { ScreenHeader } from "~/components/ui/screen-header";
 import { useClipboardCopy } from "~/hooks/use-clipboard-copy";
 import { useResponsive } from "~/hooks/use-responsive";
 import { useToastMessage } from "~/providers/toast-message-provider";
-import { saveJsonAs } from "~/utils/file.utils";
+import { downloadJson } from "~/utils/download.utils";
 
 import { JsonRepairResult } from "./json-repair-result";
 import { JsonRepairToolbar } from "./json-repair-toolbar";
@@ -47,7 +47,7 @@ export const JsonRepair = () => {
     if (!repairedJson) return;
 
     try {
-      saveJsonAs({ content: repairedJson });
+      downloadJson({ content: repairedJson });
       messageApi.success("JSON file saved!");
     } catch (e: unknown) {
       messageApi.error("Failed to save file: " + getErrorMessage(e));
