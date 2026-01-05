@@ -22,7 +22,7 @@ export const JsonFormatter = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
   const messageApi = useToastMessage();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
 
   const { inputText, setInputText } = useJsonFormatterStore();
   const [isMinifiedMode, setIsMinifiedMode] = useState<boolean>(false);
@@ -39,7 +39,7 @@ export const JsonFormatter = () => {
   };
 
   const handleCopy = () => {
-    copyToClipboard({ text: formattedJson, successMessage: "JSON copied to clipboard!" });
+    copyTextToClipboard({ text: formattedJson, successMessage: "JSON copied to clipboard!" });
   };
 
   const handleSaveAs = () => {

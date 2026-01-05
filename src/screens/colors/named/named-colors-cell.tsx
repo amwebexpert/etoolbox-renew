@@ -16,11 +16,11 @@ interface NamedColorsCellProps {
 
 export const NamedColorsCell = ({ value, hexCode, tooltip }: NamedColorsCellProps) => {
   const { styles } = useStyles();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
   const textColor = getContrastTextColor(hexCode);
 
   const handleCopy = () => {
-    copyToClipboard({ text: value, successMessage: `Copied: ${value}` });
+    copyTextToClipboard({ text: value, successMessage: `Copied: ${value}` });
   };
 
   return (

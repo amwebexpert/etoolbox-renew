@@ -22,7 +22,7 @@ export const Base64File = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
   const messageApi = useToastMessage();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
 
   const [base64Output, setBase64Output] = useState<string>("");
   const [fileName, setFileName] = useState<string>("");
@@ -43,12 +43,12 @@ export const Base64File = () => {
   };
 
   const handleCopy = () => {
-    copyToClipboard({ text: base64Output, successMessage: "Base64 copied to clipboard!" });
+    copyTextToClipboard({ text: base64Output, successMessage: "Base64 copied to clipboard!" });
   };
 
   const handleCopyDataUri = () => {
     const dataUri = base64Output ? formatDataUri({ mimeType, base64: base64Output }) : "";
-    copyToClipboard({ text: dataUri, successMessage: "Data URI copied to clipboard!" });
+    copyTextToClipboard({ text: dataUri, successMessage: "Data URI copied to clipboard!" });
   };
 
   const handleDownload = () => {

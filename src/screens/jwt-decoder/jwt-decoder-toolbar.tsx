@@ -19,17 +19,17 @@ interface JwtDecoderToolbarProps {
 export const JwtDecoderToolbar = ({ hasToken, decoded, onLoadSample, onClear }: JwtDecoderToolbarProps) => {
   const { isMobile } = useResponsive();
   const { styles } = useStyles();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
 
   const handleCopyHeader = () => {
-    copyToClipboard({
+    copyTextToClipboard({
       text: formatJson(decoded.header),
       successMessage: "Header copied to clipboard!",
     });
   };
 
   const handleCopyPayload = () => {
-    copyToClipboard({
+    copyTextToClipboard({
       text: formatJson(decoded.payload),
       successMessage: "Payload copied to clipboard!",
     });
@@ -40,7 +40,7 @@ export const JwtDecoderToolbar = ({ hasToken, decoded, onLoadSample, onClear }: 
       header: decoded.header,
       payload: decoded.payload,
     };
-    copyToClipboard({
+    copyTextToClipboard({
       text: formatJson(combined),
       successMessage: "Decoded JWT copied to clipboard!",
     });

@@ -15,7 +15,7 @@ const { TextArea } = Input;
 export const UrlEncoder = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
 
   const { inputText, outputText, setInputText, setOutputText, swapContent } = useUrlEncoderStore();
 
@@ -30,7 +30,7 @@ export const UrlEncoder = () => {
   };
 
   const handleCopy = () => {
-    copyToClipboard({ text: outputText });
+    copyTextToClipboard({ text: outputText });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

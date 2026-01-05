@@ -21,7 +21,7 @@ export const JsonRepair = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
   const messageApi = useToastMessage();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
 
   const { inputText, setInputText, clearInput } = useJsonRepairStore();
   const { repairedJson, repair, isRepairing, resetRepair } = useJsonRepair();
@@ -40,7 +40,7 @@ export const JsonRepair = () => {
   };
 
   const handleCopy = () => {
-    copyToClipboard({ text: repairedJson, successMessage: "Repaired JSON copied to clipboard!" });
+    copyTextToClipboard({ text: repairedJson, successMessage: "Repaired JSON copied to clipboard!" });
   };
 
   const handleSaveAs = () => {

@@ -31,7 +31,7 @@ export const JsonConverter = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
   const messageApi = useToastMessage();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
 
   const {
     sourceText,
@@ -70,7 +70,7 @@ export const JsonConverter = () => {
   };
 
   const handleCopy = () => {
-    copyToClipboard({ text: result, successMessage: "Result copied to clipboard!" });
+    copyTextToClipboard({ text: result, successMessage: "Result copied to clipboard!" });
   };
 
   const handleClear = () => {

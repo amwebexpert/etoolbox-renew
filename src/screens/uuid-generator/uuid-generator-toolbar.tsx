@@ -16,11 +16,11 @@ interface UuidGeneratorToolbarProps {
 export const UuidGeneratorToolbar = ({ hasResult, onGenerate, onClear }: UuidGeneratorToolbarProps) => {
   const { isMobile } = useResponsive();
   const { styles } = useStyles();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
   const generated = useUuidGeneratorStore((state) => state.generated);
 
   const handleCopy = () => {
-    copyToClipboard({ text: generated, successMessage: "UUIDs copied to clipboard!" });
+    copyTextToClipboard({ text: generated, successMessage: "UUIDs copied to clipboard!" });
   };
 
   return (

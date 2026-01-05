@@ -14,10 +14,10 @@ interface ColorPickerSampleProps {
 
 export const ColorPickerSample = ({ format }: ColorPickerSampleProps) => {
   const { styles } = useStyles();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
 
   const handleCopy = () => {
-    copyToClipboard({ text: format.value, successMessage: `Copied: ${format.value}` });
+    copyTextToClipboard({ text: format.value, successMessage: `Copied: ${format.value}` });
   };
 
   return (

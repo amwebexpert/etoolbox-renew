@@ -18,7 +18,7 @@ const { TextArea } = Input;
 export const UrlCurl = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
   const syntaxTheme = useSyntaxHighlightTheme();
 
   const { inputCurl, targetLanguage, transformedResult, setInputCurl, setTargetLanguage, setTransformedResult } =
@@ -38,7 +38,7 @@ export const UrlCurl = () => {
   };
 
   const handleCopy = () => {
-    copyToClipboard({ text: transformedResult });
+    copyTextToClipboard({ text: transformedResult });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

@@ -17,7 +17,7 @@ const { TextArea } = Input;
 export const Base64String = () => {
   const { styles } = useStyles();
   const { isDesktop, isMobile } = useResponsive();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
 
   const { inputText, outputText, setInputText, setOutputText, swapContent } = useBase64StringStore();
 
@@ -32,7 +32,7 @@ export const Base64String = () => {
   };
 
   const handleCopy = () => {
-    copyToClipboard({ text: outputText });
+    copyTextToClipboard({ text: outputText });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

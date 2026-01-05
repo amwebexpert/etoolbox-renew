@@ -13,7 +13,7 @@ import { extractMatches, formatExtractedValues } from "./regex-tester.utils";
 export const RegexTesterToolbar = () => {
   const { isMobile } = useResponsive();
   const { styles } = useStyles();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
 
   const { pattern, inputText, flags, extractFormat, clearAll } = useRegexTesterStore();
 
@@ -31,12 +31,12 @@ export const RegexTesterToolbar = () => {
   const hasExtracted = matches.length > 0;
 
   const handleCopyPattern = () => {
-    copyToClipboard({ text: pattern, successMessage: "Pattern copied to clipboard!" });
+    copyTextToClipboard({ text: pattern, successMessage: "Pattern copied to clipboard!" });
   };
 
   const handleCopyExtracted = () => {
     const formattedValue = formatExtractedValues({ matches, format: extractFormat });
-    copyToClipboard({ text: formattedValue, successMessage: "Extracted values copied to clipboard!" });
+    copyTextToClipboard({ text: formattedValue, successMessage: "Extracted values copied to clipboard!" });
   };
 
   return (

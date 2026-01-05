@@ -13,7 +13,7 @@ const { Text } = Typography;
 export const useNamedColorsColumns = (): ColumnsType<ColorInfo> => {
   const { styles } = useStyles();
   const { isMobile } = useResponsive();
-  const copyToClipboard = useClipboardCopy();
+  const { copyTextToClipboard } = useClipboardCopy();
 
   return [
     {
@@ -25,7 +25,7 @@ export const useNamedColorsColumns = (): ColumnsType<ColorInfo> => {
         <Tooltip title="Click to copy name">
           <div
             className={styles.nameCell}
-            onClick={() => copyToClipboard({ text: name, successMessage: `Copied: ${name}` })}
+            onClick={() => copyTextToClipboard({ text: name, successMessage: `Copied: ${name}` })}
           >
             <Text strong className={styles.colorName}>
               {name}
