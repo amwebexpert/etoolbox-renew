@@ -4,12 +4,12 @@ export interface SelectOption<T = string> {
   label: string;
 }
 
-export type QRCodeImageType = "image/png" | "image/jpeg" | "image/webp";
+export type QRCodeImgMimeType = "image/png" | "image/jpeg" | "image/webp";
 export type QRCodeErrorCorrectionLevel = "L" | "M" | "Q" | "H";
 
 export interface QRCodeOptions {
   errorCorrectionLevel: QRCodeErrorCorrectionLevel;
-  type: QRCodeImageType;
+  type: QRCodeImgMimeType;
   width: number;
   quality: number;
   margin: number;
@@ -46,7 +46,7 @@ export const ERROR_CORRECTION_LEVELS: readonly SelectOption<QRCodeErrorCorrectio
   { value: "H", label: "High (~30%)" },
 ];
 
-export const IMAGE_TYPES: readonly SelectOption<QRCodeImageType>[] = [
+export const IMAGE_TYPES: readonly SelectOption<QRCodeImgMimeType>[] = [
   { value: "image/png", label: "PNG" },
   { value: "image/jpeg", label: "JPEG" },
   { value: "image/webp", label: "WebP" },
