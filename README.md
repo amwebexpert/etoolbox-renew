@@ -38,6 +38,8 @@ Open source collection of web developer utilities.
   <div>Like the project? Don't forget to give it a ⭐️!</div>
 </div>
 
+## Features
+
 - 🚫 **Ad-Free Experience**
   - Developer utilities with zero advertisements, providing a clean and distraction-free environment
 - 🔒 **Privacy First**
@@ -46,8 +48,6 @@ Open source collection of web developer utilities.
   - Mobile-first approach with full support for smartphones, tablets, and desktop devices for a seamless experience across all platforms
 - 🏆 **Industry Best Practices**
   - Serve as an exemplary codebase demonstrating optimal coding patterns, clean architecture, and modern development standards for the industry
-
-## Features
 
 Some screen captures of the implemented features...
 
