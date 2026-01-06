@@ -11,17 +11,16 @@ export const formatUnixTimestamp = (timestamp: number, dateFormat: string = DEFA
   }
 };
 
-export const isExpiredTimestamp = (timestamp: number): boolean => {
-  const now = Math.floor(Date.now() / 1000);
-  return timestamp < now;
-};
-
-export const isActiveTimestamp = (timestamp: number): boolean => {
-  const now = Math.floor(Date.now() / 1000);
-  return timestamp <= now;
-};
-
 export const getCurrentUnixTimestamp = (): number => {
   return Math.floor(Date.now() / 1000);
 };
 
+export const isExpiredTimestamp = (timestamp: number): boolean => {
+  const now = getCurrentUnixTimestamp();
+  return timestamp < now;
+};
+
+export const isActiveTimestamp = (timestamp: number): boolean => {
+  const now = getCurrentUnixTimestamp();
+  return timestamp <= now;
+};
