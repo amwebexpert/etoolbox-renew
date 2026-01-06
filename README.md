@@ -34,8 +34,9 @@ Open source collection of web developer utilities.
 
 <div align="center">
   <img src="public/icon-512x512.png" width="100" alt="Web Toolbox" />
-  <div>Icon made by: <a href="https://therealjerrylow.com/">Jerry Low</a></div>
+  <div>The web application has been deployed and you can use it [just here!](https://amwebexpert.github.io/etoolbox)</div>
   <div>Like the project? Don't forget to give it a ⭐️!</div>
+  <div>Icon made by: <a href="https://therealjerrylow.com/">Jerry Low</a></div>
 </div>
 
 ## Features
@@ -55,9 +56,6 @@ Some screen captures of the implemented features...
 | ----------------------------------------------------------- | ---------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------ |
 | <img src="public/screen-captures/JSONFormatter-demo.gif" /> | <img src="public/screen-captures/ImageEncoder-demo.gif" /> | <img src="public/screen-captures/RegexTester-demo.gif" /> | <img src="public/screen-captures/ImageOCR-demo.gif" /> |
 
-## Online demo
-
-The web application has been deployed and you can use it [JUST HERE!](https://amwebexpert.github.io/etoolbox)
 
 ## Development commands
 
