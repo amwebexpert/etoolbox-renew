@@ -24,13 +24,14 @@
 
 # Web Toolbox
 
-Open source collection of web developer utilities. The web application has been deployed and you can use it [just here!](https://amwebexpert.github.io/etoolbox)
-
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-LTS-green.svg?style=flat-square&logo=node.js)](https://nodejs.org/)
 [![Vitest](https://img.shields.io/badge/Vitest-4.0-6E9F18.svg?style=flat-square&logo=vitest)](https://vitest.dev/)
 [![Yarn](https://img.shields.io/badge/Yarn-1.22+-2C8EBB.svg?style=flat-square&logo=yarn)](https://yarnpkg.com/)
+
+Open source collection of web developer utilities.
+The web application has been deployed and you can use it [just here!](https://amwebexpert.github.io/etoolbox)
 
 <div align="center">
   <img src="public/icon-512x512.png" width="100" alt="Web Toolbox" />
