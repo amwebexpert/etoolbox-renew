@@ -24,7 +24,7 @@
 
 # Web Toolbox
 
-Open source collection of web developer utilities.
+Open source collection of web developer utilities. The web application has been deployed and you can use it [just here!](https://amwebexpert.github.io/etoolbox)
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
@@ -34,7 +34,6 @@ Open source collection of web developer utilities.
 
 <div align="center">
   <img src="public/icon-512x512.png" width="100" alt="Web Toolbox" />
-  <div>The web application has been deployed and you can use it [just here!](https://amwebexpert.github.io/etoolbox)</div>
   <div>Like the project? Don't forget to give it a ⭐️!</div>
   <div>Icon made by: <a href="https://therealjerrylow.com/">Jerry Low</a></div>
 </div>
