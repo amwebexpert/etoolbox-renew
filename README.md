@@ -34,7 +34,7 @@ Open source collection of web developer utilities.
 The web application has been deployed and you can use it [just here!](https://amwebexpert.github.io/etoolbox)
 
 <div align="center">
-  <img src="public/icon-512x512.png" width="100" alt="Web Toolbox" />
+  <a href="https://github.com/amwebexpert/etoolbox"><img src="public/icon-512x512.png" width="100" alt="Web Toolbox" /></div>
   <div>Like the project? Don't forget to give it a ⭐️!</div>
   <div>Icon made by: <a href="https://therealjerrylow.com/">Jerry Low</a></div>
 </div>
