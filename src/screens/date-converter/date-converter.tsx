@@ -2,7 +2,6 @@ import { CalendarOutlined, CodeOutlined } from "@ant-design/icons";
 import { Col, DatePicker, Flex, Form, Input, Row, Select, Switch } from "antd";
 import { createStyles } from "antd-style";
 import dayjs from "dayjs";
-import { useMemo } from "react";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
@@ -42,18 +41,14 @@ export const DateConverter = () => {
   } = useDateConverterStore();
 
   // Parse the epoch value to a Date object
-  const parsedDate = useMemo(
-    () => parseEpochToDate({ epochValue, epochUnit }),
-    [epochValue, epochUnit]
-  );
+  const parsedDate = parseEpochToDate({ epochValue, epochUnit });
 
   // Get the epoch value as a number for formatting functions
-  const epochNumber = useMemo(() => {
-    if (!parsedDate) return 0;
-    return epochUnit === "seconds"
+  const epochNumber = parsedDate
+    ? epochUnit === "seconds"
       ? Math.floor(parsedDate.getTime() / 1000)
-      : parsedDate.getTime();
-  }, [parsedDate, epochUnit]);
+      : parsedDate.getTime()
+    : 0;
 
   const isValidInput = isValidEpochInput(epochValue);
   const hasDate = parsedDate !== null;

@@ -2,7 +2,6 @@ import { UnlockOutlined } from "@ant-design/icons";
 import { isNotBlank } from "@lichens-innovation/ts-common";
 import { Flex, Form, Input } from "antd";
 import { createStyles } from "antd-style";
-import { useMemo } from "react";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
@@ -21,21 +20,12 @@ export const JwtDecoder = () => {
 
   const { token, setToken, clearToken } = useJwtDecoderStore();
 
-  const decoded = useMemo(() => decodeJwt(token), [token]);
+  const decoded = decodeJwt(token);
+  const hasToken = isNotBlank(token);
 
   const handleTokenChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setToken(e.target.value ?? "");
   };
-
-  const handleLoadSample = (sampleToken: string) => {
-    setToken(sampleToken);
-  };
-
-  const handleClear = () => {
-    clearToken();
-  };
-
-  const hasToken = isNotBlank(token);
 
   return (
     <ScreenContainer>
@@ -66,7 +56,7 @@ export const JwtDecoder = () => {
           </Form.Item>
         </Form>
 
-        <JwtDecoderToolbar hasToken={hasToken} decoded={decoded} onLoadSample={handleLoadSample} onClear={handleClear} />
+        <JwtDecoderToolbar hasToken={hasToken} decoded={decoded} onLoadSample={setToken} onClear={clearToken} />
 
         <JwtDecoderResult decoded={decoded} hasToken={hasToken} />
       </Flex>
