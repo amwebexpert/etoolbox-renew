@@ -69,7 +69,7 @@ export const CsvFileUpload = ({
             type="file"
             accept=".csv,text/csv,application/csv"
             onChange={handleFileSelect}
-            className={styles.hiddenInput}
+            style={{ display: "none" }}
           />
           <Button
             icon={<UploadOutlined />}
@@ -95,9 +95,6 @@ const useStyles = createStyles(() => ({
   },
   select: {
     width: "100%",
-  },
-  hiddenInput: {
-    display: "none",
   },
   uploadButton: {
     marginRight: 12,
