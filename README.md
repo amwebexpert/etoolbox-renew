@@ -26,12 +26,10 @@
 
 Open source collection of web developer utilities.
 
-## Goals & Advantages
-
-- 🏆 **Industry Best Practices** — Serve as an exemplary codebase demonstrating optimal coding patterns, clean architecture, and modern development standards for the industry
+- 🚫 **Ad-Free Experience** — Developer utilities with zero advertisements, providing a clean and distraction-free environment
 - 🔒 **Privacy First** — All processing happens directly in your browser. No sensitive data is ever sent to external servers, ensuring complete data privacy and security
 - 📱 **Responsive Design** — Mobile-first approach with full support for smartphones, tablets, and desktop devices for a seamless experience across all platforms
-- 🚫 **Ad-Free Experience** — Developer utilities with zero advertisements, providing a clean and distraction-free environment
+- 🏆 **Industry Best Practices** — Serve as an exemplary codebase demonstrating optimal coding patterns, clean architecture, and modern development standards for the industry
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
