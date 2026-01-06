@@ -41,13 +41,13 @@ The web application has been deployed and you can use it [just here!](https://am
 
 ## Features
 
-- 🚫 **Ad-Free Experience**
+- Ad-Free Experience
   - Developer utilities with zero advertisements, providing a clean and distraction-free environment
-- 🔒 **Privacy First**
+- Privacy First
   - All processing happens directly in your browser. No sensitive data is ever sent to external servers, ensuring complete data privacy and security
-- 📱 **Responsive Design**
+- Responsive Design
   - Mobile-first approach with full support for smartphones, tablets, and desktop devices for a seamless experience across all platforms
-- 🏆 **Industry Best Practices**
+- Industry Best Practices
   - Serve as an exemplary codebase demonstrating optimal coding patterns, clean architecture, and modern development standards for the industry
 
 Some screen captures of the implemented features...
