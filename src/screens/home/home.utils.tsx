@@ -1,6 +1,7 @@
 import {
   BgColorsOutlined,
   CalendarOutlined,
+  CodeSandboxOutlined,
   CodeOutlined,
   FileTextOutlined,
   GithubOutlined,
@@ -30,5 +31,6 @@ export const FEATURES = [
   { icon: <TeamOutlined />, name: "Poker Planning", description: "Agile estimation tool", color: "#eb2f96", path: "/poker-planning" },
   { icon: <UnorderedListOutlined />, name: "References", description: "MIME types & HTML entities", color: "#52c41a", path: "/common-lists" },
   { icon: <GithubOutlined />, name: "GitHub Search", description: "Explore user repositories", color: "#722ed1", path: "/github-user-projects" },
+  { icon: <CodeSandboxOutlined />, name: "3D Viewer", description: "View 3D models in VR/AR", color: "#fa541c", path: "/vr-3d-viewer" },
 ];
 
