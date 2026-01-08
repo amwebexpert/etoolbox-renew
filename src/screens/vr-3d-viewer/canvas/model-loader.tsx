@@ -39,3 +39,4 @@ export const ModelLoader = ({ modelFile, scale, onLoaded, onError }: ModelLoader
   }
 };
 
+

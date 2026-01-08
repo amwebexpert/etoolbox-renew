@@ -76,3 +76,4 @@ export const ObjModel = ({ url, materialUrl, scale, onLoaded }: ObjModelProps) =
   return <ObjModelSimple url={url} scale={scale} onLoaded={onLoaded} />;
 };
 
+

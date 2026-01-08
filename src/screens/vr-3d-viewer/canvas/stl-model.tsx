@@ -32,3 +32,4 @@ export const StlModel = ({ url, scale, onLoaded }: ModelComponentProps) => {
   );
 };
 
+
