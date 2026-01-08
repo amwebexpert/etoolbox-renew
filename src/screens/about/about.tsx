@@ -15,7 +15,7 @@ export const About = () => {
       <div className={styles.hero}>
         <Title level={2} className={styles.heroTitle}>
           <span>Web</span>
-          <img src="/logo192.png" alt="Web Toolbox" width={36} height={36} />
+          <img src="logo192.png" alt="Web Toolbox" width={36} height={36} />
           <span>Toolbox</span>
         </Title>
         <Paragraph className={styles.heroSubtitle}>A Swiss Army knife for web developers</Paragraph>
