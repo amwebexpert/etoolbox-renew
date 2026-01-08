@@ -2,12 +2,13 @@ import { InboxOutlined, ScanOutlined } from "@ant-design/icons";
 import type { UploadFile } from "antd";
 import { Card, Flex, Typography, Upload } from "antd";
 import { createStyles } from "antd-style";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
 import { useClipboardCopy } from "~/hooks/use-clipboard-copy";
 import { useToastMessage } from "~/providers/toast-message-provider";
+import { clipboardImageToFile } from "~/utils/file-reader.utils";
 
 import { QRCodeDecoderResult } from "./qrcode-decoder-result";
 import { QRCodeDecoderToolbar } from "./qrcode-decoder-toolbar";
@@ -28,21 +29,40 @@ export const QrcodeDecoder = () => {
 
   const { decodeResult, decode, isDecoding, resetDecode } = useQRCodeDecode();
 
+  const processFile = useCallback(
+    (file: File) => {
+      if (!isValidImageFile(file)) {
+        messageApi.error("Please select a valid image file (PNG, JPG, GIF, WebP, or BMP)");
+        return;
+      }
+
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl); // Clean up previous preview URL
+      }
+
+      const newPreviewUrl = URL.createObjectURL(file);
+      setSelectedFile(file);
+      setPreviewUrl(newPreviewUrl);
+      setFileList([{ uid: "-1", name: file.name, status: "done", url: newPreviewUrl }]);
+      resetDecode();
+    },
+    [messageApi, previewUrl, resetDecode],
+  );
+
+  // Handle clipboard paste
+  useEffect(() => {
+    const handlePaste = (e: ClipboardEvent) => {
+      const { items } = e.clipboardData ?? {};
+      if (!items) return;
+      clipboardImageToFile({ items, onFile: processFile });
+    };
+
+    document.addEventListener("paste", handlePaste);
+    return () => document.removeEventListener("paste", handlePaste);
+  }, [processFile]);
+
   const handleFileSelect = (file: File) => {
-    if (!isValidImageFile(file)) {
-      messageApi.error("Please select a valid image file (PNG, JPG, GIF, WebP, or BMP)");
-      return false;
-    }
-
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl); // Clean up previous preview URL
-    }
-
-    const newPreviewUrl = URL.createObjectURL(file);
-    setSelectedFile(file);
-    setPreviewUrl(newPreviewUrl);
-    setFileList([{ uid: "-1", name: file.name, status: "done", url: newPreviewUrl }]);
-    resetDecode();
+    processFile(file);
     return false;
   };
 

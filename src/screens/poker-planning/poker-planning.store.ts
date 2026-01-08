@@ -41,7 +41,8 @@ interface PokerPlanningState {
 }
 
 const stateCreator = (
-  set: (partial: Partial<PokerPlanningState>) => void
+  set: (partial: Partial<PokerPlanningState>) => void,
+  get: () => PokerPlanningState
 ): PokerPlanningState => ({
   // Initial persisted values
   hostName: "",
@@ -56,17 +57,33 @@ const stateCreator = (
   isEstimatesVisible: false,
   session: undefined,
 
-  // Setters for persisted settings
-  setHostName: (hostName) => set({ hostName }),
-  setRoomName: (roomName) => set({ roomName }),
-  setUsername: (username) => set({ username }),
-  setCardsCategory: (cardsCategory) => set({ cardsCategory }),
+  // Setters for persisted settings (with guards to prevent unnecessary re-renders)
+  setHostName: (hostName) => {
+    if (get().hostName !== hostName) set({ hostName });
+  },
+  setRoomName: (roomName) => {
+    if (get().roomName !== roomName) set({ roomName });
+  },
+  setUsername: (username) => {
+    if (get().username !== username) set({ username });
+  },
+  setCardsCategory: (cardsCategory) => {
+    if (get().cardsCategory !== cardsCategory) set({ cardsCategory });
+  },
 
-  // Setters for session state
-  setRoomUUID: (roomUUID) => set({ roomUUID }),
-  setSocketState: (socketState) => set({ socketState }),
-  setMyEstimate: (estimate) => set({ myEstimate: estimate }),
-  setIsEstimatesVisible: (isVisible) => set({ isEstimatesVisible: isVisible }),
+  // Setters for session state (with guards to prevent unnecessary re-renders)
+  setRoomUUID: (roomUUID) => {
+    if (get().roomUUID !== roomUUID) set({ roomUUID });
+  },
+  setSocketState: (socketState) => {
+    if (get().socketState !== socketState) set({ socketState });
+  },
+  setMyEstimate: (estimate) => {
+    if (get().myEstimate !== estimate) set({ myEstimate: estimate });
+  },
+  setIsEstimatesVisible: (isVisible) => {
+    if (get().isEstimatesVisible !== isVisible) set({ isEstimatesVisible: isVisible });
+  },
   setSession: (session) => set({ session }),
 
   // Combined actions

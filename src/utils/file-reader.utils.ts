@@ -65,26 +65,52 @@ export const readFileAsArrayBuffer = (file: File): Promise<ArrayBuffer> => {
   });
 };
 
-interface ClipboardToDataUrlArgs {
-  items: DataTransferItemList;
-  onLoad: (result: string) => void;
-  onError?: (error: Error) => void;
-}
-
-export const clipboardImageToDataUrl = ({ items, onLoad, onError }: ClipboardToDataUrlArgs): void => {
-  if (!items) return;
+/**
+ * Extracts an image file from clipboard items.
+ * Returns the first valid image file found, or null if none.
+ */
+export const getImageFileFromClipboard = (items: DataTransferItemList): File | null => {
+  if (!items) return null;
 
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     if (!item.type.startsWith("image")) continue;
 
     const file = item.getAsFile();
-    if (!file) continue;
-
-    readFileAsDataUrl(file)
-      .then(onLoad)
-      .catch((error) => onError?.(error instanceof Error ? error : new Error(String(error))));
-    break;
+    if (file) return file;
   }
+
+  return null;
+};
+
+interface ClipboardImageCallbackArgs {
+  items: DataTransferItemList;
+  onFile: (file: File) => void;
+}
+
+/**
+ * Extracts an image file from clipboard items and calls the callback with it.
+ */
+export const clipboardImageToFile = ({ items, onFile }: ClipboardImageCallbackArgs): void => {
+  const file = getImageFileFromClipboard(items);
+  if (file) onFile(file);
+};
+
+interface ClipboardToDataUrlArgs {
+  items: DataTransferItemList;
+  onLoad: (result: string) => void;
+  onError?: (error: Error) => void;
+}
+
+/**
+ * Extracts an image file from clipboard items and converts it to a data URL.
+ */
+export const clipboardImageToDataUrl = ({ items, onLoad, onError }: ClipboardToDataUrlArgs): void => {
+  const file = getImageFileFromClipboard(items);
+  if (!file) return;
+
+  readFileAsDataUrl(file)
+    .then(onLoad)
+    .catch((error) => onError?.(error instanceof Error ? error : new Error(String(error))));
 };
 
