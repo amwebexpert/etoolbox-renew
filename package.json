@@ -47,7 +47,7 @@
     "antd-style": "^4.1.0",
     "axios": "^1.13.2",
     "buffer": "^6.0.3",
-    "curlconverter": "^4.12.0",
+    "curlconverter": "^4.9.0",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.19",
     "immer": "^11.1.3",

@@ -1,5 +1,3 @@
-import "./wasm/tree-sitter-env-polyfill";
-
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Webapp } from "~/webapp";
