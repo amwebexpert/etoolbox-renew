@@ -64,7 +64,9 @@ Some screen captures of the implemented features...
 | `yarn start`               | Alias for `yarn dev` - starts the development server                                    |
 | `yarn dev`                 | Starts Vite development server with hot reload                                          |
 | `yarn build`               | Builds the production application (cleans dist, generates version, compiles TypeScript) |
-| `yarn preview`             | Previews the production build locally                                                   |
+| `yarn preview`             | Previews the production build locally (from `dist/`)                                    |
+| `yarn githubpage:preview`  | Serves the `docs/` folder locally to test GitHub Pages build before deploying           |
+| `yarn githubpage:rebuild`  | Rebuilds the app and moves output to `docs/` for GitHub Pages deployment                |
 | `yarn test`                | Runs tests with Vitest                                                                  |
 | `yarn lint`                | Runs ESLint on the codebase                                                             |
 | `yarn typecheck`           | Runs TypeScript type checking without emitting files                                    |
