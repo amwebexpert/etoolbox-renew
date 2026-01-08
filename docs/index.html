@@ -18,11 +18,12 @@
     <link rel="manifest" href="manifest.json" />
     <link rel="icon" type="image/ico" href="favicon.ico" />
 
-    <link rel="preload" href="/etoolbox-renew/tree-sitter.wasm" type="application/wasm" as="fetch" crossorigin />
-    <link rel="preload" href="/etoolbox-renew/tree-sitter-bash.wasm" type="application/wasm" as="fetch" crossorigin />
+    <!-- Prefetch tree-sitter WASM files for cURL converter (loaded on-demand, not critical for initial render) -->
+    <link rel="prefetch" href="tree-sitter.wasm" as="fetch" crossorigin />
+    <link rel="prefetch" href="tree-sitter-bash.wasm" as="fetch" crossorigin />
 
     <title>Web Toolbox</title>
-    <script type="module" crossorigin src="/etoolbox-renew/assets/index-BzvL1wfQ.js"></script>
+    <script type="module" crossorigin src="/etoolbox-renew/assets/index-9UEgcDal.js"></script>
     <link rel="modulepreload" crossorigin href="/etoolbox-renew/assets/browser-DazRRBxt.js">
     <link rel="stylesheet" crossorigin href="/etoolbox-renew/assets/index-3ATQF-qn.css">
   </head>
