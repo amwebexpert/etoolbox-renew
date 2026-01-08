@@ -28,12 +28,12 @@
     "preview": "vite preview",
     "generate:version": "node scripts/generate-version",
     "generate:api:client": "npx @hey-api/openapi-ts -i ./public/openapi/openapi.json -o ./src/api/generated --client @hey-api/client-axios",
-    "deploy": "bash scripts/deploy.sh",
+    "rebuild:demo": "rimraf build && npm run build && rimraf docs && shx mv build docs",
     "test": "vitest",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "postinstall": "patch-package && yarn copy:wasm",
-    "copy:wasm": "cp node_modules/web-tree-sitter/tree-sitter.wasm public/ && cp node_modules/curlconverter/dist/tree-sitter-bash.wasm public/"
+    "copy:wasm": "shx cp node_modules/web-tree-sitter/tree-sitter.wasm public/ && shx cp node_modules/curlconverter/dist/tree-sitter-bash.wasm public/"
   },
   "dependencies": {
     "@lichens-innovation/ts-common": "^1.4.0",
@@ -98,7 +98,6 @@
     "@types/uuid": "^11.0.0",
     "@vitejs/plugin-react": "^5.1.2",
     "commitlint": "^20.2.0",
-    "cpx": "^1.5.0",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
@@ -108,6 +107,7 @@
     "patch-package": "^8.0.1",
     "prettier": "^3.7.4",
     "rimraf": "^6.1.2",
+    "shx": "^0.3.4",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "npm:rolldown-vite@7.2.5",
