@@ -13,10 +13,16 @@
  * @see https://webassembly.org/
  * @see https://wasi.dev/
  */
-console.info('spa', 'Loading tree-sitter-env-polyfill');
+console.info("spa", "Loading emscripten WASM polyfill");
+
 const g = globalThis as any;
 
-g.env ??= {};
-g.env.exit ??= () => {
-  // no-op: browser has no process exit
+// Emscripten uses a global `Module` object
+g.Module ??= {};
+g.Module.env ??= {};
+
+// tree-sitter expects env.exit to be callable
+g.Module.env.exit ??= (code?: number) => {
+  // no-op in browser
+  console.info("spa", "env.exit called with code:", code);
 };
