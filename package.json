@@ -28,7 +28,7 @@
     "preview": "vite preview",
     "generate:version": "node scripts/generate-version",
     "generate:api:client": "npx @hey-api/openapi-ts -i ./public/openapi/openapi.json -o ./src/api/generated --client @hey-api/client-axios",
-    "rebuild:demo": "rimraf build && npm run build && rimraf docs && shx mv build docs",
+    "rebuild:demo": "rimraf dist && npm run build && rimraf docs && shx mv dist docs",
     "test": "vitest",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
