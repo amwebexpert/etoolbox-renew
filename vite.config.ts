@@ -9,6 +9,17 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), viteTsconfigPaths()],
+  server: {
+    proxy: {
+      // Proxy WebSocket connections for Poker Planning
+      "/ws": {
+        target: "wss://ws-poker-planning.onrender.com",
+        changeOrigin: true,
+        ws: true,
+        secure: true,
+      },
+    },
+  },
   build: {
     target: "esnext",
   },
