@@ -8,11 +8,6 @@ const ICON_CREDITS_URL = "https://therealjerrylow.com/";
 export const VERSION_DATA = [
   { key: "version", property: "Version", value: `${APP_VERSION_INFO.VERSION} (${APP_VERSION_INFO.VERSION_DATE})` },
   {
-    key: "author",
-    property: "Author",
-    value: <a href={`mailto:${APP_VERSION_INFO.AUTHOR}`}>{APP_VERSION_INFO.AUTHOR}</a>,
-  },
-  {
     key: "repository",
     property: "Repository",
     value: (
