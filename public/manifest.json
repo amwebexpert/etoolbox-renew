@@ -23,7 +23,7 @@
     {
       "name": "JSON Utilities",
       "short_name": "JSON",
-      "url": "/#/JSON",
+      "url": "./#/JSON",
       "icons": [
         {
           "src": "favicon.ico",
@@ -35,7 +35,7 @@
     {
       "name": "RegEx Tester",
       "short_name": "RegEx",
-      "url": "/#/RegExTester",
+      "url": "./#/RegExTester",
       "icons": [
         {
           "src": "favicon.ico",
@@ -47,7 +47,7 @@
     {
       "name": "UUID Generator",
       "short_name": "UUID",
-      "url": "/#/UUIDGenerator",
+      "url": "./#/UUIDGenerator",
       "icons": [
         {
           "src": "favicon.ico",
