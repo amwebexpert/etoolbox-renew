@@ -13,6 +13,7 @@
  * @see https://webassembly.org/
  * @see https://wasi.dev/
  */
+console.info('spa', 'Loading tree-sitter-env-polyfill');
 const g = globalThis as any;
 
 g.env ??= {};
