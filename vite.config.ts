@@ -7,8 +7,8 @@ import viteTsconfigPaths from "vite-tsconfig-paths";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: "/etoolbox-renew/",
+export default defineConfig(({ mode }) => ({
+  base: mode === "production" ? "/etoolbox-renew/" : "/",
   plugins: [react(), viteTsconfigPaths()],
   server: {
     proxy: {
@@ -46,4 +46,4 @@ export default defineConfig({
     "process.env": {},
     global: "globalThis",
   },
-});
+}));
