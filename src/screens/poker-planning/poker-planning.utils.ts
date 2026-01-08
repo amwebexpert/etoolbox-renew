@@ -99,11 +99,16 @@ export const buildRouteURL = ({
 }: BuildRouteURLParams): string =>
   `/poker-planning/${hostName}/${roomUUID}/${encodeURIComponent(roomName)}`;
 
-export const extractSinglePageAppHostname = (): string =>
-  document.location.origin;
+export const extractSinglePageAppBasePath = (): string => {
+  const origin = document.location.origin;
+  const basePath = import.meta.env.BASE_URL ?? "/";
+  // Remove trailing slash from basePath to avoid double slashes before #
+  const normalizedBase = basePath.endsWith("/") ? basePath.slice(0, -1) : basePath;
+  return origin + normalizedBase;
+};
 
 export const buildFullRouteURL = (params: BuildRouteURLParams): string =>
-  extractSinglePageAppHostname() + "/#" + buildRouteURL(params);
+  extractSinglePageAppBasePath() + "/#" + buildRouteURL(params);
 
 export const buildVoteMessage = (username = "", value?: string): UserMessage<UserEstimate> => ({
   type: "vote",
