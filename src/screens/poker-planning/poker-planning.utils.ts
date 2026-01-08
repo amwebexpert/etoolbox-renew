@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from "uuid";
 import ReconnectingWebSocket from "reconnecting-websocket";
+import { v4 as uuidv4 } from "uuid";
 
 import { DEFAULT_HOSTNAME, DEFAULT_ROOM_NAME, SOCKET_STATES } from "./poker-planning.constants";
 import type {
@@ -32,6 +32,15 @@ const buildWebSocketUrl = (hostName: string, roomUUID: string): string => {
   return `${protocol}://${hostName}/ws?roomUUID=${roomUUID}`;
 };
 
+// WebSocket reconnection configuration - less aggressive than defaults
+const RECONNECT_OPTIONS = {
+  connectionTimeout: 5000, // Time to wait before considering a connection failed (ms)
+  maxRetries: 10, // Maximum number of reconnection attempts (Infinity by default)
+  maxReconnectionDelay: 30000, // Maximum delay between reconnection attempts (ms)
+  minReconnectionDelay: 2000, // Minimum delay before first reconnection attempt (ms)
+  reconnectionDelayGrowFactor: 1.5, // Exponential backoff factor
+};
+
 export const createSocket = ({
   hostName = DEFAULT_HOSTNAME,
   roomUUID = uuidv4(),
@@ -40,7 +49,7 @@ export const createSocket = ({
 }: CreateSocketParams): ReconnectingWebSocket => {
   const url = buildWebSocketUrl(hostName, roomUUID);
 
-  const socket = new ReconnectingWebSocket(url);
+  const socket = new ReconnectingWebSocket(url, [], RECONNECT_OPTIONS);
   socket.onopen = () => onSocketStateUpdate(getSocketState(socket.readyState));
   socket.onerror = () => onSocketStateUpdate(getSocketState(socket.readyState));
   socket.onclose = () => onSocketStateUpdate(getSocketState(socket.readyState));
