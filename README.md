@@ -75,8 +75,7 @@ Some screen captures of the implemented features...
 | `yarn deploy`              | Deploys the application using the deploy script                                         |
 | `yarn generate:version`    | Generates version information file                                                      |
 | `yarn generate:api:client` | Generates API client from OpenAPI specification                                         |
-| `yarn copy:wasm`           | Copies WASM files (tree-sitter) to public folder                                        |
-| `yarn postinstall`         | Runs after install: applies patches and copies WASM files                               |
+| `yarn postinstall`         | Runs after install: applies patches                                                     |
 
 ## Roadmap (of next features)
 

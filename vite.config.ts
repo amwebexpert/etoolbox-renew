@@ -24,12 +24,9 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: "esnext",
   },
-  optimizeDeps: {
-    include: ["curlconverter", "web-tree-sitter"],
-  },
   resolve: {
     alias: {
-      // Node.js polyfills for curlconverter browser compatibility
+      // Node.js polyfills for browser compatibility
       path: "path-browserify",
       url: "url",
       stream: "stream-browserify",

@@ -19,7 +19,7 @@ const stateCreator = (
   set: (partial: Partial<UrlCurlState>) => void
 ): UrlCurlState => ({
   inputCurl: DEFAULT_CURL,
-  targetLanguage: "Javascript",
+  targetLanguage: "JavaScript (Fetch)",
   transformedResult: "",
   setInputCurl: (curl) => set({ inputCurl: curl }),
   setTargetLanguage: (language) => set({ targetLanguage: language }),
