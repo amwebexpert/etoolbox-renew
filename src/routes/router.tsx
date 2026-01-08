@@ -1,4 +1,4 @@
-import { createRootRoute, createRoute, createRouter, Navigate } from "@tanstack/react-router";
+import { createRootRoute, createRoute, createRouter, createHashHistory, Navigate } from "@tanstack/react-router";
 import { RootLayout } from "~/routes/root-layout";
 import { About } from "~/screens/about/about";
 import { Base64 } from "~/screens/base64/base64";
@@ -252,6 +252,12 @@ const pokerPlanningRoute = createRoute({
   component: PokerPlanning,
 });
 
+const pokerPlanningWithParamsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/poker-planning/$hostName/$roomUUID/$roomName",
+  component: PokerPlanning,
+});
+
 const vr3dViewerRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/vr-3d-viewer",
@@ -277,10 +283,13 @@ const routeTree = rootRoute.addChildren([
   dateConverterRoute,
   csvParserRoute,
   pokerPlanningRoute,
+  pokerPlanningWithParamsRoute,
   vr3dViewerRoute,
 ]);
 
-export const router = createRouter({ routeTree });
+const hashHistory = createHashHistory();
+
+export const router = createRouter({ routeTree, history: hashHistory });
 
 declare module "@tanstack/react-router" {
   interface Register {
