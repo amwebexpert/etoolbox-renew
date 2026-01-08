@@ -1,0 +1,1 @@
+import{t as e}from"./browser-DazRRBxt.js";export default e();
