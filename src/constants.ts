@@ -8,7 +8,7 @@ export const APP_VERSION_INFO = Object.freeze({
   AUTHOR: 'amwebexpert@gmail.com',
   VERSION: '4.0.0',
   VERSION_DATE: '2026-01-09',
-  VERSION_DATE_ISO: '2026-01-09T00:17:21.934Z',
+  VERSION_DATE_ISO: '2026-01-09T00:22:52.859Z',
 })
 
 export const LONG_VERSION_DATE = '4.0.0 (2026-01-09)'

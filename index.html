@@ -19,6 +19,18 @@
     <link rel="icon" type="image/ico" href="favicon.ico" />
 
     <title>Web Toolbox</title>
+
+    <!-- Polyfill for Node.js process object (required by some npm packages) -->
+    <script>
+      window.process = window.process || {
+        env: {},
+        version: '',
+        platform: 'browser',
+        browser: true,
+        nextTick: function(fn) { setTimeout(fn, 0); }
+      };
+      window.global = window.global || window;
+    </script>
   </head>
 
   <body>

@@ -40,7 +40,10 @@ export default defineConfig(({ mode }) => ({
   },
   define: {
     // Required for some Node.js packages in browser
-    "process.env": {},
+    "process.env": JSON.stringify({}),
+    "process.version": JSON.stringify(""),
+    "process.platform": JSON.stringify("browser"),
+    "process.browser": JSON.stringify(true),
     global: "globalThis",
   },
 }));
