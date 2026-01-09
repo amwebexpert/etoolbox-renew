@@ -35,7 +35,7 @@ export const PokerPlanningOptions = ({ isSessionActive }: PokerPlanningOptionsPr
           <Form.Item
             label={
               <span>
-                Server{" "}
+                Connection {" "}
                 <Badge
                   status={connectionStatus as "success" | "processing" | "warning" | "error"}
                   text={socketState}
