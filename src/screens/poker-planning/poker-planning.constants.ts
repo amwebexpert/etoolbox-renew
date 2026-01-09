@@ -1,5 +1,12 @@
 import type { CardsListingCategory, CardsListingCategoryName, UserEstimate } from "./poker-planning.types";
 
+// Query keys for TanStack Query cache
+export const PokerPlanningQueryKey = {
+  all: ["poker-planning"] as const,
+  qrcode: (hostName: string, roomUUID: string, roomName: string) =>
+    [...PokerPlanningQueryKey.all, "qrcode", hostName, roomUUID, roomName] as const,
+} as const;
+
 export const POKER_PLANNING_RATINGS_FIBONACCI: string[] = [
   "?",
   "0",
