@@ -1,46 +1,15 @@
 import { CopyOutlined } from "@ant-design/icons";
-import { isBlank } from "@lichens-innovation/ts-common";
 import { Button, Card, Spin, Tooltip, Typography } from "antd";
 import { createStyles } from "antd-style";
-import { useEffect, useState } from "react";
 
 import { useClipboardCopy } from "~/hooks/use-clipboard-copy";
 
-import { usePokerPlanningStore } from "../poker-planning.store";
-import { buildFullRouteURL, generateQRCodeDataUrl } from "../poker-planning.utils";
+import { useRoomQRCode } from "../hooks/use-room-qrcode";
 
 export const PokerPlanningQRCode = () => {
   const { styles } = useStyles();
   const { copyImageToClipboard } = useClipboardCopy();
-  const { hostName, roomName, roomUUID } = usePokerPlanningStore();
-
-  const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const isSessionActive = !isBlank(roomUUID);
-
-  useEffect(() => {
-    if (!isSessionActive) {
-      setQrCodeDataUrl(null);
-      return;
-    }
-
-    const generateQRCode = async () => {
-      setIsLoading(true);
-      try {
-        const url = buildFullRouteURL({ hostName, roomUUID, roomName });
-        const dataUrl = await generateQRCodeDataUrl({ data: url, width: 200 });
-        setQrCodeDataUrl(dataUrl);
-      } catch (error) {
-        console.error("Failed to generate QR code:", error);
-        setQrCodeDataUrl(null);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    generateQRCode();
-  }, [hostName, roomName, roomUUID, isSessionActive]);
+  const { qrCodeDataUrl, isLoading, isSessionActive } = useRoomQRCode();
 
   const handleCopyQRCode = () => {
     if (qrCodeDataUrl) {
@@ -59,11 +28,7 @@ export const PokerPlanningQRCode = () => {
     <Card
       className={styles.card}
       size="small"
-      title={
-        <span className={styles.title}>
-          Room QR Code
-        </span>
-      }
+      title={<span className={styles.title}>Room QR Code</span>}
       extra={
         <Tooltip title="Copy QR Code to clipboard">
           <Button
@@ -81,19 +46,13 @@ export const PokerPlanningQRCode = () => {
           <Spin size="large" />
         ) : qrCodeDataUrl ? (
           <>
-            <img
-              src={qrCodeDataUrl}
-              alt="Room QR Code"
-              className={styles.qrImage}
-            />
+            <img src={qrCodeDataUrl} alt="Room QR Code" className={styles.qrImage} />
             <Typography.Text type="secondary" className={styles.hint}>
               Scan to join the room
             </Typography.Text>
           </>
         ) : (
-          <Typography.Text type="secondary">
-            Failed to generate QR code
-          </Typography.Text>
+          <Typography.Text type="secondary">Failed to generate QR code</Typography.Text>
         )}
       </div>
     </Card>
