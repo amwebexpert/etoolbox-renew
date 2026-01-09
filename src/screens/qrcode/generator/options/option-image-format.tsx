@@ -28,4 +28,3 @@ export const OptionImageFormat = ({ value, onChange }: OptionImageFormatProps) =
     </Col>
   );
 };
-

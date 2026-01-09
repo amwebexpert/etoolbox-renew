@@ -113,4 +113,3 @@ export const clipboardImageToDataUrl = ({ items, onLoad, onError }: ClipboardToD
     .then(onLoad)
     .catch((error) => onError?.(error instanceof Error ? error : new Error(String(error))));
 };
-

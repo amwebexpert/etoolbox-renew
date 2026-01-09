@@ -8,9 +8,7 @@ interface JsonFormatterState {
 
 const DEFAULT_INPUT_TEXT = '{ "firstName": "Chuck", "lastName": "Norris" }';
 
-const stateCreator = (
-  set: (partial: Partial<JsonFormatterState>) => void
-): JsonFormatterState => ({
+const stateCreator = (set: (partial: Partial<JsonFormatterState>) => void): JsonFormatterState => ({
   inputText: DEFAULT_INPUT_TEXT,
   setInputText: (text) => set({ inputText: text }),
 });
@@ -23,5 +21,5 @@ const persistedStateCreator = persist<JsonFormatterState>(stateCreator, {
 });
 
 export const useJsonFormatterStore = create<JsonFormatterState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );

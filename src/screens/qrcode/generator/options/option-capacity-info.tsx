@@ -20,10 +20,9 @@ export const OptionCapacityInfo = ({ errorCorrectionLevel }: OptionCapacityInfoP
         <InfoCircleOutlined /> Max capacity with {errorCorrectionLevel} correction:
       </Typography.Text>
       <Typography.Text type="secondary" className={styles.capacityValues}>
-        {capacityInfo.numeric.toLocaleString()} numeric | {capacityInfo.alphanumeric.toLocaleString()}{" "}
-        alphanumeric | {capacityInfo.bytes.toLocaleString()} bytes
+        {capacityInfo.numeric.toLocaleString()} numeric | {capacityInfo.alphanumeric.toLocaleString()} alphanumeric |{" "}
+        {capacityInfo.bytes.toLocaleString()} bytes
       </Typography.Text>
     </div>
   );
 };
-

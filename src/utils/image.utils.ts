@@ -97,4 +97,3 @@ export const getPixelColor = ({ img, x, y }: GetPixelColorArgs): RgbaColor => {
     a: 1,
   };
 };
-

@@ -65,4 +65,3 @@ export const isValidJson = (value: string): boolean => {
 export const isMinifiedJson = (value: string): boolean => {
   return value === minifyJson(value);
 };
-

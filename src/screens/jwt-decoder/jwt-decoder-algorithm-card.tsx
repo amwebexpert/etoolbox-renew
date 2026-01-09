@@ -47,4 +47,3 @@ const useStyles = createStyles(({ token }) => ({
     fontSize: 12,
   },
 }));
-

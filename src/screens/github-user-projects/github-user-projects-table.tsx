@@ -13,10 +13,7 @@ interface GithubUserProjectsTableProps {
   isLoading: boolean;
 }
 
-export const GithubUserProjectsTable = ({
-  projects,
-  isLoading,
-}: GithubUserProjectsTableProps) => {
+export const GithubUserProjectsTable = ({ projects, isLoading }: GithubUserProjectsTableProps) => {
   const { styles } = useStyles();
   const { isMobile } = useResponsive();
   const columns = useGithubUserProjectsColumns();
@@ -42,8 +39,7 @@ export const GithubUserProjectsTable = ({
         total: projects.length,
         showSizeChanger: true,
         pageSizeOptions: PAGE_SIZE_OPTIONS.map(String),
-        showTotal: (total, range) =>
-          `${range[0]}-${range[1]} of ${total} repositories`,
+        showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} repositories`,
         size: isMobile ? "small" : "default",
         onChange: handlePageChange,
         responsive: true,
@@ -73,4 +69,3 @@ const useStyles = createStyles(({ token }) => ({
     },
   },
 }));
-

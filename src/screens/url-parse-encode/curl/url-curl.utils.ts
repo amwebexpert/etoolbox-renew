@@ -102,10 +102,7 @@ const curlToHar = (curlCommand: string): HarRequest => {
   let postData: HarRequest["postData"] = undefined;
   if (parsed.body) {
     // Try to find content-type from headers
-    const contentType =
-      parsed.header?.["Content-Type"] ||
-      parsed.header?.["content-type"] ||
-      "application/json";
+    const contentType = parsed.header?.["Content-Type"] || parsed.header?.["content-type"] || "application/json";
 
     postData = {
       mimeType: String(contentType),

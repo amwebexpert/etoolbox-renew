@@ -37,4 +37,3 @@ export const LoadingIndicator = ({ onProgress }: LoadingIndicatorProps) => {
 
   return null;
 };
-

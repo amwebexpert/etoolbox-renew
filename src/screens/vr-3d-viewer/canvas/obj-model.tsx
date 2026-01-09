@@ -29,12 +29,7 @@ const ObjModelSimple = ({ url, scale, onLoaded }: ModelComponentProps) => {
 /**
  * OBJ model loader with MTL materials
  */
-const ObjModelWithMaterial = ({
-  url,
-  materialUrl,
-  scale,
-  onLoaded,
-}: ModelComponentProps & { materialUrl: string }) => {
+const ObjModelWithMaterial = ({ url, materialUrl, scale, onLoaded }: ModelComponentProps & { materialUrl: string }) => {
   const materials = useLoader(MTLLoader, materialUrl);
   const obj = useLoader(OBJLoader, url, (loader) => {
     materials.preload();
@@ -64,16 +59,7 @@ const ObjModelWithMaterial = ({
  */
 export const ObjModel = ({ url, materialUrl, scale, onLoaded }: ObjModelProps) => {
   if (materialUrl) {
-    return (
-      <ObjModelWithMaterial
-        url={url}
-        materialUrl={materialUrl}
-        scale={scale}
-        onLoaded={onLoaded}
-      />
-    );
+    return <ObjModelWithMaterial url={url} materialUrl={materialUrl} scale={scale} onLoaded={onLoaded} />;
   }
   return <ObjModelSimple url={url} scale={scale} onLoaded={onLoaded} />;
 };
-
-

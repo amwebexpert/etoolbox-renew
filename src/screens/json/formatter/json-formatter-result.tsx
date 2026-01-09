@@ -17,9 +17,7 @@ export const JsonFormatterResult = ({ formattedJson }: JsonFormatterResultProps)
   if (!formattedJson) {
     return (
       <div className={styles.placeholder}>
-        <Typography.Text type="secondary">
-          Formatted JSON will appear here
-        </Typography.Text>
+        <Typography.Text type="secondary">Formatted JSON will appear here</Typography.Text>
       </div>
     );
   }
@@ -75,4 +73,3 @@ const useStyles = createStyles(({ token }) => ({
     borderRadius: token.borderRadius,
   },
 }));
-

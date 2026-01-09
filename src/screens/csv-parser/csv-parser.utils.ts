@@ -64,10 +64,7 @@ interface ReadFileAsTextWithEncodingArgs {
   encoding: string;
 }
 
-export const readFileAsTextWithEncoding = ({
-  file,
-  encoding,
-}: ReadFileAsTextWithEncodingArgs): Promise<string> => {
+export const readFileAsTextWithEncoding = ({ file, encoding }: ReadFileAsTextWithEncodingArgs): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = (ev) => {
@@ -82,7 +79,6 @@ export const readFileAsTextWithEncoding = ({
     reader.readAsText(file, encoding);
   });
 };
-
 
 /**
  * Get statistics from parsed CSV data
@@ -153,4 +149,3 @@ export const formatLineBreak = (linebreak: string | undefined): string => {
 
   return linebreak;
 };
-

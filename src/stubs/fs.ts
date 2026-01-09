@@ -16,4 +16,3 @@ export const promises = {
   readFile: () => Promise.reject(new Error("fs.promises.readFile is not available in the browser")),
   writeFile: () => Promise.reject(new Error("fs.promises.writeFile is not available in the browser")),
 };
-

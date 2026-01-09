@@ -13,9 +13,7 @@ interface GithubUserProjectsStatsProps {
   projects: GithubUserProject[];
 }
 
-export const GithubUserProjectsStats = ({
-  projects,
-}: GithubUserProjectsStatsProps) => {
+export const GithubUserProjectsStats = ({ projects }: GithubUserProjectsStatsProps) => {
   const { styles } = useStyles();
   const { isMobile } = useResponsive();
 
@@ -68,9 +66,7 @@ export const GithubUserProjectsStats = ({
                     {lang}
                   </Tag>
                 ))}
-                {stats.languages.length > 5 && (
-                  <Text type="secondary">+{stats.languages.length - 5} more</Text>
-                )}
+                {stats.languages.length > 5 && <Text type="secondary">+{stats.languages.length - 5} more</Text>}
               </div>
             </div>
           </Col>
@@ -101,4 +97,3 @@ const useStyles = createStyles(({ token }) => ({
     alignItems: "center",
   },
 }));
-

@@ -64,8 +64,7 @@ const stateCreator: StateCreator<GithubUserProjectsState> = (set) => ({
 
   // Actions
   setUsername: (username) => set({ username }),
-  setLastSearchedUsername: (lastSearchedUsername) =>
-    set({ lastSearchedUsername, username: lastSearchedUsername }),
+  setLastSearchedUsername: (lastSearchedUsername) => set({ lastSearchedUsername, username: lastSearchedUsername }),
   setFilter: (filter) => set({ filter, page: DEFAULT_PAGE }),
   setLanguage: (language) => set({ language, page: DEFAULT_PAGE }),
   setShowForks: (showForks) => set({ showForks, page: DEFAULT_PAGE }),
@@ -111,6 +110,5 @@ const persistedStateCreator = persist<GithubUserProjectsState>(stateCreator, {
 });
 
 export const useGithubUserProjectsStore = create<GithubUserProjectsState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );
-

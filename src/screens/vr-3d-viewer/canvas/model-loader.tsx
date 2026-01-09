@@ -24,19 +24,10 @@ export const ModelLoader = ({ modelFile, scale, onLoaded, onError }: ModelLoader
     case "fbx":
       return <FbxModel url={modelFile.url} scale={scale} onLoaded={onLoaded} />;
     case "obj":
-      return (
-        <ObjModel
-          url={modelFile.url}
-          materialUrl={modelFile.materialUrl}
-          scale={scale}
-          onLoaded={onLoaded}
-        />
-      );
+      return <ObjModel url={modelFile.url} materialUrl={modelFile.materialUrl} scale={scale} onLoaded={onLoaded} />;
     case "stl":
       return <StlModel url={modelFile.url} scale={scale} onLoaded={onLoaded} />;
     default:
       return null;
   }
 };
-
-

@@ -7,19 +7,7 @@ export const PokerPlanningQueryKey = {
     [...PokerPlanningQueryKey.all, "qrcode", hostName, roomUUID, roomName] as const,
 } as const;
 
-export const POKER_PLANNING_RATINGS_FIBONACCI: string[] = [
-  "?",
-  "0",
-  "1",
-  "2",
-  "3",
-  "5",
-  "8",
-  "13",
-  "20",
-  "40",
-  "100",
-];
+export const POKER_PLANNING_RATINGS_FIBONACCI: string[] = ["?", "0", "1", "2", "3", "5", "8", "13", "20", "40", "100"];
 
 export const POKER_PLANNING_RATINGS_FIBONACCI_ENHANCED: string[] = [
   "?",
@@ -43,15 +31,7 @@ export const POKER_PLANNING_RATINGS_FIBONACCI_ENHANCED: string[] = [
 
 export const POKER_PLANNING_RATINGS_T_SHIRT_SIZES: string[] = ["?", "S", "M", "L", "XL"];
 
-export const POKER_PLANNING_RATINGS_T_SHIRT_SIZES_ENHANCED: string[] = [
-  "?",
-  "XS",
-  "S",
-  "M",
-  "L",
-  "XL",
-  "XXL",
-];
+export const POKER_PLANNING_RATINGS_T_SHIRT_SIZES_ENHANCED: string[] = ["?", "XS", "S", "M", "L", "XL", "XXL"];
 
 type PokerVotesSorter = (a: UserEstimate, b: UserEstimate) => number;
 
@@ -98,10 +78,7 @@ export const SOCKET_STATES: Map<number, string> = new Map([
   [WebSocket.CONNECTING, "connecting"],
 ]);
 
-export const CARD_CATEGORY_OPTIONS = Object.entries(CARDS_LISTING_CATEGORIES).map(
-  ([name, category]) => ({
-    value: name as CardsListingCategoryName,
-    label: category.displayValue,
-  })
-);
-
+export const CARD_CATEGORY_OPTIONS = Object.entries(CARDS_LISTING_CATEGORIES).map(([name, category]) => ({
+  value: name as CardsListingCategoryName,
+  label: category.displayValue,
+}));

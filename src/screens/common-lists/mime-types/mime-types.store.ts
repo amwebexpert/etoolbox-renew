@@ -2,12 +2,7 @@ import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 import type { MimeTypeCategory } from "./mime-types.types";
-import {
-  DEFAULT_CATEGORY,
-  DEFAULT_FILTER,
-  DEFAULT_PAGE,
-  DEFAULT_PAGE_SIZE,
-} from "./mime-types.utils";
+import { DEFAULT_CATEGORY, DEFAULT_FILTER, DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "./mime-types.utils";
 
 interface MimeTypesState {
   category: MimeTypeCategory;
@@ -21,9 +16,7 @@ interface MimeTypesState {
   resetFilters: () => void;
 }
 
-const stateCreator = (
-  set: (partial: Partial<MimeTypesState>) => void
-): MimeTypesState => ({
+const stateCreator = (set: (partial: Partial<MimeTypesState>) => void): MimeTypesState => ({
   category: DEFAULT_CATEGORY,
   filter: DEFAULT_FILTER,
   page: DEFAULT_PAGE,
@@ -48,6 +41,5 @@ const persistedStateCreator = persist<MimeTypesState>(stateCreator, {
 });
 
 export const useMimeTypesStore = create<MimeTypesState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );
-

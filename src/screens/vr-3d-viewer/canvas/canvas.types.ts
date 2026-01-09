@@ -65,5 +65,3 @@ export const getEnvironmentPreset = (preset: LightingPreset): "studio" | "sunset
       return "studio";
   }
 };
-
-

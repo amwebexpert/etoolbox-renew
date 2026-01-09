@@ -36,4 +36,3 @@ export const OptionQuality = ({ value, onChange }: OptionQualityProps) => {
     </Col>
   );
 };
-

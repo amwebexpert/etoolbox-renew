@@ -73,4 +73,3 @@ export const LANGUAGE_OPTIONS: LanguageOption[] = [
 ];
 
 export const PERSISTED_STORE_NAME = "etoolbox-image-ocr";
-

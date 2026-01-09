@@ -49,4 +49,3 @@ export const COLUMNS = [
   { title: "Property", dataIndex: "property", key: "property", width: 140 },
   { title: "Value", dataIndex: "value", key: "value" },
 ];
-

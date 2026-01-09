@@ -14,20 +14,14 @@ interface DateFormatCardProps {
 export const DateFormatCard = ({ format, date, epochValue, onCopy }: DateFormatCardProps) => {
   const { styles } = useStyles();
 
-  const displayValue = format.showCode && format.getCode
-    ? format.getCode(date, epochValue)
-    : format.getValue(date, epochValue);
+  const displayValue =
+    format.showCode && format.getCode ? format.getCode(date, epochValue) : format.getValue(date, epochValue);
 
   return (
     <Card size="small" className={styles.formatCard}>
       <div className={styles.cardHeader}>
         <Typography.Text strong>{format.label}</Typography.Text>
-        <Button
-          type="text"
-          size="small"
-          icon={<CopyOutlined />}
-          onClick={() => onCopy(displayValue, format.label)}
-        />
+        <Button type="text" size="small" icon={<CopyOutlined />} onClick={() => onCopy(displayValue, format.label)} />
       </div>
       <Typography.Text type="secondary" className={styles.cardDescription}>
         {format.description}
@@ -77,4 +71,3 @@ const useStyles = createStyles(({ token }) => ({
     wordBreak: "break-all",
   },
 }));
-

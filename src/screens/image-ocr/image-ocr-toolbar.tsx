@@ -1,9 +1,4 @@
-import {
-  ClearOutlined,
-  CopyOutlined,
-  DownloadOutlined,
-  ScanOutlined,
-} from "@ant-design/icons";
+import { ClearOutlined, CopyOutlined, DownloadOutlined, ScanOutlined } from "@ant-design/icons";
 import { Button, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
 
@@ -21,13 +16,7 @@ interface ImageOcrToolbarProps {
   onClear: () => void;
 }
 
-export const ImageOcrToolbar = ({
-  hasImage,
-  resultText,
-  isProcessing,
-  onProcess,
-  onClear,
-}: ImageOcrToolbarProps) => {
+export const ImageOcrToolbar = ({ hasImage, resultText, isProcessing, onProcess, onClear }: ImageOcrToolbarProps) => {
   const { isMobile } = useResponsive();
   const { styles } = useStyles();
   const { copyTextToClipboard } = useClipboardCopy();
@@ -55,31 +44,19 @@ export const ImageOcrToolbar = ({
 
       <Space size="small" wrap>
         <Tooltip title="Clear image and result">
-          <Button
-            icon={<ClearOutlined />}
-            disabled={!hasImage && !hasResult}
-            onClick={onClear}
-          >
+          <Button icon={<ClearOutlined />} disabled={!hasImage && !hasResult} onClick={onClear}>
             {!isMobile && "Clear"}
           </Button>
         </Tooltip>
 
         <Tooltip title="Copy extracted text to clipboard">
-          <Button
-            icon={<CopyOutlined />}
-            disabled={!hasResult}
-            onClick={handleCopy}
-          >
+          <Button icon={<CopyOutlined />} disabled={!hasResult} onClick={handleCopy}>
             {!isMobile && "Copy"}
           </Button>
         </Tooltip>
 
         <Tooltip title="Download extracted text as file">
-          <Button
-            icon={<DownloadOutlined />}
-            disabled={!hasResult}
-            onClick={handleDownload}
-          >
+          <Button icon={<DownloadOutlined />} disabled={!hasResult} onClick={handleDownload}>
             {!isMobile && "Download"}
           </Button>
         </Tooltip>
@@ -111,4 +88,3 @@ const useStyles = createStyles(() => ({
     flex: 1,
   },
 }));
-

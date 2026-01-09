@@ -71,7 +71,7 @@ export const Vr3dViewer = () => {
     (progress: number) => {
       setLoadProgress(progress);
     },
-    [setLoadProgress]
+    [setLoadProgress],
   );
 
   const handleLoaded = useCallback(() => {
@@ -85,7 +85,7 @@ export const Vr3dViewer = () => {
       setError(errorMessage);
       messageApi.error(`Failed to load model: ${errorMessage}`);
     },
-    [setError, messageApi]
+    [setError, messageApi],
   );
 
   const handleClear = () => {
@@ -119,10 +119,7 @@ export const Vr3dViewer = () => {
         />
 
         {/* File Upload */}
-        <Vr3dViewerFileUpload
-          modelFile={modelFile}
-          onFileLoaded={handleFileLoaded}
-        />
+        <Vr3dViewerFileUpload modelFile={modelFile} onFileLoaded={handleFileLoaded} />
 
         {/* Toolbar */}
         <Vr3dViewerToolbar
@@ -158,12 +155,7 @@ export const Vr3dViewer = () => {
         )}
 
         {/* Loading Indicator */}
-        {isLoading && (
-          <Vr3dViewerLoading
-            progress={loadProgress}
-            fileName={modelFile?.name}
-          />
-        )}
+        {isLoading && <Vr3dViewerLoading progress={loadProgress} fileName={modelFile?.name} />}
 
         {/* 3D Canvas */}
         <Vr3dViewerCanvas

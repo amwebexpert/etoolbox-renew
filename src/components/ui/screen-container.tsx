@@ -20,4 +20,3 @@ const useStyles = createStyles(() => ({
     margin: "0 auto",
   },
 }));
-

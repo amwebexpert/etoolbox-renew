@@ -26,4 +26,3 @@ export const getResultMaxHeightPx = (ctx: ResponsiveContext): string => {
 export const getResultRows = (ctx: ResponsiveContext): number => {
   return getResponsiveValue(ctx, { mobile: 8, tablet: 10, desktop: 12 });
 };
-

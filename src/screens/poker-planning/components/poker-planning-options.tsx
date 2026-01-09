@@ -35,11 +35,8 @@ export const PokerPlanningOptions = ({ isSessionActive }: PokerPlanningOptionsPr
           <Form.Item
             label={
               <span>
-                Connection {" "}
-                <Badge
-                  status={connectionStatus as "success" | "processing" | "warning" | "error"}
-                  text={socketState}
-                />
+                Connection{" "}
+                <Badge status={connectionStatus as "success" | "processing" | "warning" | "error"} text={socketState} />
               </span>
             }
             className={styles.formItem}
@@ -77,11 +74,7 @@ export const PokerPlanningOptions = ({ isSessionActive }: PokerPlanningOptionsPr
 
         <Col xs={12} sm={12} md={4}>
           <Form.Item label="Your name" className={styles.formItem}>
-            <Input
-              placeholder="e.g. John"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            <Input placeholder="e.g. John" value={username} onChange={(e) => setUsername(e.target.value)} />
           </Form.Item>
         </Col>
 

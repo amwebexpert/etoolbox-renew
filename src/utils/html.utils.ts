@@ -22,4 +22,3 @@ export const escapeHtml = (text: string): string => {
 export const unescapeHtml = (text: string): string => {
   return text.replace(/&(?:amp|lt|gt|quot|#39|#x27);/g, (entity) => HTML_UNESCAPE_MAP[entity] ?? entity);
 };
-

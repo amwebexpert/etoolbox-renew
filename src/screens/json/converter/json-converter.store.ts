@@ -21,9 +21,7 @@ interface JsonConverterState {
   clearAll: () => void;
 }
 
-const stateCreator = (
-  set: (partial: Partial<JsonConverterState>) => void
-): JsonConverterState => ({
+const stateCreator = (set: (partial: Partial<JsonConverterState>) => void): JsonConverterState => ({
   sourceText: DEFAULT_SOURCE_TEXT,
   sourceType: DEFAULT_SOURCE_TYPE,
   targetLanguage: DEFAULT_TARGET_LANGUAGE,
@@ -49,5 +47,5 @@ const persistedStateCreator = persist<JsonConverterState>(stateCreator, {
 });
 
 export const useJsonConverterStore = create<JsonConverterState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );

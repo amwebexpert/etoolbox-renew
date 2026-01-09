@@ -54,11 +54,7 @@ export const Vr3dViewerCanvas = forwardRef<Vr3dViewerCanvasRef, Vr3dViewerCanvas
     }));
 
     return (
-      <div
-        ref={containerRef}
-        className={styles.container}
-        style={{ height: canvasHeight }}
-      >
+      <div ref={containerRef} className={styles.container} style={{ height: canvasHeight }}>
         <Canvas
           camera={{ position: [0, 2, 5], fov: 50 }}
           gl={{ antialias: true, preserveDrawingBuffer: true }}
@@ -77,7 +73,7 @@ export const Vr3dViewerCanvas = forwardRef<Vr3dViewerCanvasRef, Vr3dViewerCanvas
         </Canvas>
       </div>
     );
-  }
+  },
 );
 
 Vr3dViewerCanvas.displayName = "Vr3dViewerCanvas";

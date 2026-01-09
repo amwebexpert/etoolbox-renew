@@ -1,10 +1,4 @@
-import {
-  ClearOutlined,
-  CopyOutlined,
-  DownloadOutlined,
-  PlayCircleOutlined,
-  TableOutlined,
-} from "@ant-design/icons";
+import { ClearOutlined, CopyOutlined, DownloadOutlined, PlayCircleOutlined, TableOutlined } from "@ant-design/icons";
 import { Button, Segmented, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
 
@@ -58,11 +52,7 @@ export const CsvParserToolbar = ({
 
       <Space size="small" wrap>
         <Tooltip title="Clear all fields">
-          <Button
-            icon={<ClearOutlined />}
-            disabled={!hasContent && !hasResult}
-            onClick={onClear}
-          >
+          <Button icon={<ClearOutlined />} disabled={!hasContent && !hasResult} onClick={onClear}>
             {!isMobile && "Clear"}
           </Button>
         </Tooltip>
@@ -106,4 +96,3 @@ const useStyles = createStyles(() => ({
     flex: 1,
   },
 }));
-

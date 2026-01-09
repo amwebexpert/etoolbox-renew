@@ -1,16 +1,9 @@
-import {
-  CalendarOutlined,
-  ClearOutlined,
-  ClockCircleOutlined,
-  CopyOutlined,
-  DownOutlined,
-} from "@ant-design/icons";
+import { CalendarOutlined, ClearOutlined, ClockCircleOutlined, CopyOutlined, DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
 import type { MenuProps } from "antd";
 
 import { useResponsive } from "~/hooks/use-responsive";
-
 
 interface DateConverterToolbarProps {
   hasDate: boolean;
@@ -113,4 +106,3 @@ const useStyles = createStyles(() => ({
     flex: 1,
   },
 }));
-

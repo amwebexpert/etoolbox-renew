@@ -9,10 +9,7 @@ interface CsvAdvancedOptionsProps {
   onOptionsChange: (options: Partial<CsvParserOptions>) => void;
 }
 
-export const CsvAdvancedOptions = ({
-  options,
-  onOptionsChange,
-}: CsvAdvancedOptionsProps) => {
+export const CsvAdvancedOptions = ({ options, onOptionsChange }: CsvAdvancedOptionsProps) => {
   const { styles } = useStyles();
 
   const handleDelimiterChange = (value: string) => {
@@ -50,39 +47,26 @@ export const CsvAdvancedOptions = ({
 
           <Col xs={12} sm={6} md={4}>
             <Form.Item label="First row as header" className={styles.formItem}>
-              <Switch
-                checked={options.header ?? true}
-                onChange={handleHeaderChange}
-              />
+              <Switch checked={options.header ?? true} onChange={handleHeaderChange} />
             </Form.Item>
           </Col>
 
           <Col xs={12} sm={6} md={4}>
             <Form.Item label="Auto-detect types" className={styles.formItem}>
               <Tooltip title="Automatically convert numeric values">
-                <Switch
-                  checked={options.dynamicTyping ?? true}
-                  onChange={handleDynamicTypingChange}
-                />
+                <Switch checked={options.dynamicTyping ?? true} onChange={handleDynamicTypingChange} />
               </Tooltip>
             </Form.Item>
           </Col>
 
           <Col xs={12} sm={6} md={4}>
             <Form.Item label="Skip empty lines" className={styles.formItem}>
-              <Switch
-                checked={options.skipEmptyLines ?? true}
-                onChange={handleSkipEmptyLinesChange}
-              />
+              <Switch checked={options.skipEmptyLines ?? true} onChange={handleSkipEmptyLinesChange} />
             </Form.Item>
           </Col>
 
           <Col xs={24}>
-            <Typography.Link
-              href={PAPA_PARSE_OPTIONS_DOC_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <Typography.Link href={PAPA_PARSE_OPTIONS_DOC_URL} target="_blank" rel="noreferrer">
               📚 View full PapaParse options documentation
             </Typography.Link>
           </Col>
@@ -91,13 +75,7 @@ export const CsvAdvancedOptions = ({
     },
   ];
 
-  return (
-    <Collapse
-      ghost
-      items={advancedOptionsItems}
-      className={styles.advancedOptions}
-    />
-  );
+  return <Collapse ghost items={advancedOptionsItems} className={styles.advancedOptions} />;
 };
 
 const useStyles = createStyles(() => ({
@@ -117,4 +95,3 @@ const useStyles = createStyles(() => ({
     },
   },
 }));
-

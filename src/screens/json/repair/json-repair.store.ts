@@ -9,9 +9,7 @@ interface JsonRepairState {
 
 const DEFAULT_INPUT_TEXT = "";
 
-const stateCreator = (
-  set: (partial: Partial<JsonRepairState>) => void
-): JsonRepairState => ({
+const stateCreator = (set: (partial: Partial<JsonRepairState>) => void): JsonRepairState => ({
   inputText: DEFAULT_INPUT_TEXT,
   setInputText: (text) => set({ inputText: text }),
   clearInput: () => set({ inputText: "" }),
@@ -25,5 +23,5 @@ const persistedStateCreator = persist<JsonRepairState>(stateCreator, {
 });
 
 export const useJsonRepairStore = create<JsonRepairState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );

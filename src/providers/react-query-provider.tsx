@@ -6,4 +6,3 @@ const queryClient = new QueryClient();
 export const TanstackQueryProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 };
-

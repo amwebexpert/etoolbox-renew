@@ -30,4 +30,3 @@ export const JwtDecoderClaimTag = ({ claim }: JwtDecoderClaimTagProps) => {
 
   return null;
 };
-

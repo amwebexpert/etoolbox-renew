@@ -1,8 +1,4 @@
-import {
-  EyeOutlined,
-  ForkOutlined,
-  StarOutlined,
-} from "@ant-design/icons";
+import { EyeOutlined, ForkOutlined, StarOutlined } from "@ant-design/icons";
 import { Tooltip, Typography } from "antd";
 import { createStyles } from "antd-style";
 

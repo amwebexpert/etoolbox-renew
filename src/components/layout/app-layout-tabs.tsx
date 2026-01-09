@@ -49,4 +49,3 @@ const useStyles = createStyles(({ token }) => ({
     borderTop: `1px solid ${token.colorBorderSecondary}`,
   },
 }));
-

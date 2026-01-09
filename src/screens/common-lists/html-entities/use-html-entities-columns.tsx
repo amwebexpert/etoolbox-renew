@@ -125,9 +125,7 @@ export const useHtmlEntitiesColumns = (): ColumnsType<HtmlEntity> => {
       key: "description",
       ellipsis: true,
       sorter: (a, b) => a.description.localeCompare(b.description),
-      render: (description: string) => (
-        <Text className={styles.descriptionText}>{description}</Text>
-      ),
+      render: (description: string) => <Text className={styles.descriptionText}>{description}</Text>,
     });
   }
 
@@ -210,4 +208,3 @@ const useStyles = createStyles(({ token }) => ({
     flexShrink: 0,
   },
 }));
-

@@ -10,4 +10,3 @@ declare module "parse-curl" {
 
   export = parseCurl;
 }
-

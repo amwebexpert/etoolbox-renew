@@ -30,9 +30,7 @@ export const useImageOcr = ({ onProgress }: UseImageOcrArgs = {}) => {
   const { data, mutate, isPending, isError, error, isSuccess, reset } = useMutation({
     mutationFn,
     onSuccess: (result) => {
-      messageApi.success(
-        `Text extracted successfully! Found ${result.wordCount} words in ${result.processingTime}ms`
-      );
+      messageApi.success(`Text extracted successfully! Found ${result.wordCount} words in ${result.processingTime}ms`);
     },
   });
 
@@ -52,4 +50,3 @@ export const useImageOcr = ({ onProgress }: UseImageOcrArgs = {}) => {
     resetOcr: reset,
   };
 };
-

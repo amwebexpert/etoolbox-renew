@@ -5,4 +5,3 @@ export interface MimeTypeEntry {
 }
 
 export type MimeTypeCategory = "all" | string;
-

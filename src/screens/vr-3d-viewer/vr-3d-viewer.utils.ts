@@ -107,4 +107,3 @@ export const isLightColor = (hex: string): boolean => {
   const luminance = 0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b;
   return luminance > 0.5;
 };
-

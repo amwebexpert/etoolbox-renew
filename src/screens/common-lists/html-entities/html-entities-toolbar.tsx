@@ -5,11 +5,7 @@ import { useDeferredValue } from "react";
 
 import { useResponsive } from "~/hooks/use-responsive";
 
-import {
-  CATEGORY_OPTIONS,
-  FILTER_FIELD_OPTIONS,
-  HTML_ENTITIES,
-} from "./html-entities.constants";
+import { CATEGORY_OPTIONS, FILTER_FIELD_OPTIONS, HTML_ENTITIES } from "./html-entities.constants";
 import { useHtmlEntitiesStore } from "./html-entities.store";
 import type { HtmlEntityCategory, HtmlEntityFilterField } from "./html-entities.types";
 import { applyFiltering, DEFAULT_CATEGORY, DEFAULT_FILTER_FIELD } from "./html-entities.utils";
@@ -20,15 +16,8 @@ export const HtmlEntitiesToolbar = () => {
   const { styles } = useStyles();
   const { isDesktop } = useResponsive();
 
-  const {
-    category,
-    filter,
-    filterField,
-    setCategory,
-    setFilter,
-    setFilterField,
-    resetFilters,
-  } = useHtmlEntitiesStore();
+  const { category, filter, filterField, setCategory, setFilter, setFilterField, resetFilters } =
+    useHtmlEntitiesStore();
 
   const deferredCategory = useDeferredValue(category);
   const deferredFilter = useDeferredValue(filter);
@@ -40,10 +29,7 @@ export const HtmlEntitiesToolbar = () => {
     filterField: deferredFilterField,
   }).length;
 
-  const hasFilters =
-    category !== DEFAULT_CATEGORY ||
-    filter !== "" ||
-    filterField !== DEFAULT_FILTER_FIELD;
+  const hasFilters = category !== DEFAULT_CATEGORY || filter !== "" || filterField !== DEFAULT_FILTER_FIELD;
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value);
@@ -130,4 +116,3 @@ const useStyles = createStyles(() => ({
     width: "100%",
   },
 }));
-

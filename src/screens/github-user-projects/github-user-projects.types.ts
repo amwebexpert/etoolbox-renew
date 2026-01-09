@@ -47,4 +47,3 @@ export interface ProjectStats {
   totalForks: number;
   languages: string[];
 }
-

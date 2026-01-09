@@ -13,9 +13,7 @@ interface UuidGeneratorState {
   clearAll: () => void;
 }
 
-const stateCreator = (
-  set: (partial: Partial<UuidGeneratorState>) => void
-): UuidGeneratorState => ({
+const stateCreator = (set: (partial: Partial<UuidGeneratorState>) => void): UuidGeneratorState => ({
   version: DEFAULT_VERSION,
   quantity: DEFAULT_QUANTITY,
   generated: "",
@@ -38,5 +36,5 @@ const persistedStateCreator = persist<UuidGeneratorState>(stateCreator, {
 });
 
 export const useUuidGeneratorStore = create<UuidGeneratorState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );

@@ -15,12 +15,7 @@ interface ResultDesktopLayoutProps {
   onCopy: (value: string, label: string) => void;
 }
 
-export const ResultDesktopLayout = ({
-  date,
-  epochValue,
-  showCodeExamples,
-  onCopy,
-}: ResultDesktopLayoutProps) => {
+export const ResultDesktopLayout = ({ date, epochValue, showCodeExamples, onCopy }: ResultDesktopLayoutProps) => {
   const { styles } = useStyles();
   const { isDesktop } = useResponsive();
   const syntaxTheme = useSyntaxHighlightTheme();
@@ -51,11 +46,7 @@ export const ResultDesktopLayout = ({
       key: "value",
       render: (value: string, record: (typeof tableData)[0]) => {
         if (record.format.showCode && record.format.getCode) {
-          return (
-            <code className={styles.codeValue}>
-              {record.format.getCode(date, epochValue)}
-            </code>
-          );
+          return <code className={styles.codeValue}>{record.format.getCode(date, epochValue)}</code>;
         }
         return <span className={styles.valueText}>{value}</span>;
       },
@@ -71,8 +62,7 @@ export const ResultDesktopLayout = ({
             size="small"
             icon={<CopyOutlined />}
             onClick={() => {
-              const copyValue =
-                record.format.getCode?.(date, epochValue) ?? record.value;
+              const copyValue = record.format.getCode?.(date, epochValue) ?? record.value;
               onCopy(copyValue, record.label);
             }}
           />
@@ -176,4 +166,3 @@ const useStyles = createStyles(({ token }) => ({
     height: "100%",
   },
 }));
-

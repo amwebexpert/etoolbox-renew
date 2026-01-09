@@ -18,10 +18,7 @@ interface Vr3dViewerFileUploadProps {
   onFileLoaded: (fileInfo: ModelFileInfo) => void;
 }
 
-export const Vr3dViewerFileUpload = ({
-  modelFile,
-  onFileLoaded,
-}: Vr3dViewerFileUploadProps) => {
+export const Vr3dViewerFileUpload = ({ modelFile, onFileLoaded }: Vr3dViewerFileUploadProps) => {
   const { styles } = useStyles();
   const { isMobile } = useResponsive();
   const messageApi = useToastMessage();
@@ -29,9 +26,7 @@ export const Vr3dViewerFileUpload = ({
 
   const handleFileChange = (file: File) => {
     if (!isSupportedFormat(file.name)) {
-      messageApi.error(
-        `Unsupported file format. Supported: ${SUPPORTED_EXTENSIONS.join(", ")}`
-      );
+      messageApi.error(`Unsupported file format. Supported: ${SUPPORTED_EXTENSIONS.join(", ")}`);
       return;
     }
 
@@ -75,11 +70,7 @@ export const Vr3dViewerFileUpload = ({
           onChange={handleInputChange}
           style={{ display: "none" }}
         />
-        <Button
-          icon={<UploadOutlined />}
-          onClick={() => fileInputRef.current?.click()}
-          className={styles.uploadButton}
-        >
+        <Button icon={<UploadOutlined />} onClick={() => fileInputRef.current?.click()} className={styles.uploadButton}>
           Select 3D Model
         </Button>
         {fileInfoText && (
@@ -98,9 +89,7 @@ export const Vr3dViewerFileUpload = ({
           <InboxOutlined />
         </p>
         <p className="ant-upload-text">Click or drag a 3D model file here</p>
-        <p className="ant-upload-hint">
-          Supports: {SUPPORTED_EXTENSIONS.join(", ")}
-        </p>
+        <p className="ant-upload-hint">Supports: {SUPPORTED_EXTENSIONS.join(", ")}</p>
       </Dragger>
       {fileInfoText && (
         <Typography.Text type="secondary" className={styles.fileInfoDesktop}>
@@ -145,5 +134,3 @@ const useStyles = createStyles(({ token }) => ({
     fontSize: 12,
   },
 }));
-
-

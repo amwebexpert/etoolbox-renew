@@ -1,9 +1,4 @@
-import {
-  ClearOutlined,
-  ExpandOutlined,
-  ReloadOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import { ClearOutlined, ExpandOutlined, ReloadOutlined, SettingOutlined } from "@ant-design/icons";
 import { Button, Space, Tooltip } from "antd";
 import { createStyles } from "antd-style";
 
@@ -37,41 +32,25 @@ export const Vr3dViewerToolbar = ({
 
       <Space size="small" wrap>
         <Tooltip title="Toggle settings panel">
-          <Button
-            icon={<SettingOutlined />}
-            type={showSettings ? "primary" : "default"}
-            onClick={onToggleSettings}
-          >
+          <Button icon={<SettingOutlined />} type={showSettings ? "primary" : "default"} onClick={onToggleSettings}>
             {!isMobile && "Settings"}
           </Button>
         </Tooltip>
 
         <Tooltip title="Reset camera view">
-          <Button
-            icon={<ReloadOutlined />}
-            disabled={!hasModel || isLoading}
-            onClick={onResetCamera}
-          >
+          <Button icon={<ReloadOutlined />} disabled={!hasModel || isLoading} onClick={onResetCamera}>
             {!isMobile && "Reset View"}
           </Button>
         </Tooltip>
 
         <Tooltip title="Toggle fullscreen">
-          <Button
-            icon={<ExpandOutlined />}
-            disabled={!hasModel || isLoading}
-            onClick={onFullscreen}
-          >
+          <Button icon={<ExpandOutlined />} disabled={!hasModel || isLoading} onClick={onFullscreen}>
             {!isMobile && "Fullscreen"}
           </Button>
         </Tooltip>
 
         <Tooltip title="Clear current model">
-          <Button
-            icon={<ClearOutlined />}
-            disabled={!hasModel || isLoading}
-            onClick={onClear}
-          >
+          <Button icon={<ClearOutlined />} disabled={!hasModel || isLoading} onClick={onClear}>
             {!isMobile && "Clear"}
           </Button>
         </Tooltip>
@@ -91,5 +70,3 @@ const useStyles = createStyles(() => ({
     flex: 1,
   },
 }));
-
-

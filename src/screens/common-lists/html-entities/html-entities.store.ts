@@ -24,9 +24,7 @@ interface HtmlEntitiesState {
   resetFilters: () => void;
 }
 
-const stateCreator = (
-  set: (partial: Partial<HtmlEntitiesState>) => void
-): HtmlEntitiesState => ({
+const stateCreator = (set: (partial: Partial<HtmlEntitiesState>) => void): HtmlEntitiesState => ({
   category: DEFAULT_CATEGORY,
   filter: DEFAULT_FILTER,
   filterField: DEFAULT_FILTER_FIELD,
@@ -54,6 +52,5 @@ const persistedStateCreator = persist<HtmlEntitiesState>(stateCreator, {
 });
 
 export const useHtmlEntitiesStore = create<HtmlEntitiesState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );
-

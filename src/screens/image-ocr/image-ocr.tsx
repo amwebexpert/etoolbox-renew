@@ -13,12 +13,7 @@ import { ImageOcrImage } from "./image-ocr-image";
 import { ImageOcrResult } from "./image-ocr-result";
 import { ImageOcrToolbar } from "./image-ocr-toolbar";
 import { useImageOcrStore } from "./image-ocr.store";
-import {
-  clipboardToDataUrl,
-  fileToDataUrl,
-  isValidImageFile,
-  LANGUAGE_OPTIONS,
-} from "./image-ocr.utils";
+import { clipboardToDataUrl, fileToDataUrl, isValidImageFile, LANGUAGE_OPTIONS } from "./image-ocr.utils";
 import { useImageOcr } from "./use-image-ocr";
 
 export const ImageOcr = () => {
@@ -26,14 +21,7 @@ export const ImageOcr = () => {
   const { isDesktop } = useResponsive();
   const messageApi = useToastMessage();
 
-  const {
-    language,
-    imageDataUrl,
-    workerStatus,
-    setLanguage,
-    setImageDataUrl,
-    clearImage,
-  } = useImageOcrStore();
+  const { language, imageDataUrl, workerStatus, setLanguage, setImageDataUrl, clearImage } = useImageOcrStore();
 
   const { ocrResult, runOcr, isProcessing, resetOcr } = useImageOcr();
 
@@ -83,7 +71,7 @@ export const ImageOcr = () => {
         },
       });
     },
-    [setImageDataUrl, resetOcr, messageApi]
+    [setImageDataUrl, resetOcr, messageApi],
   );
 
   useEffect(() => {
@@ -122,11 +110,7 @@ export const ImageOcr = () => {
         </Form>
 
         <Card className={styles.card}>
-          <ImageOcrImage
-            imageDataUrl={imageDataUrl}
-            onFileSelect={handleFileSelect}
-            onClear={handleClear}
-          />
+          <ImageOcrImage imageDataUrl={imageDataUrl} onFileSelect={handleFileSelect} onClear={handleClear} />
         </Card>
 
         <ImageOcrToolbar
@@ -137,11 +121,7 @@ export const ImageOcr = () => {
           onClear={handleClear}
         />
 
-        <ImageOcrResult
-          result={ocrResult}
-          workerStatus={workerStatus}
-          isProcessing={isProcessing}
-        />
+        <ImageOcrResult result={ocrResult} workerStatus={workerStatus} isProcessing={isProcessing} />
       </Flex>
     </ScreenContainer>
   );

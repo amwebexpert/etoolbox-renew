@@ -82,12 +82,7 @@ export const GithubFiltersRow = ({ projects }: GithubFiltersRowProps) => {
       </Col>
 
       <Col xs={12} sm={6} md={4} lg={3}>
-        <Select
-          value={sortField}
-          onChange={setSortField}
-          options={SORT_FIELD_OPTIONS}
-          className={styles.select}
-        />
+        <Select value={sortField} onChange={setSortField} options={SORT_FIELD_OPTIONS} className={styles.select} />
       </Col>
 
       <Col xs={6} sm={4} md={2} lg={2}>
@@ -105,11 +100,7 @@ export const GithubFiltersRow = ({ projects }: GithubFiltersRowProps) => {
           <Col xs={6} sm={4} md={3} lg={2}>
             <Tooltip title="Show forked repositories">
               <Space size={4} className={styles.switchItem}>
-                <Switch
-                  size="small"
-                  checked={showForks}
-                  onChange={setShowForks}
-                />
+                <Switch size="small" checked={showForks} onChange={setShowForks} />
                 <ForkOutlined />
               </Space>
             </Tooltip>
@@ -118,11 +109,7 @@ export const GithubFiltersRow = ({ projects }: GithubFiltersRowProps) => {
           <Col xs={6} sm={4} md={3} lg={2}>
             <Tooltip title="Show archived repositories">
               <Space size={4} className={styles.switchItem}>
-                <Switch
-                  size="small"
-                  checked={showArchived}
-                  onChange={setShowArchived}
-                />
+                <Switch size="small" checked={showArchived} onChange={setShowArchived} />
                 <InboxOutlined />
               </Space>
             </Tooltip>

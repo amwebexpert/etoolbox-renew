@@ -56,8 +56,8 @@ export const RegexTesterExtracted = ({
       </div>
 
       <Typography.Text type="secondary" className={styles.hint}>
-        💡 Tip: Use format like <code>/pattern/g</code> or select flags above. The Jira format is useful for expressions like:{" "}
-        <strong>issueKey in (FS-3456, WS-3213, FS-9988)</strong>
+        💡 Tip: Use format like <code>/pattern/g</code> or select flags above. The Jira format is useful for expressions
+        like: <strong>issueKey in (FS-3456, WS-3213, FS-9988)</strong>
       </Typography.Text>
     </div>
   );
@@ -121,4 +121,3 @@ const useStyles = createStyles(({ token }) => ({
     },
   },
 }));
-

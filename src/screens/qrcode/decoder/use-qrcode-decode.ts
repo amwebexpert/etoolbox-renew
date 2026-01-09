@@ -31,4 +31,3 @@ export const useQRCodeDecode = () => {
     resetDecode: reset,
   };
 };
-

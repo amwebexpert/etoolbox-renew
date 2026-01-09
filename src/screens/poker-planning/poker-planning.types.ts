@@ -18,11 +18,7 @@ export interface UserMessage<TPayload = unknown> {
 
 export type SocketState = "open" | "closed" | "closing" | "connecting";
 
-export type CardsListingCategoryName =
-  | "fibonacci"
-  | "fibonacci-enhanced"
-  | "t-shirt"
-  | "t-shirt-enhanced";
+export type CardsListingCategoryName = "fibonacci" | "fibonacci-enhanced" | "t-shirt" | "t-shirt-enhanced";
 
 export interface CardsListingCategory {
   values: string[];
@@ -50,4 +46,3 @@ export interface BuildRouteURLParams {
   roomUUID?: string;
   roomName?: string;
 }
-

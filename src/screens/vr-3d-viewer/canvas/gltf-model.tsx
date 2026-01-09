@@ -23,5 +23,3 @@ export const GltfModel = ({ url, scale, onLoaded }: ModelComponentProps) => {
     </Center>
   );
 };
-
-

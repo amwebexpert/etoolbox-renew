@@ -1,9 +1,4 @@
-import {
-  AlertOutlined,
-  ColumnWidthOutlined,
-  FileTextOutlined,
-  OrderedListOutlined,
-} from "@ant-design/icons";
+import { AlertOutlined, ColumnWidthOutlined, FileTextOutlined, OrderedListOutlined } from "@ant-design/icons";
 import { Card, Col, Row, Statistic, Tag, Tooltip, Typography } from "antd";
 import { createStyles } from "antd-style";
 
@@ -26,8 +21,7 @@ export const CsvParserStats = ({ result }: CsvParserStatsProps) => {
     return null;
   }
 
-  const delimiterDisplay =
-    stats.delimiter === "\t" ? "Tab" : stats.delimiter === " " ? "Space" : stats.delimiter;
+  const delimiterDisplay = stats.delimiter === "\t" ? "Tab" : stats.delimiter === " " ? "Space" : stats.delimiter;
 
   const statisticFontSize = isMobile ? 18 : 24;
 
@@ -100,9 +94,7 @@ export const CsvParserStats = ({ result }: CsvParserStatsProps) => {
       )}
 
       <div className={styles.metaInfo}>
-        <Typography.Text type="secondary">
-          Line break: {formatLineBreak(stats.lineBreak)}
-        </Typography.Text>
+        <Typography.Text type="secondary">Line break: {formatLineBreak(stats.lineBreak)}</Typography.Text>
       </div>
     </div>
   );
@@ -144,4 +136,3 @@ const useStyles = createStyles(({ token }) => ({
     borderRadius: token.borderRadius,
   },
 }));
-

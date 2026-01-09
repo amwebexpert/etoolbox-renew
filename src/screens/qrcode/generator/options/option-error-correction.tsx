@@ -28,4 +28,3 @@ export const OptionErrorCorrection = ({ value, onChange }: OptionErrorCorrection
     </Col>
   );
 };
-

@@ -58,4 +58,3 @@ export const SYNTAX_HIGHLIGHTER_LANGUAGE_MAP: Record<string, string> = {
   typescript: "typescript",
   json: "json",
 };
-

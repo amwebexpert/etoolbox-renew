@@ -25,11 +25,7 @@ export const NamedColorsCell = ({ value, hexCode, tooltip }: NamedColorsCellProp
 
   return (
     <Tooltip title={tooltip}>
-      <div
-        className={styles.colorCell}
-        style={{ backgroundColor: hexCode }}
-        onClick={handleCopy}
-      >
+      <div className={styles.colorCell} style={{ backgroundColor: hexCode }} onClick={handleCopy}>
         <Text className={styles.colorText} style={{ color: textColor }}>
           {value}
         </Text>

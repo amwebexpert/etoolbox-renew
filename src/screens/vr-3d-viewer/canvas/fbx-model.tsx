@@ -23,5 +23,3 @@ export const FbxModel = ({ url, scale, onLoaded }: ModelComponentProps) => {
     </Center>
   );
 };
-
-

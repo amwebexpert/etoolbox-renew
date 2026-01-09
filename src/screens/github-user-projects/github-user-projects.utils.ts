@@ -1,16 +1,8 @@
 import { isBlank, isNotBlank } from "@lichens-innovation/ts-common";
 import { format, formatDistanceToNow } from "date-fns";
 
-import {
-  GITHUB_API_BASE_URL,
-  GITHUB_REPOS_PER_PAGE,
-} from "./github-user-projects.constants";
-import type {
-  GithubUserProject,
-  ProjectStats,
-  SortField,
-  SortOrder,
-} from "./github-user-projects.types";
+import { GITHUB_API_BASE_URL, GITHUB_REPOS_PER_PAGE } from "./github-user-projects.constants";
+import type { GithubUserProject, ProjectStats, SortField, SortOrder } from "./github-user-projects.types";
 
 // API fetch function
 export const fetchGithubUserProjects = async (username: string): Promise<GithubUserProject[]> => {
@@ -112,11 +104,7 @@ interface ApplySortingArgs {
   sortOrder: SortOrder;
 }
 
-export const applySorting = ({
-  projects,
-  sortField,
-  sortOrder,
-}: ApplySortingArgs): GithubUserProject[] => {
+export const applySorting = ({ projects, sortField, sortOrder }: ApplySortingArgs): GithubUserProject[] => {
   const comparator = getComparator(sortField);
   const directionMultiplier = sortOrder === "desc" ? -1 : 1;
 
@@ -161,8 +149,7 @@ export const calculateProjectStats = (projects: GithubUserProject[]): ProjectSta
 };
 
 // Format date for display (e.g., "Jan 5, 2026")
-export const formatDate = (dateString: string): string =>
-  format(new Date(dateString), "PP");
+export const formatDate = (dateString: string): string => format(new Date(dateString), "PP");
 
 // Format relative time (e.g., "2 days ago")
 export const formatRelativeTime = (dateString: string): string =>
@@ -178,4 +165,3 @@ export const formatCount = (count: number): string => {
   }
   return count.toString();
 };
-

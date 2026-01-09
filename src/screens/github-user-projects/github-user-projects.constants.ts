@@ -32,4 +32,3 @@ export const SORT_FIELD_OPTIONS: Array<{ value: SortField; label: string }> = [
 // API configuration
 export const GITHUB_API_BASE_URL = "https://api.github.com";
 export const GITHUB_REPOS_PER_PAGE = 100; // Max allowed by GitHub API
-

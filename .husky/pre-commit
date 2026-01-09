@@ -3,4 +3,5 @@
 # exit immediately if any command fails
 set -e
 
+yarn lint-staged
 yarn typecheck

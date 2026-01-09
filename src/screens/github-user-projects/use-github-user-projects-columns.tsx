@@ -4,13 +4,7 @@ import { createStyles } from "antd-style";
 
 import { useResponsive } from "~/hooks/use-responsive";
 
-import {
-  ColumnBranch,
-  ColumnLanguage,
-  ColumnRepository,
-  ColumnStats,
-  ColumnUpdatedAt,
-} from "./columns";
+import { ColumnBranch, ColumnLanguage, ColumnRepository, ColumnStats, ColumnUpdatedAt } from "./columns";
 import type { GithubUserProject } from "./github-user-projects.types";
 
 export const useGithubUserProjectsColumns = (): ColumnsType<GithubUserProject> => {
@@ -67,12 +61,9 @@ export const useGithubUserProjectsColumns = (): ColumnsType<GithubUserProject> =
     dataIndex: "updated_at",
     key: "updated_at",
     width: isMobile ? 90 : 130,
-    sorter: (a, b) =>
-      new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime(),
+    sorter: (a, b) => new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime(),
     defaultSortOrder: "descend",
-    render: (updatedAt: string) => (
-      <ColumnUpdatedAt updatedAt={updatedAt} />
-    ),
+    render: (updatedAt: string) => <ColumnUpdatedAt updatedAt={updatedAt} />,
   });
 
   // Branch column (hidden on mobile and tablet)

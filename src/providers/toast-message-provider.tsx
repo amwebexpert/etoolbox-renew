@@ -26,4 +26,3 @@ export const useToastMessage = (): MessageInstance => {
   }
   return context;
 };
-

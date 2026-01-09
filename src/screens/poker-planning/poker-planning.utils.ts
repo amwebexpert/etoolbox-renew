@@ -61,8 +61,7 @@ export const createSocket = ({
   return socket;
 };
 
-export const getSocketState = (state: number): SocketState =>
-  (SOCKET_STATES.get(state) as SocketState) ?? "closed";
+export const getSocketState = (state: number): SocketState => (SOCKET_STATES.get(state) as SocketState) ?? "closed";
 
 interface ParseEstimatesParams {
   estimates: UserEstimate[];
@@ -96,8 +95,7 @@ export const buildRouteURL = ({
   hostName = DEFAULT_HOSTNAME,
   roomName = DEFAULT_ROOM_NAME,
   roomUUID = uuidv4(),
-}: BuildRouteURLParams): string =>
-  `/poker-planning/${hostName}/${roomUUID}/${encodeURIComponent(roomName)}`;
+}: BuildRouteURLParams): string => `/poker-planning/${hostName}/${roomUUID}/${encodeURIComponent(roomName)}`;
 
 export const extractSinglePageAppBasePath = (): string => {
   const origin = document.location.origin;
@@ -131,10 +129,7 @@ interface GenerateQRCodeDataUrlParams {
   width?: number;
 }
 
-export const generateQRCodeDataUrl = async ({
-  data,
-  width = 200,
-}: GenerateQRCodeDataUrlParams): Promise<string> => {
+export const generateQRCodeDataUrl = async ({ data, width = 200 }: GenerateQRCodeDataUrlParams): Promise<string> => {
   const QRCode = await import("qrcode");
   return QRCode.toDataURL(data, { type: "image/png", width });
 };
@@ -152,4 +147,3 @@ export const getSocketStateColor = (state: SocketState): string => {
       return "error";
   }
 };
-

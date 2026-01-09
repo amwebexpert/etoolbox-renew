@@ -4,18 +4,8 @@ import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 import { DEFAULT_CARDS_LISTING_CATEGORY } from "./poker-planning.constants";
-import type {
-  CardsListingCategoryName,
-  PokerPlanningSession,
-  SocketState,
-  UserMessage,
-} from "./poker-planning.types";
-import {
-  buildRemoveUserMessage,
-  buildResetMessage,
-  buildVoteMessage,
-  createSocket,
-} from "./poker-planning.utils";
+import type { CardsListingCategoryName, PokerPlanningSession, SocketState, UserMessage } from "./poker-planning.types";
+import { buildRemoveUserMessage, buildResetMessage, buildVoteMessage, createSocket } from "./poker-planning.utils";
 
 interface PokerPlanningState {
   // Persisted settings
@@ -65,7 +55,7 @@ interface PokerPlanningState {
 
 const stateCreator = (
   set: (partial: Partial<PokerPlanningState> | ((state: PokerPlanningState) => Partial<PokerPlanningState>)) => void,
-  get: () => PokerPlanningState
+  get: () => PokerPlanningState,
 ): PokerPlanningState => ({
   // Initial persisted values
   hostName: "",
@@ -223,16 +213,17 @@ const persistedStateCreator = persist<PokerPlanningState>(stateCreator, {
   name: PERSISTED_STORE_NAME,
   storage: createJSONStorage(() => localStorage),
   // Only persist user preferences, not session state or socket
-  partialize: (state) => ({
-    hostName: state.hostName,
-    roomName: state.roomName,
-    username: state.username,
-    cardsCategory: state.cardsCategory,
-  }) as PokerPlanningState,
+  partialize: (state) =>
+    ({
+      hostName: state.hostName,
+      roomName: state.roomName,
+      username: state.username,
+      cardsCategory: state.cardsCategory,
+    }) as PokerPlanningState,
 });
 
 export const usePokerPlanningStore = create<PokerPlanningState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );
 
 // Cleanup function for component unmount

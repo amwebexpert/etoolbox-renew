@@ -21,15 +21,7 @@ export const PokerPlanning = () => {
   const { styles } = useStyles();
   const [modal, contextHolder] = Modal.useModal();
 
-  const {
-    roomName,
-    roomUUID,
-    username,
-    socketState,
-    session,
-    clearVotes,
-    removeUser,
-  } = usePokerPlanningStore();
+  const { roomName, roomUUID, username, socketState, session, clearVotes, removeUser } = usePokerPlanningStore();
 
   // Sync URL params and session state
   useRouteParamsSync();
@@ -47,9 +39,7 @@ export const PokerPlanning = () => {
   const isSessionActive = isConnected && isNotBlank(roomUUID);
   const canVote = isSessionActive && isNotBlank(username) && isUserMemberOfRoom;
 
-  const title = isNotBlank(roomName)
-    ? `Poker Planning - ${roomName}`
-    : "Poker Planning";
+  const title = isNotBlank(roomName) ? `Poker Planning - ${roomName}` : "Poker Planning";
 
   const handleClearVotes = useCallback(() => {
     modal.confirm({
@@ -73,7 +63,7 @@ export const PokerPlanning = () => {
         onOk: () => removeUser(userToRemove),
       });
     },
-    [modal, removeUser]
+    [modal, removeUser],
   );
 
   return (
@@ -88,10 +78,7 @@ export const PokerPlanning = () => {
 
         <PokerPlanningOptions isSessionActive={isSessionActive} />
 
-        <PokerPlanningToolbar
-          isUserMemberOfRoom={isUserMemberOfRoom}
-          onClearVotes={handleClearVotes}
-        />
+        <PokerPlanningToolbar isUserMemberOfRoom={isUserMemberOfRoom} onClearVotes={handleClearVotes} />
 
         <Divider className={styles.divider} />
 
@@ -99,10 +86,7 @@ export const PokerPlanning = () => {
 
         <Divider className={styles.divider} />
 
-        <PokerPlanningTable
-          isUserMemberOfRoom={isUserMemberOfRoom}
-          onRemoveUser={handleRemoveUser}
-        />
+        <PokerPlanningTable isUserMemberOfRoom={isUserMemberOfRoom} onRemoveUser={handleRemoveUser} />
 
         <PokerPlanningQRCode />
       </Flex>

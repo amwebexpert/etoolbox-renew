@@ -28,9 +28,7 @@ export const GithubUserProjectsEmpty = ({
             <Paragraph type="danger" strong>
               Error loading repositories
             </Paragraph>
-            <Paragraph type="secondary">
-              {errorMessage ?? "An unexpected error occurred. Please try again."}
-            </Paragraph>
+            <Paragraph type="secondary">{errorMessage ?? "An unexpected error occurred. Please try again."}</Paragraph>
           </div>
         }
         className={styles.empty}
@@ -63,9 +61,7 @@ export const GithubUserProjectsEmpty = ({
           <Paragraph strong className={styles.title}>
             Search GitHub Repositories
           </Paragraph>
-          <Paragraph type="secondary">
-            Enter a GitHub username above to view their public repositories.
-          </Paragraph>
+          <Paragraph type="secondary">Enter a GitHub username above to view their public repositories.</Paragraph>
           <Paragraph type="secondary" className={styles.hint}>
             <SearchOutlined /> Press Enter or click Search to start
           </Paragraph>
@@ -103,4 +99,3 @@ const useStyles = createStyles(({ token }) => ({
     fontSize: 13,
   },
 }));
-

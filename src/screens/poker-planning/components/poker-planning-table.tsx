@@ -1,8 +1,4 @@
-import {
-  DeleteOutlined,
-  EyeInvisibleOutlined,
-  EyeOutlined,
-} from "@ant-design/icons";
+import { DeleteOutlined, EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, Empty, Table, Tooltip, Typography } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { createStyles } from "antd-style";
@@ -19,18 +15,9 @@ interface PokerPlanningTableProps {
   onRemoveUser: (username: string) => void;
 }
 
-export const PokerPlanningTable = ({
-  isUserMemberOfRoom,
-  onRemoveUser,
-}: PokerPlanningTableProps) => {
+export const PokerPlanningTable = ({ isUserMemberOfRoom, onRemoveUser }: PokerPlanningTableProps) => {
   const { styles } = useStyles();
-  const {
-    session,
-    isEstimatesVisible,
-    cardsCategory,
-    username,
-    toggleEstimatesVisibility,
-  } = usePokerPlanningStore();
+  const { session, isEstimatesVisible, cardsCategory, username, toggleEstimatesVisibility } = usePokerPlanningStore();
 
   const estimates = session?.estimates ?? [];
   const sorter = CARDS_LISTING_CATEGORIES[cardsCategory].sorter;
@@ -59,9 +46,7 @@ export const PokerPlanningTable = ({
       title: "Team Member",
       dataIndex: "username",
       key: "username",
-      render: (value: string) => (
-        <Text strong={value === username}>{value}</Text>
-      ),
+      render: (value: string) => <Text strong={value === username}>{value}</Text>,
     },
     {
       title: (
@@ -94,10 +79,7 @@ export const PokerPlanningTable = ({
   if (sortedEstimates.length === 0) {
     return (
       <div className={styles.emptyContainer}>
-        <Empty
-          description="No team members yet"
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
-        />
+        <Empty description="No team members yet" image={Empty.PRESENTED_IMAGE_SIMPLE} />
         <Text type="secondary" className={styles.emptyHint}>
           Create a new room and join to start planning
         </Text>

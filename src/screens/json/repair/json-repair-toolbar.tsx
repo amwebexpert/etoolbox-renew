@@ -32,11 +32,7 @@ export const JsonRepairToolbar = ({
 
       <Space size="small" wrap>
         <Tooltip title="Clear input and result">
-          <Button
-            icon={<ClearOutlined />}
-            disabled={!hasInput && !hasResult}
-            onClick={onClear}
-          >
+          <Button icon={<ClearOutlined />} disabled={!hasInput && !hasResult} onClick={onClear}>
             {!isMobile && "Clear"}
           </Button>
         </Tooltip>
@@ -54,13 +50,7 @@ export const JsonRepairToolbar = ({
         </Tooltip>
 
         <Tooltip title="Attempt to repair malformed JSON">
-          <Button
-            type="primary"
-            icon={<ToolOutlined />}
-            disabled={!hasInput}
-            loading={isRepairing}
-            onClick={onRepair}
-          >
+          <Button type="primary" icon={<ToolOutlined />} disabled={!hasInput} loading={isRepairing} onClick={onRepair}>
             Repair
           </Button>
         </Tooltip>
@@ -80,4 +70,3 @@ const useStyles = createStyles(() => ({
     flex: 1,
   },
 }));
-

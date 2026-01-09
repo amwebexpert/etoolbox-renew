@@ -41,10 +41,7 @@ export const ColumnLanguage = ({ language }: ColumnLanguageProps) => {
 
   return (
     <>
-      <span
-        className={styles.languageDot}
-        style={{ backgroundColor: color }}
-      />
+      <span className={styles.languageDot} style={{ backgroundColor: color }} />
       <Text>{language}</Text>
     </>
   );

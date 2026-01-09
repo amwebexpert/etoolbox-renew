@@ -52,20 +52,11 @@ export const ImageOcrImage = ({ imageDataUrl, onFileSelect, onClear }: ImageOcrI
           }}
           className={styles.resizable}
         >
-          <img
-            src={imageDataUrl}
-            alt="Image to process with OCR"
-            className={styles.image}
-          />
+          <img src={imageDataUrl} alt="Image to process with OCR" className={styles.image} />
         </Resizable>
 
         <div className={styles.imageActions}>
-          <Button
-            icon={<DeleteOutlined />}
-            danger
-            size="small"
-            onClick={onClear}
-          >
+          <Button icon={<DeleteOutlined />} danger size="small" onClick={onClear}>
             Remove image
           </Button>
           <Text type="secondary" className={styles.hint}>
@@ -91,9 +82,7 @@ export const ImageOcrImage = ({ imageDataUrl, onFileSelect, onClear }: ImageOcrI
           <CameraOutlined className={styles.uploadIcon} />
         </p>
         <p className="ant-upload-text">Click or drag an image to this area</p>
-        <p className="ant-upload-hint">
-          You can also paste an image from clipboard (Ctrl+V / Cmd+V)
-        </p>
+        <p className="ant-upload-hint">You can also paste an image from clipboard (Ctrl+V / Cmd+V)</p>
       </div>
     </Dragger>
   );
@@ -145,4 +134,3 @@ const useStyles = createStyles(({ token }) => ({
     fontSize: 12,
   },
 }));
-

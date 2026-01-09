@@ -59,12 +59,12 @@ const persistedStateCreator = persist<ImageOcrState>(stateCreator, {
   name: PERSISTED_STORE_NAME,
   storage: createJSONStorage(() => localStorage),
   // Only persist the language preference, not the image data or processing state
-  partialize: (state) => ({
-    language: state.language,
-  }) as ImageOcrState,
+  partialize: (state) =>
+    ({
+      language: state.language,
+    }) as ImageOcrState,
 });
 
 export const useImageOcrStore = create<ImageOcrState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );
-

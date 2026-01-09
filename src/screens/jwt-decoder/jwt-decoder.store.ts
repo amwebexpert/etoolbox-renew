@@ -7,9 +7,7 @@ interface JwtDecoderState {
   clearToken: () => void;
 }
 
-const stateCreator = (
-  set: (partial: Partial<JwtDecoderState>) => void
-): JwtDecoderState => ({
+const stateCreator = (set: (partial: Partial<JwtDecoderState>) => void): JwtDecoderState => ({
   token: "",
   setToken: (token) => set({ token }),
   clearToken: () => set({ token: "" }),
@@ -23,5 +21,5 @@ const persistedStateCreator = persist<JwtDecoderState>(stateCreator, {
 });
 
 export const useJwtDecoderStore = create<JwtDecoderState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );

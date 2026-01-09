@@ -64,9 +64,7 @@ export const CsvParser = () => {
   const handleDownload = () => {
     if (!parseResult) return;
     const jsonOutput = safeJsonStringify(parseResult.data);
-    const fileName = fileInfo?.name
-      ? fileInfo.name.replace(/\.csv$/i, ".json")
-      : "parsed-data.json";
+    const fileName = fileInfo?.name ? fileInfo.name.replace(/\.csv$/i, ".json") : "parsed-data.json";
     downloadJson({ content: jsonOutput, fileName });
   };
 
@@ -95,15 +93,9 @@ export const CsvParser = () => {
             onFileLoaded={handleFileLoaded}
           />
 
-          <CsvInputArea
-            value={csvInput}
-            onChange={setCsvInput}
-          />
+          <CsvInputArea value={csvInput} onChange={setCsvInput} />
 
-          <CsvAdvancedOptions
-            options={parserOptions}
-            onOptionsChange={setParserOptions}
-          />
+          <CsvAdvancedOptions options={parserOptions} onOptionsChange={setParserOptions} />
         </Form>
 
         <CsvParserToolbar

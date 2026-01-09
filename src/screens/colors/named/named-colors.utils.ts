@@ -121,7 +121,12 @@ export const NAMED_COLORS: ColorInfo[] = [
   { family: "Purple, violet, and magenta", htmlName: "Fuchsia", hexCode: "FF 00 FF", rgbDecimal: "255 0 255" },
   { family: "Purple, violet, and magenta", htmlName: "Magenta", hexCode: "FF 00 FF", rgbDecimal: "255 0 255" },
   { family: "Purple, violet, and magenta", htmlName: "SlateBlue", hexCode: "6A 5A CD", rgbDecimal: "106 90 205" },
-  { family: "Purple, violet, and magenta", htmlName: "MediumSlateBlue", hexCode: "7B 68 EE", rgbDecimal: "123 104 238" },
+  {
+    family: "Purple, violet, and magenta",
+    htmlName: "MediumSlateBlue",
+    hexCode: "7B 68 EE",
+    rgbDecimal: "123 104 238",
+  },
   { family: "Purple, violet, and magenta", htmlName: "MediumOrchid", hexCode: "BA 55 D3", rgbDecimal: "186 85 211" },
   { family: "Purple, violet, and magenta", htmlName: "MediumPurple", hexCode: "93 70 DB", rgbDecimal: "147 112 219" },
   { family: "Purple, violet, and magenta", htmlName: "Orchid", hexCode: "DA 70 D6", rgbDecimal: "218 112 214" },

@@ -20,5 +20,3 @@ export const CameraController = ({ settings, controlsRef }: CameraControllerProp
     />
   );
 };
-
-

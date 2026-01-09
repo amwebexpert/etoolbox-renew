@@ -61,4 +61,3 @@ export const WIDTH_PRESETS: readonly SelectOption<number>[] = [
   { value: 400, label: "400px" },
   { value: 500, label: "500px" },
 ];
-

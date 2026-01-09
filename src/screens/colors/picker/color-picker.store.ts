@@ -14,9 +14,7 @@ interface ColorPickerState {
 
 const DEFAULT_COLOR: RgbaColor = { r: 59, g: 130, b: 246, a: 1 };
 
-const stateCreator = (
-  set: (partial: Partial<ColorPickerState>) => void
-): ColorPickerState => ({
+const stateCreator = (set: (partial: Partial<ColorPickerState>) => void): ColorPickerState => ({
   imageDataUrl: "",
   color: DEFAULT_COLOR,
   setImageDataUrl: (url) => set({ imageDataUrl: url }),
@@ -33,5 +31,5 @@ const persistedStateCreator = persist<ColorPickerState>(stateCreator, {
 });
 
 export const useColorPickerStore = create<ColorPickerState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );

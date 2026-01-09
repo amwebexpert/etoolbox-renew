@@ -20,12 +20,7 @@ export const CodeExampleCard = ({ example, date, onCopy, syntaxTheme }: CodeExam
     <Card size="small" className={styles.codeExampleCard}>
       <div className={styles.cardHeader}>
         <Typography.Text strong>{example.label}</Typography.Text>
-        <Button
-          type="text"
-          size="small"
-          icon={<CopyOutlined />}
-          onClick={() => onCopy(code, example.label)}
-        />
+        <Button type="text" size="small" icon={<CopyOutlined />} onClick={() => onCopy(code, example.label)} />
       </div>
       <SyntaxHighlighter
         language="javascript"
@@ -59,4 +54,3 @@ const useStyles = createStyles(() => ({
     marginBottom: 4,
   },
 }));
-

@@ -61,4 +61,3 @@ export const formatDataUri = ({ mimeType, base64 }: FormatDataUriArgs): string =
 export const getBase64ApproxSize = (base64: string): number => {
   return Math.round((base64.length * 3) / 4);
 };
-

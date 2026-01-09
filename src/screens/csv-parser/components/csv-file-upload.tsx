@@ -14,12 +14,7 @@ interface CsvFileUploadProps {
   onFileLoaded: (content: string, fileInfo: FileInfo) => void;
 }
 
-export const CsvFileUpload = ({
-  fileEncoding,
-  fileInfo,
-  onEncodingChange,
-  onFileLoaded,
-}: CsvFileUploadProps) => {
+export const CsvFileUpload = ({ fileEncoding, fileInfo, onEncodingChange, onFileLoaded }: CsvFileUploadProps) => {
   const { styles } = useStyles();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -103,4 +98,3 @@ const useStyles = createStyles(() => ({
     fontSize: 12,
   },
 }));
-

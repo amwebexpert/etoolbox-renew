@@ -15,7 +15,9 @@ interface QRCodeGeneratorState {
 }
 
 const stateCreator = (
-  set: (partial: Partial<QRCodeGeneratorState> | ((state: QRCodeGeneratorState) => Partial<QRCodeGeneratorState>)) => void
+  set: (
+    partial: Partial<QRCodeGeneratorState> | ((state: QRCodeGeneratorState) => Partial<QRCodeGeneratorState>),
+  ) => void,
 ): QRCodeGeneratorState => ({
   inputText: DEFAULT_INPUT_TEXT,
   options: DEFAULT_QR_OPTIONS,
@@ -43,5 +45,5 @@ const persistedStateCreator = persist<QRCodeGeneratorState>(stateCreator, {
 });
 
 export const useQRCodeGeneratorStore = create<QRCodeGeneratorState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );

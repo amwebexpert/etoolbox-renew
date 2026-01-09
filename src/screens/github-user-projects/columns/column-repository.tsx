@@ -1,8 +1,4 @@
-import {
-  CopyOutlined,
-  ForkOutlined,
-  LockOutlined,
-} from "@ant-design/icons";
+import { CopyOutlined, ForkOutlined, LockOutlined } from "@ant-design/icons";
 import { Tag, Tooltip, Typography } from "antd";
 import { createStyles } from "antd-style";
 
@@ -30,12 +26,7 @@ export const ColumnRepository = ({ record, isMobile }: ColumnRepositoryProps) =>
   return (
     <>
       <div className={styles.repoHeader}>
-        <Link
-          href={record.html_url}
-          target="_blank"
-          rel="noreferrer noopener"
-          className={styles.repoName}
-        >
+        <Link href={record.html_url} target="_blank" rel="noreferrer noopener" className={styles.repoName}>
           {record.name}
         </Link>
         {record.private && (
@@ -54,10 +45,7 @@ export const ColumnRepository = ({ record, isMobile }: ColumnRepositoryProps) =>
           </Tag>
         )}
         <Tooltip title="Copy repository URL">
-          <CopyOutlined
-            className={styles.copyIcon}
-            onClick={handleCopyUrl}
-          />
+          <CopyOutlined className={styles.copyIcon} onClick={handleCopyUrl} />
         </Tooltip>
       </div>
       {record.description && !isMobile && (

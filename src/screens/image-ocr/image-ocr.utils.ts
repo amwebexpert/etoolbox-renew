@@ -152,4 +152,3 @@ export const downloadTextFile = (text: string, filename = "extracted-text.txt"):
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
 };
-

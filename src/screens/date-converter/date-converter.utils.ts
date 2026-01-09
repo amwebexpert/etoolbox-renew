@@ -237,11 +237,7 @@ interface ExportAllFormatsArgs {
 }
 
 export const exportAllFormats = ({ date, epochValue }: ExportAllFormatsArgs): string => {
-  const lines: string[] = [
-    "Date Converter Export",
-    "=" .repeat(50),
-    "",
-  ];
+  const lines: string[] = ["Date Converter Export", "=".repeat(50), ""];
 
   DATE_FORMATS.forEach((format) => {
     lines.push(`${format.label}:`);
@@ -261,4 +257,3 @@ export const exportAllFormats = ({ date, epochValue }: ExportAllFormatsArgs): st
 
   return lines.join("\n");
 };
-

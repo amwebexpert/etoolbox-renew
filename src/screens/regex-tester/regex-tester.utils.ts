@@ -12,7 +12,8 @@ export interface RegexTestResult {
 }
 
 export const DEFAULT_REGEX = "/([A-Z]+-\\d+)/g";
-export const DEFAULT_INPUT_TEXT = "Since [AC-1940], the year Chuck Norris was born, roundhouse kick related deaths have increased 13,000 percent.";
+export const DEFAULT_INPUT_TEXT =
+  "Since [AC-1940], the year Chuck Norris was born, roundhouse kick related deaths have increased 13,000 percent.";
 
 export const REGEX_FLAG_OPTIONS = [
   { value: "g", label: "Global (g)", description: "Find all matches" },

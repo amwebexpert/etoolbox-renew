@@ -56,4 +56,3 @@ export const getExtensionFromDataUrl = (dataUrl: string): string => {
   if (dataUrl.includes("image/svg")) return "svg";
   return "bin";
 };
-

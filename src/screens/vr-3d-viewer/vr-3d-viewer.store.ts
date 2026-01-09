@@ -1,12 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
-import type {
-  CameraSettings,
-  ModelFileInfo,
-  SceneSettings,
-  ViewMode,
-} from "./vr-3d-viewer.types";
+import type { CameraSettings, ModelFileInfo, SceneSettings, ViewMode } from "./vr-3d-viewer.types";
 import { DEFAULT_CAMERA_SETTINGS, DEFAULT_SCENE_SETTINGS } from "./vr-3d-viewer.types";
 
 interface Vr3dViewerState {
@@ -43,9 +38,7 @@ const INITIAL_STATE = {
   viewMode: "normal" as ViewMode,
 };
 
-type SetState = (
-  partial: Partial<Vr3dViewerState> | ((state: Vr3dViewerState) => Partial<Vr3dViewerState>)
-) => void;
+type SetState = (partial: Partial<Vr3dViewerState> | ((state: Vr3dViewerState) => Partial<Vr3dViewerState>)) => void;
 
 const stateCreator = (set: SetState): Vr3dViewerState => ({
   ...INITIAL_STATE,
@@ -112,7 +105,5 @@ const persistedStateCreator = persist<Vr3dViewerState>(stateCreator, {
 });
 
 export const useVr3dViewerStore = create<Vr3dViewerState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );
-
-

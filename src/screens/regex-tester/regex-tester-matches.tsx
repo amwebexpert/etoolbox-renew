@@ -38,7 +38,9 @@ export const RegexTesterMatches = ({ highlightedHtml, matchCount, error }: Regex
 
       <div
         className={styles.matchesBox}
-        dangerouslySetInnerHTML={{ __html: highlightedHtml || '<span class="placeholder">Matches will be highlighted here</span>' }}
+        dangerouslySetInnerHTML={{
+          __html: highlightedHtml || '<span class="placeholder">Matches will be highlighted here</span>',
+        }}
       />
     </div>
   );
@@ -97,4 +99,3 @@ const useStyles = createStyles(({ token }) => ({
     borderRadius: token.borderRadius,
   },
 }));
-

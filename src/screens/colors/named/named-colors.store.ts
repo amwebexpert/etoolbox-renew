@@ -1,12 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
-import {
-  DEFAULT_FAMILY,
-  DEFAULT_FILTER,
-  DEFAULT_PAGE,
-  DEFAULT_PAGE_SIZE,
-} from "./named-colors.utils";
+import { DEFAULT_FAMILY, DEFAULT_FILTER, DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "./named-colors.utils";
 
 interface NamedColorsState {
   family: string;
@@ -20,9 +15,7 @@ interface NamedColorsState {
   resetFilters: () => void;
 }
 
-const stateCreator = (
-  set: (partial: Partial<NamedColorsState>) => void
-): NamedColorsState => ({
+const stateCreator = (set: (partial: Partial<NamedColorsState>) => void): NamedColorsState => ({
   family: DEFAULT_FAMILY,
   filter: DEFAULT_FILTER,
   page: DEFAULT_PAGE,
@@ -47,5 +40,5 @@ const persistedStateCreator = persist<NamedColorsState>(stateCreator, {
 });
 
 export const useNamedColorsStore = create<NamedColorsState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );

@@ -10,12 +10,7 @@ import { parseEstimates } from "../poker-planning.utils";
  * and clearing estimates when the session is reset.
  */
 export const useSessionSync = () => {
-  const {
-    session,
-    username,
-    setMyEstimate,
-    setIsEstimatesVisible,
-  } = usePokerPlanningStore();
+  const { session, username, setMyEstimate, setIsEstimatesVisible } = usePokerPlanningStore();
 
   const estimates = session?.estimates ?? [];
   const { isEstimatesCleared } = parseEstimates({ estimates, username });

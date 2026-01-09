@@ -39,4 +39,3 @@ export const SAMPLE_DATE_FNS_RELATIVE = `import { formatDistanceToNow } from "da
 const date = new Date('#utc_value#');
 const relative = formatDistanceToNow(date, { addSuffix: true });
 // Example: "2 hours ago" or "in 3 days"`;
-

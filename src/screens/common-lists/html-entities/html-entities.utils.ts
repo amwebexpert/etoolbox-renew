@@ -13,11 +13,7 @@ interface ApplyFilteringArgs {
   filterField: HtmlEntityFilterField;
 }
 
-export const applyFiltering = ({
-  category,
-  filter,
-  filterField,
-}: ApplyFilteringArgs): HtmlEntity[] => {
+export const applyFiltering = ({ category, filter, filterField }: ApplyFilteringArgs): HtmlEntity[] => {
   let results = HTML_ENTITIES.slice();
 
   // Filter by category
@@ -74,4 +70,3 @@ export const formatCodePoint = (entityNumber: string): string => {
   }
   return "—";
 };
-

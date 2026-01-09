@@ -14,8 +14,7 @@ export const HtmlEntitiesTable = () => {
   const { isMobile } = useResponsive();
   const columns = useHtmlEntitiesColumns();
 
-  const { category, filter, filterField, page, pageSize, setPage, setPageSize } =
-    useHtmlEntitiesStore();
+  const { category, filter, filterField, page, pageSize, setPage, setPageSize } = useHtmlEntitiesStore();
 
   const deferredCategory = useDeferredValue(category);
   const deferredFilter = useDeferredValue(filter);
@@ -46,9 +45,7 @@ export const HtmlEntitiesTable = () => {
         showSizeChanger: true,
         pageSizeOptions: PAGE_SIZE_OPTIONS.map(String),
         showTotal: (total, range) =>
-          isMobile
-            ? `${range[0]}-${range[1]} / ${total}`
-            : `${range[0]}-${range[1]} of ${total} entities`,
+          isMobile ? `${range[0]}-${range[1]} / ${total}` : `${range[0]}-${range[1]} of ${total} entities`,
         size: isMobile ? "small" : "default",
         onChange: handlePageChange,
       }}
@@ -75,4 +72,3 @@ const useStyles = createStyles(({ token }) => ({
     },
   },
 }));
-

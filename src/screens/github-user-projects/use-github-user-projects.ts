@@ -35,4 +35,3 @@ export const useGithubUserProjects = ({ username }: UseGithubUserProjectsArgs) =
     refetch,
   };
 };
-

@@ -7,4 +7,3 @@ export const useSyntaxHighlightTheme = () => {
 
   return themeMode === "dark" ? dark : docco;
 };
-

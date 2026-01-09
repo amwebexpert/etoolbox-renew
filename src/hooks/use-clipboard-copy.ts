@@ -16,10 +16,7 @@ interface CopyImageToClipboardArgs {
 export const useClipboardCopy = () => {
   const messageApi = useToastMessage();
 
-  const copyTextToClipboard = async ({
-    text,
-    successMessage = "Copied to clipboard!",
-  }: CopyTextToClipboardArgs) => {
+  const copyTextToClipboard = async ({ text, successMessage = "Copied to clipboard!" }: CopyTextToClipboardArgs) => {
     if (isBlank(text)) return;
 
     try {
@@ -46,4 +43,3 @@ export const useClipboardCopy = () => {
 
   return { copyTextToClipboard, copyImageToClipboard };
 };
-

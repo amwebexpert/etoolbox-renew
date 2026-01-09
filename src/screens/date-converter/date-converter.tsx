@@ -30,15 +30,8 @@ export const DateConverter = () => {
   const { isDesktop } = useResponsive();
   const { copyTextToClipboard } = useClipboardCopy();
 
-  const {
-    epochValue,
-    epochUnit,
-    showCodeExamples,
-    setEpochValue,
-    setEpochUnit,
-    setShowCodeExamples,
-    reset,
-  } = useDateConverterStore();
+  const { epochValue, epochUnit, showCodeExamples, setEpochValue, setEpochUnit, setShowCodeExamples, reset } =
+    useDateConverterStore();
 
   // Parse the epoch value to a Date object
   const parsedDate = parseEpochToDate({ epochValue, epochUnit });
@@ -153,11 +146,7 @@ export const DateConverter = () => {
             <Col xs={24} sm={24} md={6} lg={4}>
               <Form.Item label="Options" className={styles.formItem}>
                 <div className={styles.optionsRow}>
-                  <Switch
-                    checked={showCodeExamples}
-                    onChange={setShowCodeExamples}
-                    size="small"
-                  />
+                  <Switch checked={showCodeExamples} onChange={setShowCodeExamples} size="small" />
                   <span className={styles.switchLabel}>
                     <CodeOutlined /> Code examples
                   </span>
@@ -179,11 +168,7 @@ export const DateConverter = () => {
           onClear={handleClear}
         />
 
-        <DateConverterResult
-          date={parsedDate}
-          epochValue={epochNumber}
-          showCodeExamples={showCodeExamples}
-        />
+        <DateConverterResult date={parsedDate} epochValue={epochNumber} showCodeExamples={showCodeExamples} />
       </Flex>
     </ScreenContainer>
   );

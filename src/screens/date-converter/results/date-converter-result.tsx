@@ -13,11 +13,7 @@ interface DateConverterResultProps {
   showCodeExamples: boolean;
 }
 
-export const DateConverterResult = ({
-  date,
-  epochValue,
-  showCodeExamples,
-}: DateConverterResultProps) => {
+export const DateConverterResult = ({ date, epochValue, showCodeExamples }: DateConverterResultProps) => {
   const { styles } = useStyles();
   const { isMobile } = useResponsive();
   const { copyTextToClipboard } = useClipboardCopy();
@@ -25,9 +21,7 @@ export const DateConverterResult = ({
   if (!date) {
     return (
       <div className={styles.placeholder}>
-        <Typography.Text type="secondary">
-          Enter an epoch value or click "Now" to see date conversions
-        </Typography.Text>
+        <Typography.Text type="secondary">Enter an epoch value or click "Now" to see date conversions</Typography.Text>
       </div>
     );
   }
@@ -38,22 +32,12 @@ export const DateConverterResult = ({
 
   if (isMobile) {
     return (
-      <ResultMobileLayout
-        date={date}
-        epochValue={epochValue}
-        showCodeExamples={showCodeExamples}
-        onCopy={handleCopy}
-      />
+      <ResultMobileLayout date={date} epochValue={epochValue} showCodeExamples={showCodeExamples} onCopy={handleCopy} />
     );
   }
 
   return (
-    <ResultDesktopLayout
-      date={date}
-      epochValue={epochValue}
-      showCodeExamples={showCodeExamples}
-      onCopy={handleCopy}
-    />
+    <ResultDesktopLayout date={date} epochValue={epochValue} showCodeExamples={showCodeExamples} onCopy={handleCopy} />
   );
 };
 
@@ -66,4 +50,3 @@ const useStyles = createStyles(({ token }) => ({
     borderRadius: token.borderRadius,
   },
 }));
-

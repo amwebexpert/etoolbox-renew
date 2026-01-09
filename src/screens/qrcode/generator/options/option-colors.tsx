@@ -12,12 +12,7 @@ interface OptionColorsProps {
   onBackgroundChange: ColorUpdater;
 }
 
-export const OptionColors = ({
-  foreground,
-  background,
-  onForegroundChange,
-  onBackgroundChange,
-}: OptionColorsProps) => {
+export const OptionColors = ({ foreground, background, onForegroundChange, onBackgroundChange }: OptionColorsProps) => {
   const { styles } = useOptionsStyles();
 
   const handleColorChange = (onChange: ColorUpdater) => (color: Color) => {
@@ -52,4 +47,3 @@ export const OptionColors = ({
     </>
   );
 };
-

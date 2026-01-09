@@ -87,4 +87,3 @@ export const DELIMITER_OPTIONS = [
 
 // View modes
 export type ViewMode = "json" | "table";
-

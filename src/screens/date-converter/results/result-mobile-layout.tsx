@@ -15,25 +15,14 @@ interface ResultMobileLayoutProps {
   onCopy: (value: string, label: string) => void;
 }
 
-export const ResultMobileLayout = ({
-  date,
-  epochValue,
-  showCodeExamples,
-  onCopy,
-}: ResultMobileLayoutProps) => {
+export const ResultMobileLayout = ({ date, epochValue, showCodeExamples, onCopy }: ResultMobileLayoutProps) => {
   const { styles } = useStyles();
   const syntaxTheme = useSyntaxHighlightTheme();
 
   return (
     <div className={styles.cardsContainer}>
       {DATE_FORMATS.map((format) => (
-        <DateFormatCard
-          key={format.id}
-          format={format}
-          date={date}
-          epochValue={epochValue}
-          onCopy={onCopy}
-        />
+        <DateFormatCard key={format.id} format={format} date={date} epochValue={epochValue} onCopy={onCopy} />
       ))}
 
       {showCodeExamples && (
@@ -78,4 +67,3 @@ const useStyles = createStyles(() => ({
     marginTop: 8,
   },
 }));
-

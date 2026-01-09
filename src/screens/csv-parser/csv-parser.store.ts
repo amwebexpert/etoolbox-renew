@@ -37,17 +37,14 @@ const INITIAL_STATE = {
   parseResult: null,
 };
 
-type SetState = (
-  partial: Partial<CsvParserState> | ((state: CsvParserState) => Partial<CsvParserState>)
-) => void;
+type SetState = (partial: Partial<CsvParserState> | ((state: CsvParserState) => Partial<CsvParserState>)) => void;
 
 const stateCreator = (set: SetState): CsvParserState => ({
   ...INITIAL_STATE,
 
   setCsvInput: (input) => set({ csvInput: input }),
   setFileEncoding: (encoding) => set({ fileEncoding: encoding }),
-  setParserOptions: (options) =>
-    set((state) => ({ parserOptions: { ...state.parserOptions, ...options } })),
+  setParserOptions: (options) => set((state) => ({ parserOptions: { ...state.parserOptions, ...options } })),
   setFileInfo: (info) => set({ fileInfo: info }),
   setViewMode: (mode) => set({ viewMode: mode }),
   setParseResult: (result) => set({ parseResult: result }),
@@ -90,6 +87,5 @@ const persistedStateCreator = persist<CsvParserState>(stateCreator, {
 });
 
 export const useCsvParserStore = create<CsvParserState>()(
-  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME })
+  devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );
-

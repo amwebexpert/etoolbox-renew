@@ -13,15 +13,8 @@ export const Vr3dViewerLoading = ({ progress, fileName }: Vr3dViewerLoadingProps
   return (
     <div className={styles.container}>
       <LoadingOutlined className={styles.icon} />
-      <Typography.Text className={styles.text}>
-        Loading model{fileName ? `: ${fileName}` : "..."}
-      </Typography.Text>
-      <Progress
-        percent={Math.round(progress)}
-        size="small"
-        className={styles.progress}
-        status="active"
-      />
+      <Typography.Text className={styles.text}>Loading model{fileName ? `: ${fileName}` : "..."}</Typography.Text>
+      <Progress percent={Math.round(progress)} size="small" className={styles.progress} status="active" />
     </div>
   );
 };
@@ -47,5 +40,3 @@ const useStyles = createStyles(({ token }) => ({
     maxWidth: 300,
   },
 }));
-
-

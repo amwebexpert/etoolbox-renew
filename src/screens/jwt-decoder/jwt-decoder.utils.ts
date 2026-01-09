@@ -1,7 +1,12 @@
 import { jwtDecode, type JwtPayload } from "jwt-decode";
 import { getErrorMessage, isBlank, isNotBlank } from "@lichens-innovation/ts-common";
 
-import { formatUnixTimestamp, getCurrentUnixTimestamp, isExpiredTimestamp, isActiveTimestamp } from "~/utils/date.utils";
+import {
+  formatUnixTimestamp,
+  getCurrentUnixTimestamp,
+  isExpiredTimestamp,
+  isActiveTimestamp,
+} from "~/utils/date.utils";
 import { safeJsonStringify } from "~/utils/json.utils";
 import { getResultMaxHeight as getResponsiveMaxHeight, type ResponsiveContext } from "~/utils/responsive.utils";
 
