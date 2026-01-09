@@ -1,4 +1,4 @@
-import { CopyOutlined, QrcodeOutlined } from "@ant-design/icons";
+import { CopyOutlined } from "@ant-design/icons";
 import { isBlank } from "@lichens-innovation/ts-common";
 import { Button, Card, Spin, Tooltip, Typography } from "antd";
 import { createStyles } from "antd-style";
