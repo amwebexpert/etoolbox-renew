@@ -1,14 +1,17 @@
-import { QrcodeOutlined } from "@ant-design/icons";
+import { CopyOutlined, QrcodeOutlined } from "@ant-design/icons";
 import { isBlank } from "@lichens-innovation/ts-common";
-import { Card, Spin, Typography } from "antd";
+import { Button, Card, Spin, Tooltip, Typography } from "antd";
 import { createStyles } from "antd-style";
 import { useEffect, useState } from "react";
+
+import { useClipboardCopy } from "~/hooks/use-clipboard-copy";
 
 import { usePokerPlanningStore } from "../poker-planning.store";
 import { buildFullRouteURL, generateQRCodeDataUrl } from "../poker-planning.utils";
 
 export const PokerPlanningQRCode = () => {
   const { styles } = useStyles();
+  const { copyImageToClipboard } = useClipboardCopy();
   const { hostName, roomName, roomUUID } = usePokerPlanningStore();
 
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null);
@@ -39,6 +42,15 @@ export const PokerPlanningQRCode = () => {
     generateQRCode();
   }, [hostName, roomName, roomUUID, isSessionActive]);
 
+  const handleCopyQRCode = () => {
+    if (qrCodeDataUrl) {
+      copyImageToClipboard({
+        dataUrl: qrCodeDataUrl,
+        successMessage: "QR Code copied to clipboard!",
+      });
+    }
+  };
+
   if (!isSessionActive) {
     return null;
   }
@@ -49,8 +61,19 @@ export const PokerPlanningQRCode = () => {
       size="small"
       title={
         <span className={styles.title}>
-          <QrcodeOutlined /> Room QR Code
+          Room QR Code
         </span>
+      }
+      extra={
+        <Tooltip title="Copy QR Code to clipboard">
+          <Button
+            type="text"
+            size="small"
+            icon={<CopyOutlined />}
+            disabled={!qrCodeDataUrl || isLoading}
+            onClick={handleCopyQRCode}
+          />
+        </Tooltip>
       }
     >
       <div className={styles.container}>
