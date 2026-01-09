@@ -2,7 +2,7 @@ import { NumberOutlined } from "@ant-design/icons";
 import { isNotBlank } from "@lichens-innovation/ts-common";
 import { Divider, Flex, Modal } from "antd";
 import { createStyles } from "antd-style";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 
 import { ScreenContainer } from "~/components/ui/screen-container";
 import { ScreenHeader } from "~/components/ui/screen-header";
@@ -12,9 +12,10 @@ import { PokerPlanningOptions } from "./components/poker-planning-options";
 import { PokerPlanningQRCode } from "./components/poker-planning-qrcode";
 import { PokerPlanningTable } from "./components/poker-planning-table";
 import { PokerPlanningToolbar } from "./components/poker-planning-toolbar";
+import { useCleanupSocketOnUnmount } from "./hooks/use-cleanup-socket-on-unmount";
 import { useRouteParamsSync } from "./hooks/use-route-params-sync";
 import { useSessionSync } from "./hooks/use-session-sync";
-import { cleanupPokerPlanningSocket, usePokerPlanningStore } from "./poker-planning.store";
+import { usePokerPlanningStore } from "./poker-planning.store";
 import { parseEstimates } from "./poker-planning.utils";
 
 export const PokerPlanning = () => {
@@ -26,11 +27,7 @@ export const PokerPlanning = () => {
   // Sync URL params and session state
   useRouteParamsSync();
   useSessionSync();
-
-  // Cleanup socket on unmount
-  useEffect(() => {
-    return () => cleanupPokerPlanningSocket();
-  }, []);
+  useCleanupSocketOnUnmount();
 
   const estimates = session?.estimates ?? [];
   const { isUserMemberOfRoom } = parseEstimates({ estimates, username });

@@ -51,6 +51,7 @@ interface PokerPlanningState {
   // Socket management
   connect: () => void;
   sendMessage: (message: UserMessage) => void;
+  clearSocket: () => void;
 }
 
 const stateCreator = (
@@ -135,6 +136,12 @@ const stateCreator = (
     } else {
       set({ postponedMessage: message });
     }
+  },
+
+  clearSocket: () => {
+    const { socket } = get();
+    socket?.close();
+    set({ socket: null, postponedMessage: null });
   },
 
   // High-level actions
@@ -226,11 +233,5 @@ export const usePokerPlanningStore = create<PokerPlanningState>()(
   devtools(persistedStateCreator, { name: PERSISTED_STORE_NAME }),
 );
 
-// Cleanup function for component unmount
-export const cleanupPokerPlanningSocket = () => {
-  const { socket } = usePokerPlanningStore.getState();
-  if (socket) {
-    socket.close();
-    usePokerPlanningStore.setState({ socket: null, postponedMessage: null });
-  }
-};
+// Selector for socket cleanup
+export const useClearSocket = () => usePokerPlanningStore((state) => state.clearSocket);
