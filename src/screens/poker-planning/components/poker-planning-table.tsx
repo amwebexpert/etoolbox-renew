@@ -7,26 +7,30 @@ import { Button, Empty, Table, Tooltip, Typography } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { createStyles } from "antd-style";
 
-import { CARDS_LISTING_CATEGORIES } from "./poker-planning.constants";
-import { usePokerPlanningStore } from "./poker-planning.store";
-import type { UserEstimate } from "./poker-planning.types";
-import { parseEstimates } from "./poker-planning.utils";
+import { CARDS_LISTING_CATEGORIES } from "../poker-planning.constants";
+import { usePokerPlanningStore } from "../poker-planning.store";
+import type { UserEstimate } from "../poker-planning.types";
+import { parseEstimates } from "../poker-planning.utils";
 
 const { Text } = Typography;
 
 interface PokerPlanningTableProps {
   isUserMemberOfRoom: boolean;
   onRemoveUser: (username: string) => void;
-  onToggleVisibility: () => void;
 }
 
 export const PokerPlanningTable = ({
   isUserMemberOfRoom,
   onRemoveUser,
-  onToggleVisibility,
 }: PokerPlanningTableProps) => {
   const { styles } = useStyles();
-  const { session, isEstimatesVisible, cardsCategory, username } = usePokerPlanningStore();
+  const {
+    session,
+    isEstimatesVisible,
+    cardsCategory,
+    username,
+    toggleEstimatesVisibility,
+  } = usePokerPlanningStore();
 
   const estimates = session?.estimates ?? [];
   const sorter = CARDS_LISTING_CATEGORIES[cardsCategory].sorter;
@@ -69,7 +73,7 @@ export const PokerPlanningTable = ({
               size="small"
               icon={isEstimatesVisible ? <EyeInvisibleOutlined /> : <EyeOutlined />}
               disabled={!isUserMemberOfRoom}
-              onClick={onToggleVisibility}
+              onClick={toggleEstimatesVisibility}
             />
           </Tooltip>
         </div>
@@ -161,4 +165,3 @@ const useStyles = createStyles(({ token }) => ({
     fontSize: 14,
   },
 }));
-

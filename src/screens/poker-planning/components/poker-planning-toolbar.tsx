@@ -13,34 +13,35 @@ import { createStyles } from "antd-style";
 import { useClipboardCopy } from "~/hooks/use-clipboard-copy";
 import { useResponsive } from "~/hooks/use-responsive";
 
-import { usePokerPlanningStore } from "./poker-planning.store";
-import { buildFullRouteURL, generateQRCodeDataUrl } from "./poker-planning.utils";
+import { usePokerPlanningStore } from "../poker-planning.store";
+import { buildFullRouteURL, generateQRCodeDataUrl } from "../poker-planning.utils";
 
 interface PokerPlanningToolbarProps {
-  isConnected: boolean;
-  isConnecting: boolean;
   isUserMemberOfRoom: boolean;
-  onCreateRoom: () => void;
-  onJoinRoom: () => void;
   onClearVotes: () => void;
-  onDisconnect: () => void;
 }
 
 export const PokerPlanningToolbar = ({
-  isConnected,
-  isConnecting,
   isUserMemberOfRoom,
-  onCreateRoom,
-  onJoinRoom,
   onClearVotes,
-  onDisconnect,
 }: PokerPlanningToolbarProps) => {
   const { isMobile } = useResponsive();
   const { styles } = useStyles();
   const { copyTextToClipboard, copyImageToClipboard } = useClipboardCopy();
 
-  const { hostName, roomName, roomUUID, username } = usePokerPlanningStore();
+  const {
+    hostName,
+    roomName,
+    roomUUID,
+    username,
+    socketState,
+    createRoom,
+    joinRoom,
+    disconnect,
+  } = usePokerPlanningStore();
 
+  const isConnected = socketState === "open";
+  const isConnecting = socketState === "connecting";
   const canCreateRoom = !isBlank(hostName) && !isBlank(roomName);
   const canJoin = isConnected && !isBlank(username) && !isUserMemberOfRoom;
   const canShareLink = isConnected && !isBlank(roomUUID);
@@ -65,7 +66,7 @@ export const PokerPlanningToolbar = ({
             icon={<PlusOutlined />}
             disabled={!canCreateRoom || isConnecting}
             loading={isConnecting}
-            onClick={onCreateRoom}
+            onClick={createRoom}
           >
             {!isMobile && "New Room"}
           </Button>
@@ -75,7 +76,7 @@ export const PokerPlanningToolbar = ({
           <Button
             icon={<TeamOutlined />}
             disabled={!canJoin}
-            onClick={onJoinRoom}
+            onClick={joinRoom}
           >
             {!isMobile && "Join"}
           </Button>
@@ -120,7 +121,7 @@ export const PokerPlanningToolbar = ({
           <Tooltip title="Disconnect from the room">
             <Button
               icon={<DisconnectOutlined />}
-              onClick={onDisconnect}
+              onClick={disconnect}
             >
               {!isMobile && "Disconnect"}
             </Button>
@@ -142,4 +143,3 @@ const useStyles = createStyles(() => ({
     flex: 1,
   },
 }));
-

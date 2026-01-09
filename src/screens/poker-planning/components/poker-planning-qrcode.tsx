@@ -4,8 +4,8 @@ import { Card, Spin, Typography } from "antd";
 import { createStyles } from "antd-style";
 import { useEffect, useState } from "react";
 
-import { usePokerPlanningStore } from "./poker-planning.store";
-import { buildFullRouteURL, generateQRCodeDataUrl } from "./poker-planning.utils";
+import { usePokerPlanningStore } from "../poker-planning.store";
+import { buildFullRouteURL, generateQRCodeDataUrl } from "../poker-planning.utils";
 
 export const PokerPlanningQRCode = () => {
   const { styles } = useStyles();
@@ -110,4 +110,3 @@ const useStyles = createStyles(({ token }) => ({
     textAlign: "center",
   },
 }));
-

@@ -3,20 +3,19 @@ import { createStyles } from "antd-style";
 
 import { useResponsive } from "~/hooks/use-responsive";
 
-import { CARDS_LISTING_CATEGORIES } from "./poker-planning.constants";
-import { usePokerPlanningStore } from "./poker-planning.store";
+import { CARDS_LISTING_CATEGORIES } from "../poker-planning.constants";
+import { usePokerPlanningStore } from "../poker-planning.store";
 
 const { Text } = Typography;
 
 interface PokerPlanningCardsProps {
   isDisabled: boolean;
-  onVote: (value: string) => void;
 }
 
-export const PokerPlanningCards = ({ isDisabled, onVote }: PokerPlanningCardsProps) => {
+export const PokerPlanningCards = ({ isDisabled }: PokerPlanningCardsProps) => {
   const { styles, cx } = useStyles();
   const { isMobile, isTablet } = useResponsive();
-  const { cardsCategory, myEstimate } = usePokerPlanningStore();
+  const { cardsCategory, myEstimate, vote } = usePokerPlanningStore();
 
   const cardValues = CARDS_LISTING_CATEGORIES[cardsCategory].values;
 
@@ -41,7 +40,7 @@ export const PokerPlanningCards = ({ isDisabled, onVote }: PokerPlanningCardsPro
               key={value}
               type={isSelected ? "primary" : "default"}
               disabled={isDisabled}
-              onClick={() => onVote(value)}
+              onClick={() => vote(value)}
               className={cx(styles.card, isSelected && styles.cardSelected)}
               style={{
                 width: cardSize,
@@ -96,4 +95,3 @@ const useStyles = createStyles(({ token }) => ({
     fontWeight: 700,
   },
 }));
-

@@ -2,20 +2,16 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Badge, Col, Form, Input, Row, Select, Tooltip } from "antd";
 import { createStyles } from "antd-style";
 
-import { CARD_CATEGORY_OPTIONS } from "./poker-planning.constants";
-import { usePokerPlanningStore } from "./poker-planning.store";
-import type { CardsListingCategoryName, SocketState } from "./poker-planning.types";
-import { getSocketStateColor } from "./poker-planning.utils";
+import { CARD_CATEGORY_OPTIONS } from "../poker-planning.constants";
+import { usePokerPlanningStore } from "../poker-planning.store";
+import type { CardsListingCategoryName } from "../poker-planning.types";
+import { getSocketStateColor } from "../poker-planning.utils";
 
 interface PokerPlanningOptionsProps {
-  socketState: SocketState;
   isSessionActive: boolean;
 }
 
-export const PokerPlanningOptions = ({
-  socketState,
-  isSessionActive,
-}: PokerPlanningOptionsProps) => {
+export const PokerPlanningOptions = ({ isSessionActive }: PokerPlanningOptionsProps) => {
   const { styles } = useStyles();
 
   const {
@@ -23,6 +19,7 @@ export const PokerPlanningOptions = ({
     roomName,
     username,
     cardsCategory,
+    socketState,
     setHostName,
     setRoomName,
     setUsername,
@@ -114,4 +111,3 @@ const useStyles = createStyles(() => ({
     width: "100%",
   },
 }));
-
