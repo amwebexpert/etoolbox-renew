@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => ({
       path: "path-browserify",
       url: "url",
       stream: "stream-browserify",
-      util: "util",
+      util: path.resolve(__dirname, "src/stubs/util.ts"),
       buffer: "buffer",
       querystring: "querystring-es3",
       string_decoder: "string_decoder",
